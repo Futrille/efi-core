@@ -1,0 +1,3 @@
+efi_general_homepage:
+    path:     /general/
+    defaults: { _controller: EfiGeneralBundle:Default:index }

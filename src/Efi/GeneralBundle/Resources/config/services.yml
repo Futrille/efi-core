@@ -1,0 +1,4 @@
+services:
+#    efi_general.example:
+#        class: Efi\GeneralBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
