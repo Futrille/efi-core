@@ -1,3 +1,7 @@
 efi_general_homepage:
     path:     /general/
     defaults: { _controller: EfiGeneralBundle:Default:index }
+
+efi_general_valorvariable:
+    path:     /general/valorvariable/
+    defaults: { _controller: EfiGeneralBundle:ValorVariable:index }
