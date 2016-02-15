@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Persona</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ persona.id }}</td>
+            </tr>
+            <tr>
+                <th>Estatus</th>
+                <td>{{ persona.estatus }}</td>
+            </tr>
+            <tr>
+                <th>Escompleto</th>
+                <td>{{ persona.esCompleto }}</td>
+            </tr>
+            <tr>
+                <th>Fechanacimiento</th>
+                <td>{{ persona.fechaNacimiento }}</td>
+            </tr>
+            <tr>
+                <th>Cedula</th>
+                <td>{{ persona.cedula }}</td>
+            </tr>
+            <tr>
+                <th>Nacionalidad</th>
+                <td>{{ persona.nacionalidad }}</td>
+            </tr>
+            <tr>
+                <th>Nombres</th>
+                <td>{{ persona.nombres }}</td>
+            </tr>
+            <tr>
+                <th>Apellidos</th>
+                <td>{{ persona.apellidos }}</td>
+            </tr>
+            <tr>
+                <th>Sexo</th>
+                <td>{{ persona.sexo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('persona_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('persona_edit', { 'id': persona.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

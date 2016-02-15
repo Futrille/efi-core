@@ -15,10 +15,13 @@ class EfiGeneralBundle extends Bundle
      * @return mixed
      */
     public function getSerialize($object){
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
+        $encoder = new JsonEncoder();
+        $normalizer = new ObjectNormalizer();
 
-        $serializer = new Serializer($normalizers, $encoders);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object;
+        });
+        $serializer = new Serializer(array($normalizer), array($encoder));
         return $serializer->serialize($object, 'json');
     }
 }

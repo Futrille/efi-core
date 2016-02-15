@@ -1,0 +1,24 @@
+persona_index:
+    path:     /
+    defaults: { _controller: "EfiGanadosBundle:Persona:index" }
+    methods:  GET
+
+persona_show:
+    path:     /{id}/show
+    defaults: { _controller: "EfiGanadosBundle:Persona:show" }
+    methods:  GET
+
+persona_new:
+    path:     /new
+    defaults: { _controller: "EfiGanadosBundle:Persona:new" }
+    methods:  [GET, POST]
+
+persona_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EfiGanadosBundle:Persona:edit" }
+    methods:  [GET, POST]
+
+persona_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EfiGanadosBundle:Persona:delete" }
+    methods:  DELETE

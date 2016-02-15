@@ -82,7 +82,7 @@ class Persona
     /**
      * @var \Efi\GeneralBundle\Entity\Iglesia
      *
-     * @ORM\ManyToOne(targetEntity="\Efi\GeneralBundle\Entity\Iglesia")
+     * @ORM\ManyToOne(targetEntity="\Efi\GeneralBundle\Entity\Iglesia", inversedBy="personas")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IGL_ID", referencedColumnName="IGL_ID")
      * })
@@ -158,6 +158,13 @@ class Persona
      * )
      */
     private $telefonos;
+
+    /**
+     * @return string
+     */
+    public function __toString(){
+        return $this->getNombres() . ' ' . $this->getApellidos();
+    }
 
     /**
      * Constructor

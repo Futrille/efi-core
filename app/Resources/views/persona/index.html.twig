@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Persona list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Estatus</th>
+                <th>Escompleto</th>
+                <th>Fechanacimiento</th>
+                <th>Cedula</th>
+                <th>Nacionalidad</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Sexo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for persona in personas %}
+            <tr>
+                <td><a href="{{ path('persona_show', { 'id': persona.id }) }}">{{ persona.id }}</a></td>
+                <td>{{ persona.estatus }}</td>
+                <td>{{ persona.esCompleto }}</td>
+                <td>{{ persona.fechaNacimiento }}</td>
+                <td>{{ persona.cedula }}</td>
+                <td>{{ persona.nacionalidad }}</td>
+                <td>{{ persona.nombres }}</td>
+                <td>{{ persona.apellidos }}</td>
+                <td>{{ persona.sexo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('persona_show', { 'id': persona.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('persona_edit', { 'id': persona.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('persona_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -57,6 +57,13 @@ class ValorVariable
     private $descripcion;
 
     /**
+     * @return string
+     */
+    public function __toString(){
+        return $this->getNombre();
+    }
+
+    /**
      * @return int
      */
     public function getId()

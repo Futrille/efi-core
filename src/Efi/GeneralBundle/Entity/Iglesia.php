@@ -83,6 +83,13 @@ class Iglesia
 
 
     /**
+     * @return string
+     */
+    public function __toString(){
+        return $this->getNombre();
+    }
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -216,6 +223,22 @@ class Iglesia
     public function setVvaEstatus($vvaEstatus)
     {
         $this->vvaEstatus = $vvaEstatus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPersonas()
+    {
+        return $this->personas;
+    }
+
+    /**
+     * @param mixed $personas
+     */
+    public function setPersonas($personas)
+    {
+        $this->personas = $personas;
     }
 
 

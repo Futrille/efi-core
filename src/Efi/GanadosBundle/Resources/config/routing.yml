@@ -1,3 +1,7 @@
+efi_ganados_persona:
+    resource: "@EfiGanadosBundle/Resources/config/routing/persona.yml"
+    prefix:   /persona
+
 efi_ganados_homepage:
     path:     /
     defaults: { _controller: EfiGanadosBundle:Default:index }
