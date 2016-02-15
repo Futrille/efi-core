@@ -1,6 +1,6 @@
 <?php
 
-namespace Iglesys\Bundle\GeneralBundle\Entity;
+namespace Efi\GeneralBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,9 +36,9 @@ class Telefono
     private $numeroTelefonico;
 
     /**
-     * @var Pais
+     * @var \Efi\GeneralBundle\Entity\Pais
      *
-     * @ORM\ManyToOne(targetEntity="Pais")
+     * @ORM\ManyToOne(targetEntity="\Efi\GeneralBundle\Entity\Pais")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="PAI_ID", referencedColumnName="PAI_ID")
      * })
@@ -46,26 +46,19 @@ class Telefono
     private $pais;
 
     /**
-     * @var ValorVariable
+     * @var \Efi\GeneralBundle\Entity\ValorVariable
      *
-     * @ORM\ManyToOne(targetEntity="ValorVariable")
+     * @ORM\ManyToOne(targetEntity="\Efi\GeneralBundle\Entity\ValorVariable")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="VVA_IDTIPO", referencedColumnName="VVA_ID")
      * })
      */
-    private $vvaTipo;
-
-//    /**
-//     * @var \Doctrine\Common\Collections\Collection
-//     *
-//     * @ORM\ManyToMany(targetEntity="Lideres", mappedBy="tlf")
-//     */
-//    private $lideres;
+    private $idTipo;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="\Iglesys\Bundle\GanadosBundle\Entity\Persona", mappedBy="telefonos")
+     * @ORM\ManyToMany(targetEntity="\Efi\GanadosBundle\Entity\Persona", mappedBy="telefonos")
      */
     private $personas;
 
@@ -74,7 +67,6 @@ class Telefono
      */
     public function __construct()
     {
-//        $this->lideres = new \Doctrine\Common\Collections\ArrayCollection();
         $this->personas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -127,7 +119,7 @@ class Telefono
     }
 
     /**
-     * @return Pais
+     * @return \Efi\GeneralBundle\Entity\Pais
      */
     public function getPais()
     {
@@ -135,7 +127,7 @@ class Telefono
     }
 
     /**
-     * @param Pais $pais
+     * @param \Efi\GeneralBundle\Entity\Pais $pais
      */
     public function setPais($pais)
     {
@@ -143,36 +135,20 @@ class Telefono
     }
 
     /**
-     * @return ValorVariable
+     * @return \Efi\GeneralBundle\Entity\ValorVariable
      */
-    public function getVvaTipo()
+    public function getIdTipo()
     {
-        return $this->vvaTipo;
+        return $this->idTipo;
     }
 
     /**
-     * @param ValorVariable $vvaTipo
+     * @param \Efi\GeneralBundle\Entity\ValorVariable $idTipo
      */
-    public function setVvaTipo($vvaTipo)
+    public function setIdTipo($idTipo)
     {
-        $this->vvaTipo = $vvaTipo;
+        $this->idTipo = $idTipo;
     }
-
-//    /**
-//     * @return \Doctrine\Common\Collections\Collection
-//     */
-//    public function getLideres()
-//    {
-//        return $this->lideres;
-//    }
-//
-//    /**
-//     * @param \Doctrine\Common\Collections\Collection $lideres
-//     */
-//    public function setLideres($lideres)
-//    {
-//        $this->lideres = $lideres;
-//    }
 
     /**
      * @return \Doctrine\Common\Collections\Collection

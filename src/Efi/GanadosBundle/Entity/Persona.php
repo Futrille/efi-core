@@ -80,9 +80,9 @@ class Persona
     private $sexo;
 
     /**
-     * @var Iglesia
+     * @var \Efi\GeneralBundle\Entity\Iglesia
      *
-     * @ORM\ManyToOne(targetEntity="Iglesia")
+     * @ORM\ManyToOne(targetEntity="\Efi\GeneralBundle\Entity\Iglesia")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IGL_ID", referencedColumnName="IGL_ID")
      * })
@@ -90,49 +90,49 @@ class Persona
     private $iglesia;
 
     /**
-     * @var \MetodosGanar
+     * @var \Efi\GanadosBundle\Entity\MetodoGanar
      *
-     * @ORM\ManyToOne(targetEntity="MetodosGanar")
+     * @ORM\ManyToOne(targetEntity="\Efi\GanadosBundle\Entity\MetodoGanar")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="MET_ID", referencedColumnName="MET_ID")
      * })
      */
-    private $met;
+    private $metodoGanar;
 
     /**
-     * @var \Paises
+     * @var \Efi\GeneralBundle\Entity\Pais
      *
-     * @ORM\ManyToOne(targetEntity="Paises")
+     * @ORM\ManyToOne(targetEntity="\Efi\GeneralBundle\Entity\Pais")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="PAI_ID", referencedColumnName="PAI_ID")
      * })
      */
-    private $pai;
+    private $pais;
 
     /**
-     * @var ValorVariable
+     * @var \Efi\GeneralBundle\Entity\ValorVariable
      *
-     * @ORM\ManyToOne(targetEntity="ValorVariable")
+     * @ORM\ManyToOne(targetEntity="\Efi\GeneralBundle\Entity\ValorVariable")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="VVA_IDESTATUS", referencedColumnName="VVA_ID")
      * })
      */
-    private $vvaestatus;
+    private $idEstatus;
 
     /**
-     * @var \ValoresVariables
+     * @var \Efi\GeneralBundle\Entity\ValorVariable
      *
-     * @ORM\ManyToOne(targetEntity="ValoresVariables")
+     * @ORM\ManyToOne(targetEntity="\Efi\GeneralBundle\Entity\ValorVariable")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="VVA_IDESCOMPLETO", referencedColumnName="VVA_ID")
      * })
      */
-    private $vvaescompleto;
+    private $idEsCompleto;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Direcciones", inversedBy="per")
+     * @ORM\ManyToMany(targetEntity="\Efi\GeneralBundle\Entity\Direccion", inversedBy="personas")
      * @ORM\JoinTable(name="personas_has_direcciones",
      *   joinColumns={
      *     @ORM\JoinColumn(name="PER_ID", referencedColumnName="PER_ID")
@@ -142,12 +142,12 @@ class Persona
      *   }
      * )
      */
-    private $dir;
+    private $direcciones;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Telefonos", inversedBy="per")
+     * @ORM\ManyToMany(targetEntity="\Efi\GeneralBundle\Entity\Telefono", inversedBy="personas")
      * @ORM\JoinTable(name="personas_has_telefonos",
      *   joinColumns={
      *     @ORM\JoinColumn(name="PER_ID", referencedColumnName="PER_ID")
@@ -157,15 +157,271 @@ class Persona
      *   }
      * )
      */
-    private $tlf;
+    private $telefonos;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->dir = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->tlf = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->direcciones = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->telefonos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEstatus()
+    {
+        return $this->estatus;
+    }
+
+    /**
+     * @param int $estatus
+     */
+    public function setEstatus($estatus)
+    {
+        $this->estatus = $estatus;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEsCompleto()
+    {
+        return $this->esCompleto;
+    }
+
+    /**
+     * @param int $esCompleto
+     */
+    public function setEsCompleto($esCompleto)
+    {
+        $this->esCompleto = $esCompleto;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFechaNacimiento()
+    {
+        return $this->fechaNacimiento;
+    }
+
+    /**
+     * @param int $fechaNacimiento
+     */
+    public function setFechaNacimiento($fechaNacimiento)
+    {
+        $this->fechaNacimiento = $fechaNacimiento;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCedula()
+    {
+        return $this->cedula;
+    }
+
+    /**
+     * @param string $cedula
+     */
+    public function setCedula($cedula)
+    {
+        $this->cedula = $cedula;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNacionalidad()
+    {
+        return $this->nacionalidad;
+    }
+
+    /**
+     * @param string $nacionalidad
+     */
+    public function setNacionalidad($nacionalidad)
+    {
+        $this->nacionalidad = $nacionalidad;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNombres()
+    {
+        return $this->nombres;
+    }
+
+    /**
+     * @param string $nombres
+     */
+    public function setNombres($nombres)
+    {
+        $this->nombres = $nombres;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApellidos()
+    {
+        return $this->apellidos;
+    }
+
+    /**
+     * @param string $apellidos
+     */
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSexo()
+    {
+        return $this->sexo;
+    }
+
+    /**
+     * @param string $sexo
+     */
+    public function setSexo($sexo)
+    {
+        $this->sexo = $sexo;
+    }
+
+    /**
+     * @return Iglesia
+     */
+    public function getIglesia()
+    {
+        return $this->iglesia;
+    }
+
+    /**
+     * @param Iglesia $iglesia
+     */
+    public function setIglesia($iglesia)
+    {
+        $this->iglesia = $iglesia;
+    }
+
+    /**
+     * @return MetodoGanar
+     */
+    public function getMetodoGanar()
+    {
+        return $this->metodoGanar;
+    }
+
+    /**
+     * @param MetodoGanar $metodoGanar
+     */
+    public function setMetodoGanar($metodoGanar)
+    {
+        $this->metodoGanar = $metodoGanar;
+    }
+
+    /**
+     * @return \Efi\GeneralBundle\Entity\Pais
+     */
+    public function getPais()
+    {
+        return $this->pais;
+    }
+
+    /**
+     * @param \Efi\GeneralBundle\Entity\Pais $pais
+     */
+    public function setPais($pais)
+    {
+        $this->pais = $pais;
+    }
+
+    /**
+     * @return ValorVariable
+     */
+    public function getIdEstatus()
+    {
+        return $this->idEstatus;
+    }
+
+    /**
+     * @param ValorVariable $idEstatus
+     */
+    public function setIdEstatus($idEstatus)
+    {
+        $this->idEstatus = $idEstatus;
+    }
+
+    /**
+     * @return ValorVariable
+     */
+    public function getIdEsCompleto()
+    {
+        return $this->idEsCompleto;
+    }
+
+    /**
+     * @param ValorVariable $idEsCompleto
+     */
+    public function setIdEsCompleto($idEsCompleto)
+    {
+        $this->idEsCompleto = $idEsCompleto;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDirecciones()
+    {
+        return $this->direcciones;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $direcciones
+     */
+    public function setDirecciones($direcciones)
+    {
+        $this->direcciones = $direcciones;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTelefonos()
+    {
+        return $this->telefonos;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $telefonos
+     */
+    public function setTelefonos($telefonos)
+    {
+        $this->telefonos = $telefonos;
     }
 
 }
