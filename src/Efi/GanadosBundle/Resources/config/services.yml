@@ -1,0 +1,4 @@
+services:
+#    efi_ganados.example:
+#        class: Efi\GanadosBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

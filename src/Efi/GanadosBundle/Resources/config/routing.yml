@@ -1,0 +1,3 @@
+efi_ganados_homepage:
+    path:     /
+    defaults: { _controller: EfiGanadosBundle:Default:index }
