@@ -36,9 +36,9 @@ class Personas
     private $perEscompleto;
 
     /**
-     * @var integer
+     * @var \DateTime
      *
-     * @ORM\Column(name="PER_FECHANACIMIENTO", type="integer", nullable=false)
+     * @ORM\Column(name="PER_FECHANACIMIENTO", type="datetime", nullable=false)
      */
     private $perFechanacimiento;
 
@@ -87,7 +87,7 @@ class Personas
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="PER UPDATED_AT", type="datetime", nullable=false)
+     * @ORM\Column(name="PER_UPDATED_AT", type="datetime", nullable=false)
      */
     private $perUpdatedAt;
 

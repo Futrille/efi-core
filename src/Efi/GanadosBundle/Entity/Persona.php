@@ -39,12 +39,11 @@ class Persona
     private $esCompleto;
 
     /**
-     * @var integer
+     * @var \DateTime
      *
-     * @ORM\Column(name="PER_FECHANACIMIENTO", type="integer", nullable=false)
+     * @ORM\Column(name="PER_FECHANACIMIENTO", type="datetime", nullable=false)
      */
     private $fechaNacimiento;
-
     /**
      * @var string
      *
@@ -255,7 +254,7 @@ class Persona
     }
 
     /**
-     * @return int
+     * @return \DateTime
      */
     public function getFechaNacimiento()
     {
@@ -263,7 +262,7 @@ class Persona
     }
 
     /**
-     * @param int $fechaNacimiento
+     * @param \DateTime $fechaNacimiento
      */
     public function setFechaNacimiento($fechaNacimiento)
     {

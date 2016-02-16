@@ -2,9 +2,12 @@
 
 namespace Efi\GanadosBundle\Form;
 
+use Doctrine\Common\Cache\ArrayCache;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class PersonaType extends AbstractType
 {
@@ -14,36 +17,31 @@ class PersonaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+//        $years = Array();
+//        $now = new \DateTime('now');
+//        for ($i = 2016; $i < 5; $i++ ){
+//            $year[] = $i;
+//        }
+//        echo $years;
         $builder
-//            ->add('estatus')
-//            ->add('esCompleto')
-            ->add('fechaNacimiento')
-            ->add('cedula')
-            ->add('nacionalidad')
-            ->add('nombres')
-            ->add('apellidos')
-            ->add('sexo')
-//            ->add('iglesia', 'entity',
-//                array(
-//                    'class' => 'EfiGeneralBundle:Iglesia',
-//                    'label' => 'Iglesia'
-//                ))
             ->add('metodoGanar', 'entity',
                 array(
                     'class' => 'EfiGanadosBundle:MetodoGanar',
                     'label' => 'Metodo'
                 ))
-//            ->add('pais', 'entity',
-//                array(
-//                    'class' => 'EfiGeneralBundle:Pais',
-//                    'label' => 'Pais'
-//                ))
-//            ->add('idEstatus', 'entity',
-//                array(
-//                    'class' => 'EfiGeneralBundle:ValorVariable',
-//                    'label' => 'Estatus'
-//                ))
-//            ->add('idEsCompleto')
+            ->add('fechaNacimiento', DateType::class, array(
+                'input'  => 'datetime',
+                'widget' => 'choice',
+                'placeholder' => array(
+                    'day' => '--', 'month' => '--', 'year' => '----'
+                ),
+                'years' => range(1920,2010),
+            ))
+            ->add('cedula')
+            ->add('nacionalidad')
+            ->add('nombres')
+            ->add('apellidos')
+            ->add('sexo')
 //            ->add('direcciones')
 //            ->add('telefonos')
         ;
