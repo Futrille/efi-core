@@ -1,0 +1,24 @@
+valorvariable_index:
+    path:     /
+    defaults: { _controller: "EfiGeneralBundle:ValorVariable:index" }
+    methods:  GET
+
+valorvariable_show:
+    path:     /{id}/show
+    defaults: { _controller: "EfiGeneralBundle:ValorVariable:show" }
+    methods:  GET
+
+valorvariable_new:
+    path:     /new
+    defaults: { _controller: "EfiGeneralBundle:ValorVariable:new" }
+    methods:  [GET, POST]
+
+valorvariable_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EfiGeneralBundle:ValorVariable:edit" }
+    methods:  [GET, POST]
+
+valorvariable_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EfiGeneralBundle:ValorVariable:delete" }
+    methods:  DELETE

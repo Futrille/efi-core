@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ValorVariable</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ valorVariable.id }}</td>
+            </tr>
+            <tr>
+                <th>Codigo</th>
+                <td>{{ valorVariable.codigo }}</td>
+            </tr>
+            <tr>
+                <th>Valor</th>
+                <td>{{ valorVariable.valor }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ valorVariable.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Orden</th>
+                <td>{{ valorVariable.orden }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ valorVariable.descripcion }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('valorvariable_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('valorvariable_edit', { 'id': valorVariable.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

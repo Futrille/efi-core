@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ValorVariable list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Codigo</th>
+                <th>Valor</th>
+                <th>Nombre</th>
+                <th>Orden</th>
+                <th>Descripcion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for valorVariable in valorVariables %}
+            <tr>
+                <td><a href="{{ path('valorvariable_show', { 'id': valorVariable.id }) }}">{{ valorVariable.id }}</a></td>
+                <td>{{ valorVariable.codigo }}</td>
+                <td>{{ valorVariable.valor }}</td>
+                <td>{{ valorVariable.nombre }}</td>
+                <td>{{ valorVariable.orden }}</td>
+                <td>{{ valorVariable.descripcion }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('valorvariable_show', { 'id': valorVariable.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('valorvariable_edit', { 'id': valorVariable.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('valorvariable_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
