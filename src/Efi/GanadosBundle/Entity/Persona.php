@@ -11,6 +11,7 @@ use \Efi\GeneralBundle\Entity\Iglesia as Iglesia;
  *
  * @ORM\Table(name="personas", indexes={@ORM\Index(name="fk_PERSONAS_PAISES1_idx", columns={"PAI_ID"}), @ORM\Index(name="fk_PERSONAS_VALORESVARIABLES1_idx", columns={"VVA_IDESTATUS"}), @ORM\Index(name="fk_PERSONAS_VALORESVARIABLES2_idx", columns={"VVA_IDESCOMPLETO"}), @ORM\Index(name="fk_PERSONAS_IGLESIAS1_idx", columns={"IGL_ID"}), @ORM\Index(name="fk_PERSONAS_METODOS_GANAR1_idx", columns={"MET_ID"})})
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Persona
 {
@@ -78,6 +79,20 @@ class Persona
      * @ORM\Column(name="PER_SEXO", type="string", length=1, nullable=false)
      */
     private $sexo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="PER_CREATED_AT", type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="PER_UPDATED_AT", type="datetime", nullable=false)
+     */
+    private $updatedAt;
 
     /**
      * @var \Efi\GeneralBundle\Entity\Iglesia
@@ -167,12 +182,28 @@ class Persona
     }
 
     /**
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+        $this->setUpdatedAt(new \DateTime('now'));
+
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTime('now'));
+        }
+    }
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->direcciones = new \Doctrine\Common\Collections\ArrayCollection();
         $this->telefonos = new \Doctrine\Common\Collections\ArrayCollection();
+//        $this->setCreatedAt(new \DateTime('now'));
+//        $this->setUpdatedAt(new \DateTime('now'));
     }
 
     /**
@@ -429,6 +460,38 @@ class Persona
     public function setTelefonos($telefonos)
     {
         $this->telefonos = $telefonos;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
     }
 
 }
