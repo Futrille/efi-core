@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2c7ad8a4-58c8-48a7-9acc-cfc02f4d0496" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Efi/GeneralBundle/EfiGeneralBundle.php" afterPath="$PROJECT_DIR$/src/Efi/GeneralBundle/EfiGeneralBundle.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php" afterPath="$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Efi/GanadosBundle/Form/PersonaType.php" afterPath="$PROJECT_DIR$/src/Efi/GanadosBundle/Form/PersonaType.php" />
-    </list>
+    <list default="true" id="2c7ad8a4-58c8-48a7-9acc-cfc02f4d0496" name="Default" comment="" />
     <ignored path="efi-core.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -29,8 +25,8 @@
       <file leaf-file-name="PersonaController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6612642">
-              <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
+            <state vertical-scroll-proportion="1.1021069">
+              <caret line="70" column="6" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
               <folding>
                 <element signature="e#48#93#0#PHP" expanded="true" />
               </folding>
@@ -728,8 +724,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6612642">
-          <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
+        <state vertical-scroll-proportion="1.1021069">
+          <caret line="70" column="6" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
           <folding>
             <element signature="e#48#93#0#PHP" expanded="true" />
           </folding>
