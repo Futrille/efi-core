@@ -2,6 +2,8 @@
 
 namespace Efi\GanadosBundle\Controller;
 
+use Proxies\__CG__\Efi\GeneralBundle\Entity\ValorVariable;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -49,12 +51,37 @@ class PersonaController extends Controller
      */
     public function newAction(Request $request)
     {
+        $estatusDefault = 2;
+        $esCompletoDefault = 1;
+
         $persona = new Persona();
         $form = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $persona->setEstatus($estatusDefault);
+            $idEstatus = $this->getDoctrine()
+                ->getRepository('EfiGeneralBundle:ValorVariable')
+                ->findOneBy(
+                    array('codigo' => 'per_estatus', 'valor' => $estatusDefault)
+                );
+            $persona->setIdEstatus($idEstatus);
+
+            //Verificando que esté completo el registro
+            if ($persona->getCedula() == null || $persona->getCedula() == ''){
+                $esCompletoDefault = 0;
+            }
+
+            $persona->setEsCompleto($esCompletoDefault);
+            $idEsCompleto = $this->getDoctrine()
+                ->getRepository('EfiGeneralBundle:ValorVariable')
+                ->findOneBy(
+                    array('codigo' => 'bool', 'valor' => $esCompletoDefault)
+                );
+            $persona->setIdEsCompleto($idEsCompleto);
+
             $em->persist($persona);
             $em->flush();
 
@@ -87,14 +114,45 @@ class PersonaController extends Controller
      */
     public function editAction(Request $request, Persona $persona)
     {
+        $util = new Util();
+        $estatusDefault = 2;
+        $esCompletoDefault = 1;
+
         $deleteForm = $this->createDeleteForm($persona);
         $editForm = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $persona->setEstatus($estatusDefault);
+            $idEstatus = $this->getDoctrine()
+                ->getRepository('EfiGeneralBundle:ValorVariable')
+                ->findOneBy(
+                    array('codigo' => 'per_estatus', 'valor' => $estatusDefault)
+                );
+            $persona->setIdEstatus($idEstatus);
+
+            //Verificando que esté completo el registro
+            if ($persona->getCedula() == null || $persona->getCedula() == ''){
+                $esCompletoDefault = 0;
+            }
+
+            $persona->setEsCompleto($esCompletoDefault);
+            $idEsCompleto = $this->getDoctrine()
+                ->getRepository('EfiGeneralBundle:ValorVariable')
+                ->findOneBy(
+                    array('codigo' => 'bool', 'valor' => $esCompletoDefault)
+                );
+            $persona->setIdEsCompleto($idEsCompleto);
+
+
             $em->persist($persona);
             $em->flush();
+
+            $response = new JsonResponse();
+            $response->setContent($util->getSerialize($persona));
+            return $response;
 
             return $this->redirectToRoute('persona_edit', array('id' => $persona->getId()));
         }

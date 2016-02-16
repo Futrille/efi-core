@@ -15,8 +15,8 @@ class PersonaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('estatus')
-            ->add('esCompleto')
+//            ->add('estatus')
+//            ->add('esCompleto')
             ->add('fechaNacimiento')
             ->add('cedula')
             ->add('nacionalidad')
@@ -38,14 +38,14 @@ class PersonaType extends AbstractType
                     'class' => 'EfiGeneralBundle:Pais',
                     'label' => 'Pais'
                 ))
-            ->add('idEstatus', 'entity',
-                array(
-                    'class' => 'EfiGeneralBundle:ValorVariable',
-                    'label' => 'Estatus'
-                ))
-            ->add('idEsCompleto')
-            ->add('direcciones')
-            ->add('telefonos')
+//            ->add('idEstatus', 'entity',
+//                array(
+//                    'class' => 'EfiGeneralBundle:ValorVariable',
+//                    'label' => 'Estatus'
+//                ))
+//            ->add('idEsCompleto')
+//            ->add('direcciones')
+//            ->add('telefonos')
         ;
     }
     
