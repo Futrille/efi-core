@@ -49,6 +49,7 @@ class PersonaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            echo "control...";
             $em = $this->getDoctrine()->getManager();
 
             $this->_setValoresDefault($persona);

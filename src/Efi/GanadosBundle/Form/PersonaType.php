@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class PersonaType extends AbstractType
 {
@@ -17,17 +19,11 @@ class PersonaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-//        $years = Array();
-//        $now = new \DateTime('now');
-//        for ($i = 2016; $i < 5; $i++ ){
-//            $year[] = $i;
-//        }
-//        echo $years;
         $builder
             ->add('metodoGanar', 'entity',
                 array(
                     'class' => 'EfiGanadosBundle:MetodoGanar',
-                    'label' => 'Metodo'
+                    'label' => 'Como fue ganado? '
                 ))
             ->add('fechaNacimiento', DateType::class, array(
                 'input'  => 'datetime',
@@ -35,13 +31,36 @@ class PersonaType extends AbstractType
                 'placeholder' => array(
                     'day' => '--', 'month' => '--', 'year' => '----'
                 ),
-                'years' => range(1920,2010),
+                'years' => range((\Date('Y') - 6), 1920),
+                'label' => 'Fecha de Nacimiento: '
             ))
-            ->add('cedula')
-            ->add('nacionalidad')
+            ->add('nacionalidad', ChoiceType::class, array(
+                'choices'  => array(
+                    'Venezolano(a) ' => 'V',
+                    'Extranjero(a) ' => 'E',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                // *this line is important*
+                'choices_as_values' => true,
+                'label' => 'Nacionalidad: ',
+            ))
+            ->add('cedula', IntegerType::class, array(
+                'label' => 'Cedula de Identidad: '
+            ))
             ->add('nombres')
             ->add('apellidos')
-            ->add('sexo')
+            ->add('sexo', ChoiceType::class, array(
+                'choices'  => array(
+                    'Masculino ' => 'M',
+                    'Femenino ' => 'F',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                // *this line is important*
+                'choices_as_values' => true,
+                'label' => 'Sexo: ',
+            ))
 //            ->add('direcciones')
 //            ->add('telefonos')
         ;
