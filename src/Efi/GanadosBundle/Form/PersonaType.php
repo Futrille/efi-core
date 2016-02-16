@@ -23,21 +23,21 @@ class PersonaType extends AbstractType
             ->add('nombres')
             ->add('apellidos')
             ->add('sexo')
-            ->add('iglesia', 'entity',
-                array(
-                    'class' => 'EfiGeneralBundle:Iglesia',
-                    'label' => 'Iglesia'
-                ))
+//            ->add('iglesia', 'entity',
+//                array(
+//                    'class' => 'EfiGeneralBundle:Iglesia',
+//                    'label' => 'Iglesia'
+//                ))
             ->add('metodoGanar', 'entity',
                 array(
                     'class' => 'EfiGanadosBundle:MetodoGanar',
                     'label' => 'Metodo'
                 ))
-            ->add('pais', 'entity',
-                array(
-                    'class' => 'EfiGeneralBundle:Pais',
-                    'label' => 'Pais'
-                ))
+//            ->add('pais', 'entity',
+//                array(
+//                    'class' => 'EfiGeneralBundle:Pais',
+//                    'label' => 'Pais'
+//                ))
 //            ->add('idEstatus', 'entity',
 //                array(
 //                    'class' => 'EfiGeneralBundle:ValorVariable',

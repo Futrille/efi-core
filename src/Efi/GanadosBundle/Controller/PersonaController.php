@@ -2,16 +2,16 @@
 
 namespace Efi\GanadosBundle\Controller;
 
-use Proxies\__CG__\Efi\GeneralBundle\Entity\ValorVariable;
-use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Efi\GeneralBundle\EfiGeneralBundle as Util;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Efi\GanadosBundle\Entity\Persona;
-use Efi\GanadosBundle\Form\PersonaType;
+use Efi\GanadosBundle\Entity\Persona as Persona;
+use Efi\GeneralBundle\Entity\Pais as Pais;
+use Efi\GeneralBundle\Entity\ValorVariable as ValorVariable;
+use Efi\GeneralBundle\Entity\Iglesia as Iglesia;
+use Efi\GanadosBundle\Form\PersonaType as PersonaType;
 
 /**
  * Persona controller.
@@ -33,16 +33,7 @@ class PersonaController extends Controller
             ->getRepository('EfiGanadosBundle:Persona')
             ->findAll();
 
-        $response = new JsonResponse();
-        $response->setContent($util->getSerialize($vvaList));
-        return $response;
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $personas = $em->getRepository('EfiGanadosBundle:Persona')->findAll();
-//
-//        return $this->render('persona/index.html.twig', array(
-//            'personas' => $personas,
-//        ));
+        return $util->efiGetJsonResponse($vvaList);
     }
 
     /**
@@ -51,8 +42,7 @@ class PersonaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $estatusDefault = 2;
-        $esCompletoDefault = 1;
+        $util = new Util();
 
         $persona = new Persona();
         $form = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
@@ -61,31 +51,13 @@ class PersonaController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $persona->setEstatus($estatusDefault);
-            $idEstatus = $this->getDoctrine()
-                ->getRepository('EfiGeneralBundle:ValorVariable')
-                ->findOneBy(
-                    array('codigo' => 'per_estatus', 'valor' => $estatusDefault)
-                );
-            $persona->setIdEstatus($idEstatus);
-
-            //Verificando que esté completo el registro
-            if ($persona->getCedula() == null || $persona->getCedula() == ''){
-                $esCompletoDefault = 0;
-            }
-
-            $persona->setEsCompleto($esCompletoDefault);
-            $idEsCompleto = $this->getDoctrine()
-                ->getRepository('EfiGeneralBundle:ValorVariable')
-                ->findOneBy(
-                    array('codigo' => 'bool', 'valor' => $esCompletoDefault)
-                );
-            $persona->setIdEsCompleto($idEsCompleto);
+            $this->_setValoresDefault($persona);
 
             $em->persist($persona);
             $em->flush();
 
-            return $this->redirectToRoute('persona_show', array('id' => $persona->getId()));
+            return $util->efiGetJsonResponse($persona);
+            //return $this->redirectToRoute('persona_show', array('id' => $persona->getId()));
         }
 
         return $this->render('persona/new.html.twig', array(
@@ -115,8 +87,6 @@ class PersonaController extends Controller
     public function editAction(Request $request, Persona $persona)
     {
         $util = new Util();
-        $estatusDefault = 2;
-        $esCompletoDefault = 1;
 
         $deleteForm = $this->createDeleteForm($persona);
         $editForm = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
@@ -125,36 +95,13 @@ class PersonaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $persona->setEstatus($estatusDefault);
-            $idEstatus = $this->getDoctrine()
-                ->getRepository('EfiGeneralBundle:ValorVariable')
-                ->findOneBy(
-                    array('codigo' => 'per_estatus', 'valor' => $estatusDefault)
-                );
-            $persona->setIdEstatus($idEstatus);
-
-            //Verificando que esté completo el registro
-            if ($persona->getCedula() == null || $persona->getCedula() == ''){
-                $esCompletoDefault = 0;
-            }
-
-            $persona->setEsCompleto($esCompletoDefault);
-            $idEsCompleto = $this->getDoctrine()
-                ->getRepository('EfiGeneralBundle:ValorVariable')
-                ->findOneBy(
-                    array('codigo' => 'bool', 'valor' => $esCompletoDefault)
-                );
-            $persona->setIdEsCompleto($idEsCompleto);
-
+            $this->_setValoresDefault($persona);
 
             $em->persist($persona);
             $em->flush();
 
-            $response = new JsonResponse();
-            $response->setContent($util->getSerialize($persona));
-            return $response;
-
-            return $this->redirectToRoute('persona_edit', array('id' => $persona->getId()));
+            return $util->efiGetJsonResponse($persona);
+            //return $this->redirectToRoute('persona_edit', array('id' => $persona->getId()));
         }
 
         return $this->render('persona/edit.html.twig', array(
@@ -196,5 +143,50 @@ class PersonaController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @param Persona $persona
+     */
+    private function _setValoresDefault(Persona $persona){
+
+        $estatusDefault = 1;
+        $esCompletoDefault = 1;
+        $paisDefault = 1;
+        $iglesiaDefault = 1;
+
+        $persona->setEstatus($estatusDefault);
+        $idEstatus = $this->getDoctrine()
+            ->getRepository('EfiGeneralBundle:ValorVariable')
+            ->findOneBy(
+                array('codigo' => 'per_estatus', 'valor' => $estatusDefault)
+            );
+        /** @var ValorVariable $idEstatus */
+        $persona->setIdEstatus($idEstatus);
+
+        //Verificando que esté completo el registro
+        if ($persona->getCedula() == null || $persona->getCedula() == ''){
+            $esCompletoDefault = 0;
+        }
+        $persona->setEsCompleto($esCompletoDefault);
+        $idEsCompleto = $this->getDoctrine()
+            ->getRepository('EfiGeneralBundle:ValorVariable')
+            ->findOneBy(
+                array('codigo' => 'bool', 'valor' => $esCompletoDefault)
+            );
+        /** @var ValorVariable $idEsCompleto */
+        $persona->setIdEsCompleto($idEsCompleto);
+
+        $pais = $this->getDoctrine()
+            ->getRepository('EfiGeneralBundle:Pais')
+            ->find($paisDefault);
+        /** @var Pais $pais */
+        $persona->setPais($pais);
+
+        $iglesia = $this->getDoctrine()
+            ->getRepository('EfiGeneralBundle:Iglesia')
+            ->find($iglesiaDefault);
+        /** @var Iglesia $iglesia */
+        $persona->setIglesia($iglesia);
     }
 }
