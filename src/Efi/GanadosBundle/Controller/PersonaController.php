@@ -2,8 +2,10 @@
 
 namespace Efi\GanadosBundle\Controller;
 
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\DBAL\DBALException;
 
 use Efi\GeneralBundle\EfiGeneralBundle as Util;
 
@@ -11,7 +13,7 @@ use Efi\GanadosBundle\Entity\Persona as Persona;
 use Efi\GeneralBundle\Entity\Pais as Pais;
 use Efi\GeneralBundle\Entity\ValorVariable as ValorVariable;
 use Efi\GeneralBundle\Entity\Iglesia as Iglesia;
-use Efi\GanadosBundle\Form\PersonaType as PersonaType;
+use Efi\GanadosBundle\Form\PersonaType;
 
 /**
  * Persona controller.
@@ -27,49 +29,68 @@ class PersonaController extends Controller
      */
     public function indexAction()
     {
-        $util = new Util();
+        $this->util = new Util();
         //$key = $request->query->get('key',0);
         $vvaList = $this->getDoctrine()
             ->getRepository('EfiGanadosBundle:Persona')
             ->findAll();
 
-        return $util->efiGetJsonResponse($vvaList);
+        return $this->util->efiGetJsonResponse($vvaList);
     }
 
     /**
      * Creates a new Persona entity.
-     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
-        $util = new Util();
-
+        $this->util = new Util();
+        $resultado = array();
+        if ($request->get('valor', '-1') != '-1'){
+            echo "Vino parametro successfully";
+        }
         $persona = new Persona();
-        $form = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
+        $form = $this->createForm(PersonaType::class, $persona);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            echo "control...";
-            $em = $this->getDoctrine()->getManager();
+            try{
+                if (!$this->isCedulaRepetida($persona)){
+                    echo "Submitted and Valid...";
+                    $em = $this->getDoctrine()->getManager();
 
-            $this->_setValoresDefault($persona);
+                    $this->_setValoresDefault($persona);
 
-            $em->persist($persona);
-            $em->flush();
+                    $em->persist($persona);
+                    $em->flush();
 
-            return $util->efiGetJsonResponse($persona);
-            //return $this->redirectToRoute('persona_show', array('id' => $persona->getId()));
+                    $resultado = $persona;
+                }
+                else{
+                    $resultado['status'] = "ERROR";
+                    $resultado['mensaje'] = "El numero de cedula ya se encuentra registrado.";
+                    //$form->get('cedula')->addError(new FormError("El numero de cedula ya se encuentra registrado."));
+                }
+            }catch (\Exception $e){
+                $resultado['status'] = "ERROR";
+                $resultado['mensaje'] = "Error al guardar el registro.";
+            }
+
+            return $this->util->efiGetJsonResponse($resultado);
         }
 
         return $this->render('persona/new.html.twig', array(
             'persona' => $persona,
             'form' => $form->createView(),
+
         ));
     }
 
     /**
      * Finds and displays a Persona entity.
-     *
+     * @param Persona $persona
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Persona $persona)
     {
@@ -83,11 +104,13 @@ class PersonaController extends Controller
 
     /**
      * Displays a form to edit an existing Persona entity.
-     *
+     * @param Request $request
+     * @param Persona $persona
+     * @return \Symfony\Component\HttpFoundation\JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Persona $persona)
     {
-        $util = new Util();
+        $this->util = new Util();
 
         $deleteForm = $this->createDeleteForm($persona);
         $editForm = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
@@ -101,8 +124,7 @@ class PersonaController extends Controller
             $em->persist($persona);
             $em->flush();
 
-            return $util->efiGetJsonResponse($persona);
-            //return $this->redirectToRoute('persona_edit', array('id' => $persona->getId()));
+            return $this->util->efiGetJsonResponse($persona);
         }
 
         return $this->render('persona/edit.html.twig', array(
@@ -114,7 +136,9 @@ class PersonaController extends Controller
 
     /**
      * Deletes a Persona entity.
-     *
+     * @param Request $request
+     * @param Persona $persona
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Persona $persona)
     {
@@ -189,5 +213,20 @@ class PersonaController extends Controller
             ->find($iglesiaDefault);
         /** @var Iglesia $iglesia */
         $persona->setIglesia($iglesia);
+    }
+
+    /**
+     * @param Persona $persona
+     */
+    private function isCedulaRepetida(Persona $persona){
+        $resultado = $this->getDoctrine()
+            ->getRepository('EfiGanadosBundle:Persona')
+            ->findOneBy(
+                array('cedula' => $persona->getCedula())
+            );
+        if ($resultado != null){
+            return true;
+        }
+        return false;
     }
 }

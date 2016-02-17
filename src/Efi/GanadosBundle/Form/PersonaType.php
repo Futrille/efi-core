@@ -2,7 +2,7 @@
 
 namespace Efi\GanadosBundle\Form;
 
-use Doctrine\Common\Cache\ArrayCache;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,7 +23,10 @@ class PersonaType extends AbstractType
             ->add('metodoGanar', 'entity',
                 array(
                     'class' => 'EfiGanadosBundle:MetodoGanar',
-                    'label' => 'Como fue ganado? '
+                    'label' => '¿C&oacute;mo fue ganado? ',
+                    'attr' => array(
+                        'class' => 'form-control'
+                    ),
                 ))
             ->add('fechaNacimiento', DateType::class, array(
                 'input'  => 'datetime',
@@ -32,7 +35,7 @@ class PersonaType extends AbstractType
                     'day' => '--', 'month' => '--', 'year' => '----'
                 ),
                 'years' => range((\Date('Y') - 6), 1920),
-                'label' => 'Fecha de Nacimiento: '
+                'label' => 'Fecha de Nacimiento: ',
             ))
             ->add('nacionalidad', ChoiceType::class, array(
                 'choices'  => array(
@@ -46,9 +49,16 @@ class PersonaType extends AbstractType
                 'label' => 'Nacionalidad: ',
             ))
             ->add('cedula', IntegerType::class, array(
-                'label' => 'Cedula de Identidad: '
+                'label' => 'Cedula de Identidad: ',
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
             ))
-            ->add('nombres')
+            ->add('nombres')/*, TextType::class, array(
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
+            ))*/
             ->add('apellidos')
             ->add('sexo', ChoiceType::class, array(
                 'choices'  => array(
@@ -75,4 +85,5 @@ class PersonaType extends AbstractType
             'data_class' => 'Efi\GanadosBundle\Entity\Persona'
         ));
     }
+
 }
