@@ -2,14 +2,15 @@
 
 namespace Efi\GanadosBundle\Form;
 
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class PersonaType extends AbstractType
 {
@@ -23,19 +24,18 @@ class PersonaType extends AbstractType
             ->add('metodoGanar', 'entity',
                 array(
                     'class' => 'EfiGanadosBundle:MetodoGanar',
-                    'label' => '¿C&oacute;mo fue ganado? ',
+                    'label' => 'Como fue ganado: ',
                     'attr' => array(
                         'class' => 'form-control'
                     ),
                 ))
             ->add('fechaNacimiento', DateType::class, array(
                 'input'  => 'datetime',
-                'widget' => 'choice',
-                'placeholder' => array(
-                    'day' => '--', 'month' => '--', 'year' => '----'
-                ),
-                'years' => range((\Date('Y') - 6), 1920),
+                'widget' => 'single_text',
                 'label' => 'Fecha de Nacimiento: ',
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
             ))
             ->add('nacionalidad', ChoiceType::class, array(
                 'choices'  => array(
@@ -51,15 +51,28 @@ class PersonaType extends AbstractType
             ->add('cedula', IntegerType::class, array(
                 'label' => 'Cedula de Identidad: ',
                 'attr' => array(
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'min' => 3000000,
+                    'max' => 100000000,
+                    'maxlength' => 20,
                 ),
             ))
-            ->add('nombres')/*, TextType::class, array(
+            ->add('nombres', TextType::class, array(
+                'label' => 'Nombres: ',
                 'attr' => array(
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'maxlength' => 100,
                 ),
-            ))*/
-            ->add('apellidos')
+                'trim' => true,
+            ))
+            ->add('apellidos', TextType::class, array(
+                'label' => 'Apellidos: ',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'maxlength' => 100,
+                ),
+                'trim' => true,
+            ))
             ->add('sexo', ChoiceType::class, array(
                 'choices'  => array(
                     'Masculino ' => 'M',
@@ -71,8 +84,30 @@ class PersonaType extends AbstractType
                 'choices_as_values' => true,
                 'label' => 'Sexo: ',
             ))
-//            ->add('direcciones')
-//            ->add('telefonos')
+            ->add('direccion', TextType::class, array(
+                'label' => 'Direccion de Referencia: ',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'maxlength' => 200,
+                ),
+                'trim' => true,
+            ))
+            ->add('telefono', TextType::class, array(
+                'label' => 'Telefono de Contacto: ',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'maxlength' => 50,
+                ),
+                'trim' => true,
+            ))
+            ->add('correo', EmailType::class, array(
+                'label' => 'Correo Electronico: ',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'maxlength' => 50,
+                ),
+                'trim' => true,
+            ))
         ;
     }
     

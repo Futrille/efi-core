@@ -1,12 +1,15 @@
 <component name="ProjectDictionaryState">
   <dictionary name="dfutrille">
     <words>
+      <w>apellidos</w>
       <w>completo</w>
       <w>estatus</w>
       <w>fecha</w>
       <w>ganado</w>
       <w>nacimiento</w>
       <w>nacionalidad</w>
+      <w>nombres</w>
+      <w>sexo</w>
     </words>
   </dictionary>
 </component>

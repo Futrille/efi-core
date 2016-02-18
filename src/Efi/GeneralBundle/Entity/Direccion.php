@@ -100,12 +100,6 @@ class Direccion
 //     */
 //    private $lideres;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="\Efi\GanadosBundle\Entity\Persona", mappedBy="direcciones")
-     */
-    private $personas;
 
     /**
      * Constructor
@@ -113,7 +107,6 @@ class Direccion
     public function __construct()
     {
 //        $this->lideres = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->personas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -275,23 +268,6 @@ class Direccion
     {
         $this->pais = $pais;
     }
-
-    /**
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPersonas()
-    {
-        return $this->personas;
-    }
-
-    /**
-     * @param \Doctrine\Common\Collections\Collection $personas
-     */
-    public function setPersonas($personas)
-    {
-        $this->personas = $personas;
-    }
-
 
 }
 

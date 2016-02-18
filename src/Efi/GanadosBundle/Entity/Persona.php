@@ -80,6 +80,27 @@ class Persona
     private $sexo;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="PER_DIRECCION", type="string", length=200, nullable=false)
+     */
+    private $direccion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PER_TELEFONO", type="string", length=50, nullable=true)
+     */
+    private $telefono;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PER_CORREO", type="string", length=50, nullable=true)
+     */
+    private $correo;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="PER_CREATED_AT", type="datetime", nullable=false)
@@ -144,36 +165,6 @@ class Persona
     private $idEsCompleto;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="\Efi\GeneralBundle\Entity\Direccion", inversedBy="personas")
-     * @ORM\JoinTable(name="personas_has_direcciones",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="PER_ID", referencedColumnName="PER_ID")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="DIR_ID", referencedColumnName="DIR_ID")
-     *   }
-     * )
-     */
-    private $direcciones;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="\Efi\GeneralBundle\Entity\Telefono", inversedBy="personas")
-     * @ORM\JoinTable(name="personas_has_telefonos",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="PER_ID", referencedColumnName="PER_ID")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="TLF_ID", referencedColumnName="TLF_ID")
-     *   }
-     * )
-     */
-    private $telefonos;
-
-    /**
      * @return string
      */
     public function __toString(){
@@ -199,8 +190,8 @@ class Persona
      */
     public function __construct()
     {
-        $this->direcciones = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->telefonos = new \Doctrine\Common\Collections\ArrayCollection();
+//        $this->direcciones = new \Doctrine\Common\Collections\ArrayCollection();
+//        $this->telefonos = new \Doctrine\Common\Collections\ArrayCollection();
 //        $this->setCreatedAt(new \DateTime('now'));
 //        $this->setUpdatedAt(new \DateTime('now'));
     }
@@ -430,38 +421,6 @@ class Persona
     }
 
     /**
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDirecciones()
-    {
-        return $this->direcciones;
-    }
-
-    /**
-     * @param \Doctrine\Common\Collections\Collection $direcciones
-     */
-    public function setDirecciones($direcciones)
-    {
-        $this->direcciones = $direcciones;
-    }
-
-    /**
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTelefonos()
-    {
-        return $this->telefonos;
-    }
-
-    /**
-     * @param \Doctrine\Common\Collections\Collection $telefonos
-     */
-    public function setTelefonos($telefonos)
-    {
-        $this->telefonos = $telefonos;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getCreatedAt()
@@ -491,6 +450,54 @@ class Persona
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    /**
+     * @param string $direccion
+     */
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * @param string $telefono
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCorreo()
+    {
+        return $this->correo;
+    }
+
+    /**
+     * @param string $correo
+     */
+    public function setCorreo($correo)
+    {
+        $this->correo = $correo;
     }
 
 }

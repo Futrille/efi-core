@@ -15,6 +15,8 @@ use Efi\GeneralBundle\Entity\ValorVariable as ValorVariable;
 use Efi\GeneralBundle\Entity\Iglesia as Iglesia;
 use Efi\GanadosBundle\Form\PersonaType;
 
+use Symfony\Component\Security\Csrf\CsrfTokenManager;
+
 /**
  * Persona controller.
  *
@@ -79,11 +81,12 @@ class PersonaController extends Controller
 
             return $this->util->efiGetJsonResponse($resultado);
         }
-
+//        $token_manager = new CsrfTokenManager();
+//        $token = $token_manager->getToken("_token");
+//        return $this->util->efiGetJsonResponse($token);
         return $this->render('persona/new.html.twig', array(
             'persona' => $persona,
             'form' => $form->createView(),
-
         ));
     }
 

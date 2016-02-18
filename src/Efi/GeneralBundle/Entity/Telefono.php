@@ -56,18 +56,11 @@ class Telefono
     private $idTipo;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="\Efi\GanadosBundle\Entity\Persona", mappedBy="telefonos")
-     */
-    private $personas;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->personas = new \Doctrine\Common\Collections\ArrayCollection();
+        //$this->personas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -149,23 +142,6 @@ class Telefono
     {
         $this->idTipo = $idTipo;
     }
-
-    /**
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPersonas()
-    {
-        return $this->personas;
-    }
-
-    /**
-     * @param \Doctrine\Common\Collections\Collection $personas
-     */
-    public function setPersonas($personas)
-    {
-        $this->personas = $personas;
-    }
-
 
 }
 

@@ -17,13 +17,73 @@
 
             <div class="panel-body">
                 {{ form_start(form) }}
-                {{ form_widget(form) }}
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        {{ form_label(form.cedula) }}
+                        {{ form_errors(form.cedula) }}
+                        {{ form_widget(form.cedula) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.nombres) }}
+                        {{ form_errors(form.nombres) }}
+                        {{ form_widget(form.nombres) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.apellidos) }}
+                        {{ form_errors(form.apellidos) }}
+                        {{ form_widget(form.apellidos) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.fechaNacimiento) }}
+                        {{ form_errors(form.fechaNacimiento) }}
+                        {{ form_widget(form.fechaNacimiento) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.nacionalidad) }}
+                        {{ form_errors(form.nacionalidad) }}
+                        {{ form_widget(form.nacionalidad) }}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        {{ form_label(form.sexo) }}
+                        {{ form_errors(form.sexo) }}
+                        {{ form_widget(form.sexo) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.metodoGanar) }}
+                        {{ form_errors(form.metodoGanar) }}
+                        {{ form_widget(form.metodoGanar) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.correo) }}
+                        {{ form_errors(form.correo) }}
+                        {{ form_widget(form.correo) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.telefono) }}
+                        {{ form_errors(form.telefono) }}
+                        {{ form_widget(form.telefono) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.direccion) }}
+                        {{ form_errors(form.direccion) }}
+                        {{ form_widget(form.direccion) }}
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
                 <input type="submit" class="btn btn-default" value="Guardar" />
+                <button type="reset" class="btn btn-default">Limpiar</button>
                 {{ form_end(form) }}
             </div>
         </div>
     </div>
 </div>
+
+    {#<div class="input-group date">#}
+        {#<input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>#}
+    {#</div>#}
     {#<ul>#}
         {#<li>#}
             {#<a href="{{ path('persona_index') }}">Back to the list</a>#}
