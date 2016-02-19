@@ -58,6 +58,7 @@ class PersonaType extends AbstractType
                     'min' => 3000000,
                     'max' => 100000000,
                     'maxlength' => 20,
+                    'autofocus' => 'autofocus',
                 ),
             ))
             ->add('nombres', TextType::class, array(

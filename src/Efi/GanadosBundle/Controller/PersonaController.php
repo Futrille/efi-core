@@ -66,14 +66,16 @@ class PersonaController extends Controller
 
                     $em->persist($persona);
                     $em->flush();
-
-                    $resultado = $persona;
+                    echo "persona gaurdara";
+                    $resultado['message'] = 'Persona registrada satisfactoriamente';
+                    $resultado['response'] = $persona;
                 }
             }catch (\Exception $e){
                 $resultado['status'] = "ERROR";
-                $resultado['mensaje'] = "Error al guardar el registro.";
+                $resultado['message'] = "Error al guardar el registro.";
             }
 
+//            return $this->redirectToRoute('persona_edit', array('id' => $persona->getId()));
             return $this->util->efiGetJsonResponse($resultado);
         }
 //        $token_manager = new CsrfTokenManager();
@@ -109,7 +111,10 @@ class PersonaController extends Controller
     public function editAction(Request $request, Persona $persona)
     {
         $this->util = new Util();
-
+        echo "llego al editar";
+        if ($request->get('id', '-1') != '-1'){
+            echo "Vino parametro successfully: " . $request->get('id', 'ID');
+        }
         $deleteForm = $this->createDeleteForm($persona);
         $editForm = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
         $editForm->handleRequest($request);
@@ -223,7 +228,7 @@ class PersonaController extends Controller
     private function validarPersonalizado(Persona $persona){
         $resultado = array(
             'status' => 'success',
-            'message' => 'Valid Form',
+            'message' => '',
         );
 
         $objectTest = null;
@@ -237,7 +242,7 @@ class PersonaController extends Controller
         if ($objectTest != null){
             $resultado = array(
                 'status' => 'error',
-                'message' => 'El numero de cedula ' . $persona->getCedula() . ' ya se encuentra registrado.',
+                'message' => 'El numero de cedula <b>' . $persona->getCedula() . '</b> ya se encuentra registrado.',
             );
             return $resultado;
         }
@@ -254,7 +259,7 @@ class PersonaController extends Controller
             if ($objectTest != null){
                 $resultado = array(
                     'status' => 'error',
-                    'message' => 'El correo ' . $persona->getCorreo() . ' ya se encuentra registrado.',
+                    'message' => 'El correo <b>' . $persona->getCorreo() . '</b> ya se encuentra registrado.',
                 );
                 return $resultado;
             }
