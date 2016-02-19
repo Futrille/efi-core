@@ -1,6 +1,6 @@
 efi_general_valorvariable:
     resource: "@EfiGeneralBundle/Resources/config/routing/valorvariable.yml"
-    prefix:   /general/valorvariable
+    prefix:   /general/valorvariable/
 
 efi_general_homepage:
     path:     /general/
