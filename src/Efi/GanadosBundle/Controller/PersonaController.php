@@ -66,7 +66,7 @@ class PersonaController extends Controller
 
                     $em->persist($persona);
                     $em->flush();
-                    echo "persona gaurdara";
+
                     $resultado['message'] = 'Persona registrada satisfactoriamente';
                     $resultado['response'] = $persona;
                 }

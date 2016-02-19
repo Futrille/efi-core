@@ -1,21 +1,97 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Persona edit</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Registrar nuevo Ganado</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                {{ form_start(form) }}
+                <div class="panel-heading">
+                    Ingrese los datos de la persona.
+                </div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                <div class="panel-body">
 
-    <ul>
-        <li>
-            <a href="{{ path('persona_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            {{ form_label(form.cedula) }}
+                            {{ form_errors(form.cedula) }}
+                            {{ form_widget(form.cedula) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.nombres) }}
+                            {{ form_errors(form.nombres) }}
+                            {{ form_widget(form.nombres) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.apellidos) }}
+                            {{ form_errors(form.apellidos) }}
+                            {{ form_widget(form.apellidos) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.fechaNacimiento) }}
+                            {{ form_errors(form.fechaNacimiento) }}
+                            {{ form_widget(form.fechaNacimiento) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.nacionalidad) }}
+                            {{ form_errors(form.nacionalidad) }}
+                            {{ form_widget(form.nacionalidad) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            {{ form_label(form.sexo) }}
+                            {{ form_errors(form.sexo) }}
+                            {{ form_widget(form.sexo) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.metodoGanar) }}
+                            {{ form_errors(form.metodoGanar) }}
+                            {{ form_widget(form.metodoGanar) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.correo) }}
+                            {{ form_errors(form.correo) }}
+                            {{ form_widget(form.correo) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.telefono) }}
+                            {{ form_errors(form.telefono) }}
+                            {{ form_widget(form.telefono) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.direccion) }}
+                            {{ form_errors(form.direccion) }}
+                            {{ form_widget(form.direccion) }}
+                        </div>
+                    </div>
+                    <div id="notificaciones"></div>
+                </div>
+                <div class="panel-footer">
+                    <input type="submit" class="btn btn-default" value="Guardar" />
+                    <button type="reset" class="btn btn-default">Limpiar</button>
+                </div>
+                {{ form_end(form) }}
+                {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+    </div>
+
+    {#<div class="input-group date">#}
+    {#<input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>#}
+    {#</div>#}
+    {#<ul>#}
+    {#<li>#}
+    {#<a href="{{ path('persona_index') }}">Back to the list</a>#}
+    {#</li>#}
+    {#</ul>#}
 {% endblock %}
+
+
