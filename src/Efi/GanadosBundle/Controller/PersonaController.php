@@ -49,9 +49,7 @@ class PersonaController extends Controller
     {
         $this->util = new Util();
         $resultado = array();
-        if ($request->get('valor', '-1') != '-1'){
-            echo "Vino parametro successfully";
-        }
+
         $persona = new Persona();
         $form = $this->createForm(PersonaType::class, $persona);
         $form->handleRequest($request);
@@ -71,11 +69,11 @@ class PersonaController extends Controller
                     $resultado['response'] = $persona;
                 }
             }catch (\Exception $e){
-                $resultado['status'] = "ERROR";
+                $resultado['status'] = "error";
                 $resultado['message'] = "Error al guardar el registro.";
+                $resultado['exception'] = $e->getMessage();
             }
 
-//            return $this->redirectToRoute('persona_edit', array('id' => $persona->getId()));
             return $this->util->efiGetJsonResponse($resultado);
         }
 //        $token_manager = new CsrfTokenManager();
@@ -111,23 +109,33 @@ class PersonaController extends Controller
     public function editAction(Request $request, Persona $persona)
     {
         $this->util = new Util();
-        echo "llego al editar";
-        if ($request->get('id', '-1') != '-1'){
-            echo "Vino parametro successfully: " . $request->get('id', 'ID');
-        }
+        $resultado = array();
+
         $deleteForm = $this->createDeleteForm($persona);
-        $editForm = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
+        $editForm = $this->createForm(PersonaType::class, $persona);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            try{
+                $resultado = $this->validarPersonalizado($persona);
+                if ($resultado['status'] == 'success'){
+                    $em = $this->getDoctrine()->getManager();
 
-            $this->_setValoresDefault($persona);
+                    $this->_setValoresDefault($persona);
 
-            $em->persist($persona);
-            $em->flush();
+                    $em->persist($persona);
+                    $em->flush();
 
-            return $this->util->efiGetJsonResponse($persona);
+                    $resultado['message'] = 'Persona registrada satisfactoriamente';
+                    $resultado['response'] = $persona;
+                }
+            }catch (\Exception $e){
+                $resultado['status'] = "error";
+                $resultado['message'] = "Error al guardar el registro.";
+                $resultado['exception'] = $e->getMessage();
+            }
+
+            return $this->util->efiGetJsonResponse($resultado);
         }
 
         return $this->render('persona/edit.html.twig', array(
@@ -183,42 +191,44 @@ class PersonaController extends Controller
         $paisDefault = 1;
         $iglesiaDefault = 1;
 
-        $persona->setEstatus($estatusDefault);
-        $idEstatus = $this->getDoctrine()
-            ->getRepository('EfiGeneralBundle:ValorVariable')
-            ->findOneBy(
-                array('codigo' => 'per_estatus', 'valor' => $estatusDefault)
-            );
-        /** @var ValorVariable $idEstatus */
-        $persona->setIdEstatus($idEstatus);
+        if ($persona->getId() == null || ($persona->getId() != null && $persona->getId() < 1 )){
+            $persona->setEstatus($estatusDefault);
+            $idEstatus = $this->getDoctrine()
+                ->getRepository('EfiGeneralBundle:ValorVariable')
+                ->findOneBy(
+                    array('codigo' => 'per_estatus', 'valor' => $estatusDefault)
+                );
+            /** @var ValorVariable $idEstatus */
+            $persona->setIdEstatus($idEstatus);
 
-        //Verificando que esté completo el registro
-        if ($persona->getCedula() == null || $persona->getCedula() == ''
-            || $persona->getTelefono() == null || $persona->getTelefono() == ''
-            || $persona->getCorreo() == null || $persona->getCorreo() == ''
-        ){
-            $esCompletoDefault = 0;
+            //Verificando que esté completo el registro
+            if ($persona->getCedula() == null || $persona->getCedula() == ''
+                || $persona->getTelefono() == null || $persona->getTelefono() == ''
+                || $persona->getCorreo() == null || $persona->getCorreo() == ''
+            ){
+                $esCompletoDefault = 0;
+            }
+            $persona->setEsCompleto($esCompletoDefault);
+            $idEsCompleto = $this->getDoctrine()
+                ->getRepository('EfiGeneralBundle:ValorVariable')
+                ->findOneBy(
+                    array('codigo' => 'bool', 'valor' => $esCompletoDefault)
+                );
+            /** @var ValorVariable $idEsCompleto */
+            $persona->setIdEsCompleto($idEsCompleto);
+
+            $pais = $this->getDoctrine()
+                ->getRepository('EfiGeneralBundle:Pais')
+                ->find($paisDefault);
+            /** @var Pais $pais */
+            $persona->setPais($pais);
+
+            $iglesia = $this->getDoctrine()
+                ->getRepository('EfiGeneralBundle:Iglesia')
+                ->find($iglesiaDefault);
+            /** @var Iglesia $iglesia */
+            $persona->setIglesia($iglesia);
         }
-        $persona->setEsCompleto($esCompletoDefault);
-        $idEsCompleto = $this->getDoctrine()
-            ->getRepository('EfiGeneralBundle:ValorVariable')
-            ->findOneBy(
-                array('codigo' => 'bool', 'valor' => $esCompletoDefault)
-            );
-        /** @var ValorVariable $idEsCompleto */
-        $persona->setIdEsCompleto($idEsCompleto);
-
-        $pais = $this->getDoctrine()
-            ->getRepository('EfiGeneralBundle:Pais')
-            ->find($paisDefault);
-        /** @var Pais $pais */
-        $persona->setPais($pais);
-
-        $iglesia = $this->getDoctrine()
-            ->getRepository('EfiGeneralBundle:Iglesia')
-            ->find($iglesiaDefault);
-        /** @var Iglesia $iglesia */
-        $persona->setIglesia($iglesia);
     }
 
     /**
@@ -230,15 +240,18 @@ class PersonaController extends Controller
             'status' => 'success',
             'message' => '',
         );
-
+        $id = $persona->getId() == null ? 0 : $persona->getId();
+        echo "ID:" . $id;
         $objectTest = null;
-        $objectTest = $this->getDoctrine()
-            ->getRepository('EfiGanadosBundle:Persona')
-            ->findOneBy(array(
-                    'cedula' => $persona->getCedula(),
-                    //REFACTORIZAR: validar por Iglesia
-                )
-            );
+        $repository = $this->getDoctrine()
+            ->getRepository('EfiGanadosBundle:Persona');
+
+        $query = $repository->createQueryBuilder('p')
+            ->where('p.id <> :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+        $objectTest = $query->setMaxResults(1)->getOneOrNullResult();
+
         if ($objectTest != null){
             $resultado = array(
                 'status' => 'error',
