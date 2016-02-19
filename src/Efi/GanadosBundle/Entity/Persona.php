@@ -9,7 +9,7 @@ use \Efi\GeneralBundle\Entity\Iglesia as Iglesia;
 /**
  * Persona
  *
- * @ORM\Table(name="personas", uniqueConstraints={@ORM\UniqueConstraint(name="PER_CEDULA_UNIQUE", columns={"PER_CEDULA"})}, indexes={@ORM\Index(name="fk_PERSONAS_PAISES1_idx", columns={"PAI_ID"}), @ORM\Index(name="fk_PERSONAS_VALORESVARIABLES1_idx", columns={"VVA_IDESTATUS"}), @ORM\Index(name="fk_PERSONAS_VALORESVARIABLES2_idx", columns={"VVA_IDESCOMPLETO"}), @ORM\Index(name="fk_PERSONAS_IGLESIAS1_idx", columns={"IGL_ID"}), @ORM\Index(name="fk_PERSONAS_METODOS_GANAR1_idx", columns={"MET_ID"})})
+ * @ORM\Table(name="personas", uniqueConstraints={@ORM\UniqueConstraint(name="PER_CEDULA_UNIQUE", columns={"PER_CEDULA"}), @ORM\UniqueConstraint(name="PER_CORREO_UNIQUE", columns={"PER_CORREO"})}, indexes={@ORM\Index(name="fk_PERSONAS_PAISES1_idx", columns={"PAI_ID"}), @ORM\Index(name="fk_PERSONAS_VALORESVARIABLES1_idx", columns={"VVA_IDESTATUS"}), @ORM\Index(name="fk_PERSONAS_VALORESVARIABLES2_idx", columns={"VVA_IDESCOMPLETO"}), @ORM\Index(name="fk_PERSONAS_IGLESIAS1_idx", columns={"IGL_ID"}), @ORM\Index(name="fk_PERSONAS_METODOS_GANAR1_idx", columns={"MET_ID"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */

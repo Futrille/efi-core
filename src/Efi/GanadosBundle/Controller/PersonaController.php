@@ -58,8 +58,8 @@ class PersonaController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             try{
-                if (!$this->isCedulaRepetida($persona)){
-                    echo "Submitted and Valid...";
+                $resultado = $this->validarPersonalizado($persona);
+                if ($resultado['status'] == 'success'){
                     $em = $this->getDoctrine()->getManager();
 
                     $this->_setValoresDefault($persona);
@@ -68,11 +68,6 @@ class PersonaController extends Controller
                     $em->flush();
 
                     $resultado = $persona;
-                }
-                else{
-                    $resultado['status'] = "ERROR";
-                    $resultado['mensaje'] = "El numero de cedula ya se encuentra registrado.";
-                    //$form->get('cedula')->addError(new FormError("El numero de cedula ya se encuentra registrado."));
                 }
             }catch (\Exception $e){
                 $resultado['status'] = "ERROR";
@@ -193,7 +188,10 @@ class PersonaController extends Controller
         $persona->setIdEstatus($idEstatus);
 
         //Verificando que esté completo el registro
-        if ($persona->getCedula() == null || $persona->getCedula() == ''){
+        if ($persona->getCedula() == null || $persona->getCedula() == ''
+            || $persona->getTelefono() == null || $persona->getTelefono() == ''
+            || $persona->getCorreo() == null || $persona->getCorreo() == ''
+        ){
             $esCompletoDefault = 0;
         }
         $persona->setEsCompleto($esCompletoDefault);
@@ -219,17 +217,49 @@ class PersonaController extends Controller
     }
 
     /**
+     * Valida que el registro no tenga Cedula o Correo repetidos
      * @param Persona $persona
      */
-    private function isCedulaRepetida(Persona $persona){
-        $resultado = $this->getDoctrine()
+    private function validarPersonalizado(Persona $persona){
+        $resultado = array(
+            'status' => 'success',
+            'message' => 'Valid Form',
+        );
+
+        $objectTest = null;
+        $objectTest = $this->getDoctrine()
             ->getRepository('EfiGanadosBundle:Persona')
-            ->findOneBy(
-                array('cedula' => $persona->getCedula())
+            ->findOneBy(array(
+                    'cedula' => $persona->getCedula(),
+                    //REFACTORIZAR: validar por Iglesia
+                )
             );
-        if ($resultado != null){
-            return true;
+        if ($objectTest != null){
+            $resultado = array(
+                'status' => 'error',
+                'message' => 'El numero de cedula ' . $persona->getCedula() . ' ya se encuentra registrado.',
+            );
+            return $resultado;
         }
-        return false;
+
+        if ($persona->getCorreo() != null && $persona->getCorreo() != ''){
+            $objectTest = null;
+            $objectTest = $this->getDoctrine()
+                ->getRepository('EfiGanadosBundle:Persona')
+                ->findOneBy(array(
+                        'correo' => $persona->getCorreo(),
+                        //REFACTORIZAR: validar por Iglesia
+                    )
+                );
+            if ($objectTest != null){
+                $resultado = array(
+                    'status' => 'error',
+                    'message' => 'El correo ' . $persona->getCorreo() . ' ya se encuentra registrado.',
+                );
+                return $resultado;
+            }
+        }
+
+        return $resultado;
     }
 }

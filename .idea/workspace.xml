@@ -8,15 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c7ad8a4-58c8-48a7-9acc-cfc02f4d0496" name="Default" comment="Configurando PersonaType y Formulario">
-      <change type="DELETED" beforePath="C:\bin\wamp\www\efi-core\src\Efi\GanadosBundle\Entity\Personas.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Efi/GeneralBundle/Entity/Direccion.php" afterPath="$PROJECT_DIR$/src/Efi/GeneralBundle/Entity/Direccion.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php" afterPath="$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php" afterPath="$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Efi/GanadosBundle/Form/PersonaType.php" afterPath="$PROJECT_DIR$/src/Efi/GanadosBundle/Form/PersonaType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Efi/GeneralBundle/Entity/Telefono.php" afterPath="$PROJECT_DIR$/src/Efi/GeneralBundle/Entity/Telefono.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/dfutrille.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/dfutrille.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/persona/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/persona/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="efi-core.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,24 +34,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PersonaController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Persona.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding>
+                <element signature="e#44#76#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersonaController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.153847">
-              <caret line="82" column="9" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.43659943">
+              <caret line="245" column="31" selection-start-line="245" selection-start-column="31" selection-end-line="245" selection-end-column="31" />
               <folding>
                 <element signature="e#48#85#0#PHP" expanded="true" />
                 <element signature="e#925#951#1#PHP" expanded="true" />
-                <element signature="e#2788#2811#0#PHP" expanded="true" />
-                <element signature="e#3208#3232#0#PHP" expanded="true" />
-                <element signature="e#4224#4248#0#PHP" expanded="true" />
-                <element signature="e#4983#4998#1#PHP" expanded="true" />
-                <element signature="e#5338#5354#0#PHP" expanded="true" />
-                <element signature="e#5807#5839#1#PHP" expanded="true" />
-                <element signature="e#6347#6379#1#PHP" expanded="true" />
-                <element signature="e#6658#6681#1#PHP" expanded="true" />
-                <element signature="e#6851#6877#1#PHP" expanded="true" />
-                <element signature="e#7174#7200#1#PHP" expanded="true" />
+                <element signature="e#2497#2520#0#PHP" expanded="true" />
+                <element signature="e#2917#2941#0#PHP" expanded="true" />
+                <element signature="e#3933#3957#0#PHP" expanded="true" />
+                <element signature="e#4692#4707#1#PHP" expanded="true" />
+                <element signature="e#5047#5063#0#PHP" expanded="true" />
+                <element signature="e#5516#5548#1#PHP" expanded="true" />
+                <element signature="e#6221#6253#1#PHP" expanded="true" />
+                <element signature="e#6532#6555#1#PHP" expanded="true" />
+                <element signature="e#6725#6751#1#PHP" expanded="true" />
+                <element signature="e#7260#7286#1#PHP" expanded="true" />
+                <element signature="e#7919#7945#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,8 +85,8 @@
       <file leaf-file-name="PersonaType.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Form/PersonaType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.346154">
-              <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+            <state vertical-scroll-proportion="-13.307693">
+              <caret line="102" column="36" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
               <folding>
                 <element signature="e#42#82#0#PHP" expanded="true" />
               </folding>
@@ -85,21 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CsrfToken.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Security/Csrf/CsrfToken.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="17.115385">
-              <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/persona/new.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4610951">
-              <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
+            <state vertical-scroll-proportion="-42.384617">
+              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -117,6 +116,9 @@
     <option name="PUSH_TAGS">
       <GitPushTagMode />
     </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="dummy://restClient/response11.txt" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -144,10 +146,10 @@
         <option value="$PROJECT_DIR$/src/Efi/GeneralBundle/Entity/Telefono.php" />
         <option value="$PROJECT_DIR$/src/Efi/GeneralBundle/Entity/Direccion.php" />
         <option value="$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Personas.php" />
-        <option value="$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php" />
-        <option value="$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php" />
-        <option value="$PROJECT_DIR$/src/Efi/GanadosBundle/Form/PersonaType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/persona/new.html.twig" />
+        <option value="$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php" />
+        <option value="$PROJECT_DIR$/src/Efi/GanadosBundle/Form/PersonaType.php" />
+        <option value="$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php" />
       </list>
     </option>
   </component>
@@ -262,36 +264,6 @@
               <option name="myItemId" value="Efi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GeneralBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Efi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GeneralBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -312,32 +284,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="GanadosBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Efi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GanadosBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -364,112 +310,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Efi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GanadosBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="persona" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="efi-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -485,6 +325,32 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
+  </component>
+  <component name="RestClientSettings">
+    <option name="REQUEST_HISTORY">
+      <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8081" />
+          <option name="urlPath" value="/efi-core/web/app_dev.php/persona/" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -536,6 +402,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.502574" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297587" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297587" sideWeight="0.497426" order="7" side_tool="false" content_ui="tabs" />
@@ -573,20 +440,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/config/routing_dev.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config_test.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/config_prod.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -759,14 +612,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8575269">
-          <caret line="281" column="58" selection-start-line="281" selection-start-column="58" selection-end-line="281" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Form/Type/DoctrineType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.4946237">
@@ -817,16 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.538462">
-          <caret line="486" column="7" selection-start-line="486" selection-start-column="7" selection-end-line="486" selection-end-column="7" />
-          <folding>
-            <element signature="e#44#76#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/security.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -839,14 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.69452447">
           <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Security/Csrf/CsrfToken.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="17.115385">
-          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -914,7 +741,7 @@
         <state vertical-scroll-proportion="-20.807692">
           <caret line="326" column="24" selection-start-line="326" selection-start-column="24" selection-end-line="326" selection-end-column="24" />
           <folding>
-            <element signature="e#273#335#0#PHP" expanded="true" />
+            <element signature="e#273#335#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -923,14 +750,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-22.461538">
           <caret line="306" column="20" selection-start-line="306" selection-start-column="20" selection-end-line="306" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Form/Form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.653847">
-          <caret line="922" column="95" selection-start-line="922" selection-start-column="95" selection-end-line="922" selection-end-column="95" />
           <folding />
         </state>
       </provider>
@@ -945,42 +764,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php">
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.153847">
-          <caret line="82" column="9" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.34582132">
+          <caret line="279" column="20" selection-start-line="279" selection-start-column="20" selection-end-line="279" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Form/RequestHandlerInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39193085">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Form/Form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33285302">
+          <caret line="488" column="46" selection-start-line="488" selection-start-column="46" selection-end-line="488" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/persona/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-42.384617">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Security/Csrf/CsrfToken.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6412104">
+          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <element signature="e#48#85#0#PHP" expanded="true" />
-            <element signature="e#925#951#1#PHP" expanded="true" />
-            <element signature="e#2788#2811#0#PHP" expanded="true" />
-            <element signature="e#3208#3232#0#PHP" expanded="true" />
-            <element signature="e#4224#4248#0#PHP" expanded="true" />
-            <element signature="e#4983#4998#1#PHP" expanded="true" />
-            <element signature="e#5338#5354#0#PHP" expanded="true" />
-            <element signature="e#5807#5839#1#PHP" expanded="true" />
-            <element signature="e#6347#6379#1#PHP" expanded="true" />
-            <element signature="e#6658#6681#1#PHP" expanded="true" />
-            <element signature="e#6851#6877#1#PHP" expanded="true" />
-            <element signature="e#7174#7200#1#PHP" expanded="true" />
+            <element signature="e#44#76#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Form/PersonaType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.346154">
-          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        <state vertical-scroll-proportion="-13.307693">
+          <caret line="102" column="36" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
           <folding>
             <element signature="e#42#82#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/persona/new.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4610951">
-          <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
-          <folding />
+        <state vertical-scroll-proportion="0.43659943">
+          <caret line="245" column="31" selection-start-line="245" selection-start-column="31" selection-end-line="245" selection-end-column="31" />
+          <folding>
+            <element signature="e#48#85#0#PHP" expanded="true" />
+            <element signature="e#925#951#1#PHP" expanded="true" />
+            <element signature="e#2497#2520#0#PHP" expanded="true" />
+            <element signature="e#2917#2941#0#PHP" expanded="true" />
+            <element signature="e#3933#3957#0#PHP" expanded="true" />
+            <element signature="e#4692#4707#1#PHP" expanded="true" />
+            <element signature="e#5047#5063#0#PHP" expanded="true" />
+            <element signature="e#5516#5548#1#PHP" expanded="true" />
+            <element signature="e#6221#6253#1#PHP" expanded="true" />
+            <element signature="e#6532#6555#1#PHP" expanded="true" />
+            <element signature="e#6725#6751#1#PHP" expanded="true" />
+            <element signature="e#7260#7286#1#PHP" expanded="true" />
+            <element signature="e#7919#7945#1#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

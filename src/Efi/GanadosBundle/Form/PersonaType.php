@@ -42,11 +42,14 @@ class PersonaType extends AbstractType
                     'Venezolano(a) ' => 'V',
                     'Extranjero(a) ' => 'E',
                 ),
-                'expanded' => true,
+                'expanded' => false,
                 'multiple' => false,
                 // *this line is important*
                 'choices_as_values' => true,
                 'label' => 'Nacionalidad: ',
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
             ))
             ->add('cedula', IntegerType::class, array(
                 'label' => 'Cedula de Identidad: ',
@@ -78,11 +81,14 @@ class PersonaType extends AbstractType
                     'Masculino ' => 'M',
                     'Femenino ' => 'F',
                 ),
-                'expanded' => true,
+                'expanded' => false,
                 'multiple' => false,
                 // *this line is important*
                 'choices_as_values' => true,
                 'label' => 'Sexo: ',
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
             ))
             ->add('direccion', TextType::class, array(
                 'label' => 'Direccion de Referencia: ',
@@ -94,7 +100,9 @@ class PersonaType extends AbstractType
             ))
             ->add('telefono', TextType::class, array(
                 'label' => 'Telefono de Contacto: ',
+                'required' => false,
                 'attr' => array(
+                    'required' => false,
                     'class' => 'form-control',
                     'maxlength' => 50,
                 ),
@@ -102,6 +110,7 @@ class PersonaType extends AbstractType
             ))
             ->add('correo', EmailType::class, array(
                 'label' => 'Correo Electronico: ',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-control',
                     'maxlength' => 50,

@@ -2,14 +2,18 @@
   <dictionary name="dfutrille">
     <words>
       <w>apellidos</w>
+      <w>cedula</w>
       <w>completo</w>
+      <w>correo</w>
       <w>estatus</w>
       <w>fecha</w>
       <w>ganado</w>
       <w>nacimiento</w>
       <w>nacionalidad</w>
       <w>nombres</w>
+      <w>personalizado</w>
       <w>sexo</w>
+      <w>validar</w>
     </words>
   </dictionary>
 </component>
