@@ -29,7 +29,7 @@ class PersonaType extends AbstractType
                         'class' => 'form-control'
                     ),
                 ))
-            ->add('fechaNacimiento', DateType::class, array(
+            ->add('fechaNacimiento', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
                 'input'  => 'datetime',
                 'widget' => 'single_text',
                 'label' => 'Fecha de Nacimiento: ',
@@ -37,7 +37,7 @@ class PersonaType extends AbstractType
                     'class' => 'form-control',
                 ),
             ))
-            ->add('nacionalidad', ChoiceType::class, array(
+            ->add('nacionalidad', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices'  => array(
                     'Venezolano(a) ' => 'V',
                     'Extranjero(a) ' => 'E',
@@ -51,7 +51,7 @@ class PersonaType extends AbstractType
                     'class' => 'form-control'
                 ),
             ))
-            ->add('cedula', IntegerType::class, array(
+            ->add('cedula', 'Symfony\Component\Form\Extension\Core\Type\IntegerType', array(
                 'label' => 'Cedula de Identidad: ',
                 'attr' => array(
                     'class' => 'form-control',
@@ -61,7 +61,7 @@ class PersonaType extends AbstractType
                     'autofocus' => 'autofocus',
                 ),
             ))
-            ->add('nombres', TextType::class, array(
+            ->add('nombres', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label' => 'Nombres: ',
                 'attr' => array(
                     'class' => 'form-control',
@@ -69,7 +69,7 @@ class PersonaType extends AbstractType
                 ),
                 'trim' => true,
             ))
-            ->add('apellidos', TextType::class, array(
+            ->add('apellidos', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label' => 'Apellidos: ',
                 'attr' => array(
                     'class' => 'form-control',
@@ -77,7 +77,7 @@ class PersonaType extends AbstractType
                 ),
                 'trim' => true,
             ))
-            ->add('sexo', ChoiceType::class, array(
+            ->add('sexo', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices'  => array(
                     'Masculino ' => 'M',
                     'Femenino ' => 'F',
@@ -91,7 +91,7 @@ class PersonaType extends AbstractType
                     'class' => 'form-control'
                 ),
             ))
-            ->add('direccion', TextType::class, array(
+            ->add('direccion', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label' => 'Direccion de Referencia: ',
                 'attr' => array(
                     'class' => 'form-control',
@@ -99,7 +99,7 @@ class PersonaType extends AbstractType
                 ),
                 'trim' => true,
             ))
-            ->add('telefono', TextType::class, array(
+            ->add('telefono', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label' => 'Telefono de Contacto: ',
                 'required' => false,
                 'attr' => array(
@@ -109,7 +109,7 @@ class PersonaType extends AbstractType
                 ),
                 'trim' => true,
             ))
-            ->add('correo', EmailType::class, array(
+            ->add('correo', 'Symfony\Component\Form\Extension\Core\Type\EmailType', array(
                 'label' => 'Correo Electronico: ',
                 'required' => false,
                 'attr' => array(

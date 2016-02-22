@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ValorVariable
  *
- * @ORM\Table(name="valores_variables")
+ * @ORM\Table(name="VALORES_VARIABLES")
  * @ORM\Entity
  */
 class ValorVariable

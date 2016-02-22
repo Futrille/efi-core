@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ParametrosGenerales
  *
- * @ORM\Table(name="parametros_generales")
+ * @ORM\Table(name="PARAMATEROS_GENERALES")
  * @ORM\Entity
  */
 class ParametroGeneral
