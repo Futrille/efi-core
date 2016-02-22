@@ -54,7 +54,8 @@ class PersonaController extends Controller
         $resultado = array();
 
         $persona = new Persona();
-        $form = $this->createForm(PersonaType::class, $persona);
+
+        $form = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -115,7 +116,7 @@ class PersonaController extends Controller
         $resultado = array();
 
         $deleteForm = $this->createDeleteForm($persona);
-        $editForm = $this->createForm(PersonaType::class, $persona);
+        $editForm = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
