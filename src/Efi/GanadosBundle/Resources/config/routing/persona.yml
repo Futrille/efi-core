@@ -22,3 +22,8 @@ persona_delete:
     path:     /{id}/delete
     defaults: { _controller: "EfiGanadosBundle:Persona:delete" }
     methods:  DELETE
+
+persona_count:
+    path:     /count/
+    defaults: { _controller: "EfiGanadosBundle:Persona:count" }
+    methods:  GET

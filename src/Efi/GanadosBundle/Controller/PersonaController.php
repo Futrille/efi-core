@@ -198,6 +198,32 @@ class PersonaController extends Controller
     }
 
     /**
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function countAction()
+    {
+        $this->util = new Util();
+        $resultado = array(
+            'status' => 'success',
+            'message' => '',
+            'response' => 0,
+        );
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            "SELECT count(p) AS cantidad " .
+            "FROM EfiGanadosBundle:Persona p ");
+
+        $objectTest = $query->setMaxResults(1)->getOneOrNullResult();
+
+        if ($objectTest != null){
+            $resultado['response'] = $objectTest['cantidad'];
+        }
+
+        return $this->util->efiGetJsonResponse($resultado);
+    }
+
+    /**
      * @param Persona $persona
      */
     private function _setValoresDefault(Persona $persona){
