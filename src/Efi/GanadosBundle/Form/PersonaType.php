@@ -37,6 +37,14 @@ class PersonaType extends AbstractType
                     'class' => 'form-control',
                 ),
             ))
+            ->add('fechaGanado', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
+                'input'  => 'datetime',
+                'widget' => 'single_text',
+                'label' => 'Fecha de Conversion: ',
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
+            ))
             ->add('nacionalidad', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices'  => array(
                     'Venezolano(a) ' => 'V',

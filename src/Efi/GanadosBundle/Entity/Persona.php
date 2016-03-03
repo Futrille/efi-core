@@ -103,6 +103,13 @@ class Persona
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="PER_FECHAGANADO", type="datetime", nullable=false)
+     */
+    private $fechaGanado;
+
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="PER_CREATED_AT", type="datetime", nullable=false)
      */
     private $createdAt;
@@ -500,4 +507,19 @@ class Persona
         $this->correo = $correo;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getFechaGanado()
+    {
+        return $this->fechaGanado;
+    }
+
+    /**
+     * @param \DateTime $fechaGanado
+     */
+    public function setFechaGanado($fechaGanado)
+    {
+        $this->fechaGanado = $fechaGanado;
+    }
 }
