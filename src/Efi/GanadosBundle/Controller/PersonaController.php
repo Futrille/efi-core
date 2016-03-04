@@ -47,6 +47,7 @@ class PersonaController extends Controller
         $resultado['status'] = "success";
         $resultado['message'] = "";
         $resultado['response'] = $vvaList;
+        $resultado['resumen'] = $this->consultarPersonasPorTipo();
 
         return $this->util->efiGetJsonResponse($resultado);
     }
@@ -227,7 +228,7 @@ class PersonaController extends Controller
         if ($objectTest != null){
             $resultado['response'] = $objectTest['cantidad'];
         }
-        print_r($this->consultarPersonasPorTipo());
+
         return $this->util->efiGetJsonResponse($resultado);
     }
     /*
@@ -247,10 +248,10 @@ GROUP BY MET.MET_ID
 
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
-            "SELECT m.MET_ID, m.MET_NOMBRE, count(p.MET_ID) " .
+            "SELECT m.id, m.nombre, count(p.metodoGanar) AS cantidad " .
             "FROM EfiGanadosBundle:MetodoGanar m ".
-            "   LEFT JOIN EfiGanadosBundle:Persona p WITH m.id = p.id ".
-            "GROUP BY m.MET_ID ");
+            "   LEFT JOIN EfiGanadosBundle:Persona p WITH m.id = p.metodoGanar ".
+            "GROUP BY m.id ");
 //            "SELECT count(p) AS cantidad " .
 //            "FROM EfiGanadosBundle:Persona p ");
 
