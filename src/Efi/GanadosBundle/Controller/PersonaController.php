@@ -35,12 +35,20 @@ class PersonaController extends Controller
     public function indexAction()
     {
         $this->util = new Util();
+        $resultado = array();
+
         //$key = $request->query->get('key',0);
         $vvaList = $this->getDoctrine()
             ->getRepository('EfiGanadosBundle:Persona')
             ->findAll();
 
-        return $this->util->efiGetJsonResponse($vvaList);
+
+
+        $resultado['status'] = "success";
+        $resultado['message'] = "";
+        $resultado['response'] = $vvaList;
+
+        return $this->util->efiGetJsonResponse($resultado);
     }
 
     /**
@@ -219,9 +227,42 @@ class PersonaController extends Controller
         if ($objectTest != null){
             $resultado['response'] = $objectTest['cantidad'];
         }
-
+        print_r($this->consultarPersonasPorTipo());
         return $this->util->efiGetJsonResponse($resultado);
     }
+    /*
+     * SELECT MET.MET_ID, MET.MET_NOMBRE, count(PER.MET_ID)
+FROM METODOS_GANAR MET
+	LEFT OUTER JOIN PERSONAS PER ON MET.MET_ID = PER.MET_ID
+GROUP BY MET.MET_ID
+     */
+
+    public function consultarPersonasPorTipo(){
+        $this->util = new Util();
+        $resultado = array(
+            'status' => 'success',
+            'message' => '',
+            'response' => 0,
+        );
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            "SELECT m.MET_ID, m.MET_NOMBRE, count(p.MET_ID) " .
+            "FROM EfiGanadosBundle:MetodoGanar m ".
+            "   LEFT JOIN EfiGanadosBundle:Persona p WITH m.id = p.id ".
+            "GROUP BY m.MET_ID ");
+//            "SELECT count(p) AS cantidad " .
+//            "FROM EfiGanadosBundle:Persona p ");
+
+//        $objectTest = $query->getResults();
+//
+//        if ($objectTest != null){
+//            $resultado['response'] = $objectTest['cantidad'];
+//        }
+
+        return $query->getResult();
+    }
+
 
     /**
      * @param Persona $persona

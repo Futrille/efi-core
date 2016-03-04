@@ -3,6 +3,10 @@ namespace Efi\GanadosBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Class PersonaRepository
+ * @package Efi\GanadosBundle\Entity
+ */
 class PersonaRepository extends EntityRepository
 {
     /**
