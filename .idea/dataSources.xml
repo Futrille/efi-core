@@ -16,7 +16,7 @@
       </driver-properties>
       <libraries>
         <library>
-          <url>file://C:/bin/wamp/www/Drivers/mysql-connector-java-5.1.38-bin.jar</url>
+          <url>file://$PROJECT_DIR$/../Drivers/mysql-connector-java-5.1.38-bin.jar</url>
         </library>
       </libraries>
     </data-source>
