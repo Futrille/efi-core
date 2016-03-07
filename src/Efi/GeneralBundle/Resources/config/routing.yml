@@ -7,3 +7,11 @@ efi_general_homepage:
     defaults: { _controller: EfiGeneralBundle:Default:index }
 
 
+
+login:
+    path:     /login/
+    defaults: { _controller: EfiGeneralBundle:Security:login }
+
+logout:
+    path:     /logout
+    defaults: { _controller: EfiGeneralBundle:Security:logout }
