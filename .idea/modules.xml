@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/efi-core.iml" filepath="$PROJECT_DIR$/.idea/efi-core.iml" />
+      <module fileurl="file://C:/bin/wamp/www/ivm-core/.idea/ivm-core.iml" filepath="C:/bin/wamp/www/ivm-core/.idea/ivm-core.iml" />
     </modules>
   </component>
 </project>
