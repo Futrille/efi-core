@@ -8,7 +8,7 @@ class SecurityController extends Controller
 {
     public function loginAction()
     {
-        return $this->render('EfiGeneralBundle:Security:login.html.twig', array(
+        return $this->render('EfiGeneralBundle:Security:login.html.php', array(
             // ...
         ));
     }
