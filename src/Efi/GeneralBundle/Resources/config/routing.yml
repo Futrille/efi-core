@@ -9,9 +9,10 @@ efi_general_homepage:
 
 
 login:
-    path:     /login/
+    path:     /login
     defaults: { _controller: EfiGeneralBundle:Security:login }
+    methods:  [GET, POST]
 
 logout:
-    path:     /logout
+    path:     /logout/
     defaults: { _controller: EfiGeneralBundle:Security:logout }
