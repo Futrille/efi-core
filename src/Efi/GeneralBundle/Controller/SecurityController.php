@@ -28,7 +28,7 @@ class SecurityController extends Controller
         $resultado = array();
 
         $resultado['status']        = 'logout';
-        $resultado['message']       = 'Debe Iniciar Sesion';
+        $resultado['message']       = 'Debe Iniciar Sesi&oacute;n';
         $resultado['response']      = array(
             'error' => $error,
             'lastUsername'  => $lastUsername
