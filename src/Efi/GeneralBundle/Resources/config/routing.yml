@@ -6,7 +6,9 @@ efi_general_homepage:
     path:     /general/
     defaults: { _controller: EfiGeneralBundle:Default:index }
 
-
+admin:
+    path:     /admin
+    defaults: { _controller: EfiGeneralBundle:Security:admin }
 
 login:
     path:     /login
@@ -14,5 +16,5 @@ login:
     methods:  [GET, POST]
 
 logout:
-    path:     /logout/
+    path:     /logout
     defaults: { _controller: EfiGeneralBundle:Security:logout }

@@ -16,31 +16,39 @@ security:
         in_memory:
             memory:
                 users:
-                    ryan:
-                        password: ryanpass
+                    18178032:
+                        password: $2y$12$8HoDWIhn09tMrBnbOESDL.507UoPt.LgjGxCcXWYXtzBzsmveLc8W
                         roles: 'ROLE_USER'
                     18178031:
-                        password: admin
+                        password: $2y$12$8HoDWIhn09tMrBnbOESDL.507UoPt.LgjGxCcXWYXtzBzsmveLc8W
                         roles: 'ROLE_ADMIN'
     encoders:
-            Symfony\Component\Security\Core\User\User: plaintext
+#            Symfony\Component\Security\Core\User\User: plaintext
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
     firewalls:
 #        login_firewall:
 #                pattern:   ^/login$
 #                anonymous: ~
-#            secured_area:
-#                pattern:    ^/
-#                form_login: ~
+#        secured_area:
+#            pattern:    ^/
+#            form_login: ~
+#            logout:
+#                path: /logout
+#                target: /
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        main:
+        default:
             anonymous: ~
-            form-login:
-                login_path: login
-                check_path: login
+            http_basic: ~
+#        main:
+#            anonymous: ~
+#            form-login:
+#                login_path: login
+#                check_path: login
 
             # activate different ways to authenticate
 
