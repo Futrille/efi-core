@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="efi-core" uuid="053079ca-8020-4977-b9da-19fdae9ec187">
-      <user-name>iglesys</user-name>
+    <data-source name="MySQL - iglesys@localhost" uuid="09ff230f-d28d-44b5-b3e1-f754981967c9">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
     </data-source>
   </component>
 </project>

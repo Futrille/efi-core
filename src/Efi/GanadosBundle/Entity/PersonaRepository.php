@@ -13,7 +13,7 @@ class PersonaRepository extends EntityRepository
      * @param int $id
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findRepeatedWithoutSelf(int $id){
+    public function findRepeatedWithoutSelf($id){
         $query = $this->createQueryBuilder('p')
             ->where('p.id <> :id')
             ->setParameter('id', $id)

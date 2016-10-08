@@ -42,8 +42,6 @@ class PersonaController extends Controller
             ->getRepository('EfiGanadosBundle:Persona')
             ->findAll();
 
-
-
         $resultado['status'] = "success";
         $resultado['message'] = "";
         $resultado['response'] = $vvaList;
@@ -298,7 +296,7 @@ GROUP BY MET.MET_ID
             $persona->setIglesia($iglesia);
         }
 
-        //Verificando que esté completo el registro
+        //Verificando que estï¿½ completo el registro
         if ($persona->getCedula() == null || $persona->getCedula() == ''
             || $persona->getTelefono() == null || $persona->getTelefono() == ''
             || $persona->getCorreo() == null || $persona->getCorreo() == ''

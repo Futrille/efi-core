@@ -11,7 +11,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c7ad8a4-58c8-48a7-9acc-cfc02f4d0496" name="Default" comment="Configurando PersonaType y Formulario">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php" afterPath="$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php" afterPath="$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/PersonaRepository.php" afterPath="$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/PersonaRepository.php" />
     </list>
     <ignored path="efi-core.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,21 +33,18 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="DatabaseView">
-    <option name="FLATTEN" value="false" />
-    <option name="GROUP_BY_TYPE" value="true" />
-    <option name="SORT_CHILDREN" value="false" />
-    <option name="SHOW_TABLE_CONSTRAINTS" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
     <PATH>
       <PATH_ELEMENT>
         <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
       </PATH_ELEMENT>
       <PATH_ELEMENT>
-        <option name="myItemId" value="efi-core" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="iglesys" />
+        <option name="myItemId" value="MySQL - iglesys@localhost" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
@@ -53,34 +55,258 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Efi/GeneralBundle/Controller/SecurityController.php">
+      <file leaf-file-name="PersonaController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="58" column="61" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="61" />
+            <state relative-caret-position="153">
+              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/09ff230f-d28d-44b5-b3e1-f754981967c9/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DATABASE/09ff230f-d28d-44b5-b3e1-f754981967c9" pinned="false" current-in-tab="false">
+        <entry file="uml://DATABASE/09ff230f-d28d-44b5-b3e1-f754981967c9">
+          <provider selected="true" editor-type-id="UmlEditorProvider">
+            <state>
+              <ID>DATABASE</ID>
+              <OriginalElement>09ff230f-d28d-44b5-b3e1-f754981967c9</OriginalElement>
+              <nodes>
+                <node x="1489.625" y="349.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.municipios</node>
+                <node x="808.5" y="624.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.telefonos</node>
+                <node x="1775.5" y="646.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.metodos_ganar</node>
+                <node x="1994.5" y="0.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.configuraciones</node>
+                <node x="388.7341911764708" y="316.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables</node>
+                <node x="119.5" y="1044.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.niveles</node>
+                <node x="673.0" y="1844.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios_has_roles</node>
+                <node x="806.0" y="1620.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.roles</node>
+                <node x="1540.5" y="624.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.familias</node>
+                <node x="1037.5" y="569.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.direcciones</node>
+                <node x="471.50000000000006" y="890.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres</node>
+                <node x="1360.375" y="169.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.estados</node>
+                <node x="1368.5" y="657.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.parejas_ministeriales</node>
+                <node x="1290.3770721925134" y="1022.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.personas</node>
+                <node x="1006.8675245098043" y="0.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.paises</node>
+                <node x="0.0" y="1963.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.parametros_generales</node>
+                <node x="451.00000000000006" y="1521.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios</node>
+                <node x="0.0" y="591.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.iglesias</node>
+              </nodes>
+              <notes />
+              <edges>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.telefonos" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables">
+                  <point x="-52.25" y="-70.5" />
+                  <point x="860.75" y="499.0" />
+                  <point x="612.0978275401072" y="499.0" />
+                  <point x="106.36363636363643" y="81.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios_has_roles" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios">
+                  <point x="-38.75" y="-37.0" />
+                  <point x="711.75" y="1819.0" />
+                  <point x="618.5" y="1819.0" />
+                  <point x="0.0" y="136.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres">
+                  <point x="83.75" y="-136.5" />
+                  <point x="702.25" y="1496.0" />
+                  <point x="776.0" y="1496.0" />
+                  <point x="0.0" y="290.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.iglesias" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables">
+                  <point x="67.25" y="-103.5" />
+                  <point x="201.75" y="509.0" />
+                  <point x="399.3705548128344" y="509.0" />
+                  <point x="-106.36363636363637" y="81.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.niveles" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.iglesias">
+                  <point x="-124.125" y="-136.5" />
+                  <point x="160.875" y="870.0" />
+                  <point x="67.25" y="870.0" />
+                  <point x="-67.25" y="103.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.familias" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.municipios">
+                  <point x="-53.75" y="-70.5" />
+                  <point x="1594.25" y="549.0" />
+                  <point x="1620.875" y="549.0" />
+                  <point x="43.75" y="48.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.niveles" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.niveles">
+                  <point x="0.0" y="136.5" />
+                  <point x="285.0" y="1337.0" />
+                  <point x="99.5" y="1337.0" />
+                  <point x="99.5" y="1180.5" />
+                  <point x="-165.5" y="-0.0" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.municipios" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.estados">
+                  <point x="0.0" y="-48.5" />
+                  <point x="1577.125" y="296.0" />
+                  <point x="1447.375" y="296.0" />
+                  <point x="0.0" y="48.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.direcciones" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.paises">
+                  <point x="-103.66666666666674" y="-125.5" />
+                  <point x="1089.3333333333333" y="549.0" />
+                  <point x="1084.285405525847" y="549.0" />
+                  <point x="1084.285405525847" y="149.0" />
+                  <point x="1124.9925245098043" y="149.0" />
+                  <point x="23.625" y="59.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios_has_roles" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.roles">
+                  <point x="38.75" y="-37.0" />
+                  <point x="789.25" y="1819.0" />
+                  <point x="882.5" y="1819.0" />
+                  <point x="0.0" y="37.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.niveles" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables">
+                  <point x="-41.375" y="-136.5" />
+                  <point x="243.625" y="870.0" />
+                  <point x="279.5" y="870.0" />
+                  <point x="279.5" y="519.0" />
+                  <point x="420.6432820855617" y="519.0" />
+                  <point x="-85.09090909090912" y="81.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.estados" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.paises">
+                  <point x="0.0" y="-48.5" />
+                  <point x="1447.375" y="149.0" />
+                  <point x="1172.2425245098043" y="149.0" />
+                  <point x="70.875" y="59.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.telefonos" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.paises">
+                  <point x="52.25" y="-70.5" />
+                  <point x="965.25" y="149.0" />
+                  <point x="1077.7425245098043" y="149.0" />
+                  <point x="-23.625" y="59.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.iglesias" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.paises">
+                  <point x="-67.25" y="-103.5" />
+                  <point x="67.25" y="139.0" />
+                  <point x="1030.4925245098043" y="139.0" />
+                  <point x="-70.875" y="59.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.parejas_ministeriales">
+                  <point x="261.0" y="-290.5" />
+                  <point x="1037.0" y="870.0" />
+                  <point x="1406.5" y="870.0" />
+                  <point x="-38.0" y="37.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.familias" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.estados">
+                  <point x="53.75" y="-70.5" />
+                  <point x="1701.75" y="549.0" />
+                  <point x="1675.125" y="549.0" />
+                  <point x="1675.125" y="286.0" />
+                  <point x="1505.375" y="286.0" />
+                  <point x="58.0" y="48.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.personas" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.familias">
+                  <point x="74.20000000000005" y="-158.5" />
+                  <point x="1550.0770721925135" y="860.0" />
+                  <point x="1648.0" y="860.0" />
+                  <point x="0.0" y="70.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.personas" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.parejas_ministeriales">
+                  <point x="0.0" y="-158.5" />
+                  <point x="1475.8770721925134" y="870.0" />
+                  <point x="1482.5" y="870.0" />
+                  <point x="38.0" y="37.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.personas" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables">
+                  <point x="-148.39999999999986" y="-158.5" />
+                  <point x="1327.4770721925136" y="850.0" />
+                  <point x="787.0" y="850.0" />
+                  <point x="787.0" y="519.0" />
+                  <point x="569.5523729946526" y="519.0" />
+                  <point x="63.81818181818181" y="81.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.iglesias">
+                  <point x="-261.0" y="-290.5" />
+                  <point x="515.0" y="860.0" />
+                  <point x="201.75" y="860.0" />
+                  <point x="67.25" y="103.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.personas" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.metodos_ganar">
+                  <point x="148.4000000000001" y="-158.5" />
+                  <point x="1624.2770721925135" y="870.0" />
+                  <point x="1862.5" y="870.0" />
+                  <point x="0.0" y="48.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.direcciones">
+                  <point x="174.0" y="-290.5" />
+                  <point x="950.0" y="860.0" />
+                  <point x="1193.0" y="860.0" />
+                  <point x="0.0" y="125.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.direcciones" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.municipios">
+                  <point x="103.66666666666674" y="-125.5" />
+                  <point x="1296.6666666666667" y="549.0" />
+                  <point x="1533.375" y="549.0" />
+                  <point x="-43.75" y="48.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables">
+                  <point x="0.0" y="-290.5" />
+                  <point x="776.0" y="850.0" />
+                  <point x="653.5770721925135" y="850.0" />
+                  <point x="653.5770721925135" y="529.0" />
+                  <point x="548.2796457219254" y="529.0" />
+                  <point x="42.54545454545456" y="81.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables">
+                  <point x="-83.75" y="-136.5" />
+                  <point x="534.75" y="1496.0" />
+                  <point x="461.00000000000006" y="1496.0" />
+                  <point x="461.00000000000006" y="549.0" />
+                  <point x="484.4614639037435" y="549.0" />
+                  <point x="-21.27272727272731" y="81.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.direcciones" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.estados">
+                  <point x="0.0" y="-125.5" />
+                  <point x="1193.0" y="296.0" />
+                  <point x="1389.375" y="296.0" />
+                  <point x="-58.0" y="48.5" />
+                </edge>
+                <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.telefonos">
+                  <point x="87.0" y="-290.5" />
+                  <point x="863.0" y="870.0" />
+                  <point x="913.0" y="870.0" />
+                  <point x="0.0" y="70.5" />
+                </edge>
+              </edges>
+              <settings layout="Hierarchic Group" zoom="1.0183634633682206" x="671.678299079842" y="1096.0200937201369" />
+              <SelectedNodes />
+              <Categories>
+                <Category>Key columns</Category>
+                <Category>Columns</Category>
+              </Categories>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersonaRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/PersonaRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Persona.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
               <folding>
-                <element signature="e#48#95#0#PHP" expanded="true" />
+                <element signature="e#44#76#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="security.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/security.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Efi/GeneralBundle/Resources/config/routing.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="60" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -139,7 +365,6 @@
         <option value="$PROJECT_DIR$/src/Efi/GeneralBundle/Entity/Login.php" />
         <option value="$PROJECT_DIR$/src/Efi/GeneralBundle/Resources/views/Security/login.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
@@ -147,6 +372,9 @@
         <option value="$PROJECT_DIR$/app/config/security.yml" />
         <option value="$PROJECT_DIR$/src/Efi/GeneralBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/Efi/GeneralBundle/Controller/SecurityController.php" />
+        <option value="$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php" />
+        <option value="$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/PersonaRepository.php" />
+        <option value="$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php" />
       </list>
     </option>
   </component>
@@ -420,6 +648,32 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Entity" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ivm-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ivm-core" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Efi" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GeneralBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -441,6 +695,62 @@
               <option name="myItemId" value="Efi" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GanadosBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ivm-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ivm-core" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Efi" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GanadosBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Entity" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ivm-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ivm-core" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Efi" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GanadosBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -496,24 +806,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ivm-core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ivm-core" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -529,6 +821,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -625,25 +918,29 @@
       <workItem from="1472130505968" duration="14779000" />
       <workItem from="1472660707930" duration="584000" />
       <workItem from="1473205085082" duration="56000" />
+      <workItem from="1475601074837" duration="3618000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28324000" />
+    <option name="totallyTimeSpent" value="31942000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3223201" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32898173" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898173" sideWeight="0.502574" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11125" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24967907" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297587" sideWeight="0.497426" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -653,12 +950,9 @@
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297587" sideWeight="0.497426" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297587" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297587" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297587" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -681,8 +975,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Security/Csrf/CsrfToken.php" />
-    <entry file="file://$PROJECT_DIR$/vendor/doctrine/common/lib/Doctrine/Common/Persistence/ObjectRepository.php" />
     <entry file="file://$PROJECT_DIR$/vendor/doctrine/orm/lib/Doctrine/ORM/EntityRepository.php" />
     <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
       <provider selected="true" editor-type-id="text-editor">
@@ -779,20 +1071,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="83" column="116" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/PersonaRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -908,13 +1186,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="37" column="29" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1017,10 +1288,256 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Efi/GeneralBundle/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="58" column="61" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="61" />
+        <state relative-caret-position="253">
+          <caret line="46" column="29" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
           <folding>
             <element signature="e#48#95#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://DATABASE/09ff230f-d28d-44b5-b3e1-f754981967c9">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>09ff230f-d28d-44b5-b3e1-f754981967c9</OriginalElement>
+          <nodes>
+            <node x="1489.625" y="349.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.municipios</node>
+            <node x="808.5" y="624.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.telefonos</node>
+            <node x="1775.5" y="646.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.metodos_ganar</node>
+            <node x="1994.5" y="0.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.configuraciones</node>
+            <node x="388.7341911764708" y="316.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables</node>
+            <node x="119.5" y="1044.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.niveles</node>
+            <node x="673.0" y="1844.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios_has_roles</node>
+            <node x="806.0" y="1620.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.roles</node>
+            <node x="1540.5" y="624.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.familias</node>
+            <node x="1037.5" y="569.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.direcciones</node>
+            <node x="471.50000000000006" y="890.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres</node>
+            <node x="1360.375" y="169.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.estados</node>
+            <node x="1368.5" y="657.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.parejas_ministeriales</node>
+            <node x="1290.3770721925134" y="1022.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.personas</node>
+            <node x="1006.8675245098043" y="0.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.paises</node>
+            <node x="0.0" y="1963.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.parametros_generales</node>
+            <node x="451.00000000000006" y="1521.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios</node>
+            <node x="0.0" y="591.0">09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.iglesias</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.telefonos" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables">
+              <point x="-52.25" y="-70.5" />
+              <point x="860.75" y="499.0" />
+              <point x="612.0978275401072" y="499.0" />
+              <point x="106.36363636363643" y="81.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios_has_roles" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios">
+              <point x="-38.75" y="-37.0" />
+              <point x="711.75" y="1819.0" />
+              <point x="618.5" y="1819.0" />
+              <point x="0.0" y="136.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres">
+              <point x="83.75" y="-136.5" />
+              <point x="702.25" y="1496.0" />
+              <point x="776.0" y="1496.0" />
+              <point x="0.0" y="290.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.iglesias" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables">
+              <point x="67.25" y="-103.5" />
+              <point x="201.75" y="509.0" />
+              <point x="399.3705548128344" y="509.0" />
+              <point x="-106.36363636363637" y="81.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.niveles" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.iglesias">
+              <point x="-124.125" y="-136.5" />
+              <point x="160.875" y="870.0" />
+              <point x="67.25" y="870.0" />
+              <point x="-67.25" y="103.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.familias" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.municipios">
+              <point x="-53.75" y="-70.5" />
+              <point x="1594.25" y="549.0" />
+              <point x="1620.875" y="549.0" />
+              <point x="43.75" y="48.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.niveles" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.niveles">
+              <point x="0.0" y="136.5" />
+              <point x="285.0" y="1337.0" />
+              <point x="99.5" y="1337.0" />
+              <point x="99.5" y="1180.5" />
+              <point x="-165.5" y="-0.0" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.municipios" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.estados">
+              <point x="0.0" y="-48.5" />
+              <point x="1577.125" y="296.0" />
+              <point x="1447.375" y="296.0" />
+              <point x="0.0" y="48.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.direcciones" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.paises">
+              <point x="-103.66666666666674" y="-125.5" />
+              <point x="1089.3333333333333" y="549.0" />
+              <point x="1084.285405525847" y="549.0" />
+              <point x="1084.285405525847" y="149.0" />
+              <point x="1124.9925245098043" y="149.0" />
+              <point x="23.625" y="59.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios_has_roles" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.roles">
+              <point x="38.75" y="-37.0" />
+              <point x="789.25" y="1819.0" />
+              <point x="882.5" y="1819.0" />
+              <point x="0.0" y="37.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.niveles" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables">
+              <point x="-41.375" y="-136.5" />
+              <point x="243.625" y="870.0" />
+              <point x="279.5" y="870.0" />
+              <point x="279.5" y="519.0" />
+              <point x="420.6432820855617" y="519.0" />
+              <point x="-85.09090909090912" y="81.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.estados" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.paises">
+              <point x="0.0" y="-48.5" />
+              <point x="1447.375" y="149.0" />
+              <point x="1172.2425245098043" y="149.0" />
+              <point x="70.875" y="59.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.telefonos" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.paises">
+              <point x="52.25" y="-70.5" />
+              <point x="965.25" y="149.0" />
+              <point x="1077.7425245098043" y="149.0" />
+              <point x="-23.625" y="59.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.iglesias" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.paises">
+              <point x="-67.25" y="-103.5" />
+              <point x="67.25" y="139.0" />
+              <point x="1030.4925245098043" y="139.0" />
+              <point x="-70.875" y="59.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.parejas_ministeriales">
+              <point x="261.0" y="-290.5" />
+              <point x="1037.0" y="870.0" />
+              <point x="1406.5" y="870.0" />
+              <point x="-38.0" y="37.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.familias" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.estados">
+              <point x="53.75" y="-70.5" />
+              <point x="1701.75" y="549.0" />
+              <point x="1675.125" y="549.0" />
+              <point x="1675.125" y="286.0" />
+              <point x="1505.375" y="286.0" />
+              <point x="58.0" y="48.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.personas" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.familias">
+              <point x="74.20000000000005" y="-158.5" />
+              <point x="1550.0770721925135" y="860.0" />
+              <point x="1648.0" y="860.0" />
+              <point x="0.0" y="70.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.personas" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.parejas_ministeriales">
+              <point x="0.0" y="-158.5" />
+              <point x="1475.8770721925134" y="870.0" />
+              <point x="1482.5" y="870.0" />
+              <point x="38.0" y="37.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.personas" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables">
+              <point x="-148.39999999999986" y="-158.5" />
+              <point x="1327.4770721925136" y="850.0" />
+              <point x="787.0" y="850.0" />
+              <point x="787.0" y="519.0" />
+              <point x="569.5523729946526" y="519.0" />
+              <point x="63.81818181818181" y="81.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.iglesias">
+              <point x="-261.0" y="-290.5" />
+              <point x="515.0" y="860.0" />
+              <point x="201.75" y="860.0" />
+              <point x="67.25" y="103.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.personas" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.metodos_ganar">
+              <point x="148.4000000000001" y="-158.5" />
+              <point x="1624.2770721925135" y="870.0" />
+              <point x="1862.5" y="870.0" />
+              <point x="0.0" y="48.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.direcciones">
+              <point x="174.0" y="-290.5" />
+              <point x="950.0" y="860.0" />
+              <point x="1193.0" y="860.0" />
+              <point x="0.0" y="125.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.direcciones" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.municipios">
+              <point x="103.66666666666674" y="-125.5" />
+              <point x="1296.6666666666667" y="549.0" />
+              <point x="1533.375" y="549.0" />
+              <point x="-43.75" y="48.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables">
+              <point x="0.0" y="-290.5" />
+              <point x="776.0" y="850.0" />
+              <point x="653.5770721925135" y="850.0" />
+              <point x="653.5770721925135" y="529.0" />
+              <point x="548.2796457219254" y="529.0" />
+              <point x="42.54545454545456" y="81.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.usuarios" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.valores_variables">
+              <point x="-83.75" y="-136.5" />
+              <point x="534.75" y="1496.0" />
+              <point x="461.00000000000006" y="1496.0" />
+              <point x="461.00000000000006" y="549.0" />
+              <point x="484.4614639037435" y="549.0" />
+              <point x="-21.27272727272731" y="81.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.direcciones" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.estados">
+              <point x="0.0" y="-125.5" />
+              <point x="1193.0" y="296.0" />
+              <point x="1389.375" y="296.0" />
+              <point x="-58.0" y="48.5" />
+            </edge>
+            <edge source="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.lideres" target="09ff230f-d28d-44b5-b3e1-f754981967c9.TABLE:iglesys.telefonos">
+              <point x="87.0" y="-290.5" />
+              <point x="863.0" y="870.0" />
+              <point x="913.0" y="870.0" />
+              <point x="0.0" y="70.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0183634633682206" x="671.678299079842" y="1096.0200937201369" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Key columns</Category>
+            <Category>Columns</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/09ff230f-d28d-44b5-b3e1-f754981967c9/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Controller/PersonaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/PersonaRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Efi/GanadosBundle/Entity/Persona.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
+          <folding>
+            <element signature="e#44#76#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
