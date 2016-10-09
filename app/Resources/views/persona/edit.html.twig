@@ -16,65 +16,46 @@
 
                 <div class="panel-body">
 
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            {{ form_label(edit_form.cedula) }}
-                            {{ form_errors(edit_form.cedula) }}
-                            {{ form_widget(edit_form.cedula) }}
-                        </div>
+                    <div class="col-lg-4">
                         <div class="form-group">
                             {{ form_label(edit_form.nombres) }}
                             {{ form_errors(edit_form.nombres) }}
                             {{ form_widget(edit_form.nombres) }}
                         </div>
-                        <div class="form-group">
-                            {{ form_label(edit_form.apellidos) }}
-                            {{ form_errors(edit_form.apellidos) }}
-                            {{ form_widget(edit_form.apellidos) }}
-                        </div>
-                        <div class="form-group">
-                            {{ form_label(edit_form.fechaNacimiento) }}
-                            {{ form_errors(edit_form.fechaNacimiento) }}
-                            {{ form_widget(edit_form.fechaNacimiento) }}
-                        </div>
-                        <div class="form-group">
-                            {{ form_label(edit_form.nacionalidad) }}
-                            {{ form_errors(edit_form.nacionalidad) }}
-                            {{ form_widget(edit_form.nacionalidad) }}
-                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            {{ form_label(edit_form.sexo) }}
-                            {{ form_errors(edit_form.sexo) }}
-                            {{ form_widget(edit_form.sexo) }}
-                        </div>
-                        <div class="form-group">
-                            {{ form_label(edit_form.metodoGanar) }}
-                            {{ form_errors(edit_form.metodoGanar) }}
-                            {{ form_widget(edit_form.metodoGanar) }}
-                        </div>
-                        <div class="form-group">
-                            {{ form_label(edit_form.fechaGanado) }}
-                            {{ form_errors(edit_form.fechaGanado) }}
-                            {{ form_widget(edit_form.fechaGanado) }}
-                        </div>
+                    <div class="col-lg-4">
                         <div class="form-group">
                             {{ form_label(edit_form.correo) }}
                             {{ form_errors(edit_form.correo) }}
                             {{ form_widget(edit_form.correo) }}
                         </div>
+                    </div>
+                    <div class="col-lg-4">
                         <div class="form-group">
                             {{ form_label(edit_form.telefono) }}
                             {{ form_errors(edit_form.telefono) }}
                             {{ form_widget(edit_form.telefono) }}
                         </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-4">
                         <div class="form-group">
-                            {{ form_label(edit_form.direccion) }}
-                            {{ form_errors(edit_form.direccion) }}
-                            {{ form_widget(edit_form.direccion) }}
+                            {{ form_label(edit_form.rolFamilia) }}
+                            {{ form_errors(edit_form.rolFamilia) }}
+                            {{ form_widget(edit_form.rolFamilia) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            {{ form_label(edit_form.metodoGanar) }}
+                            {{ form_errors(edit_form.metodoGanar) }}
+                            {{ form_widget(edit_form.metodoGanar) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            {{ form_label(edit_form.fechaGanado) }}
+                            {{ form_errors(edit_form.fechaGanado) }}
+                            {{ form_widget(edit_form.fechaGanado) }}
                         </div>
                     </div>
                     <div id="notificaciones"></div>

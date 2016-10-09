@@ -34,7 +34,7 @@ class Persona
      *
      * @ORM\Column(name="PER_ROLFAMILIA", type="integer", nullable=false)
      */
-    private $rolfamilia;
+    private $rolFamilia;
 
     /**
      * @var string
@@ -207,15 +207,15 @@ class Persona
      */
     public function getRolfamilia()
     {
-        return $this->rolfamilia;
+        return $this->rolFamilia;
     }
 
     /**
-     * @param int $rolfamilia
+     * @param int $rolFamilia
      */
-    public function setRolfamilia($rolfamilia)
+    public function setRolfamilia($rolFamilia)
     {
-        $this->rolfamilia = $rolfamilia;
+        $this->rolFamilia = $rolFamilia;
     }
 
     /**
