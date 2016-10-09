@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+use Doctrine\ORM\EntityRepository;
+
 class PersonaType extends AbstractType
 {
     /**
@@ -20,7 +22,22 @@ class PersonaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $vvaRolFamilia = 'per_rol';
         $builder
+            ->add('rolFamilia', 'entity',
+                array(
+                    'class' => 'EfiGeneralBundle:ValorVariable',
+                    'label' => 'Rol en Familia: ',
+                    'attr' => array(
+                        'class' => 'form-control'
+                    ),
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('VVA')
+                            ->orderBy('VVA.orden', 'ASC')
+                            ->where('VVA.codigo = :codigo')
+                            ->setParameter('codigo', 'per_rol');                    },
+                    'choice_label' => 'descripcion',
+                ))
             ->add('metodoGanar', 'entity',
                 array(
                     'class' => 'EfiGanadosBundle:MetodoGanar',
@@ -29,14 +46,6 @@ class PersonaType extends AbstractType
                         'class' => 'form-control'
                     ),
                 ))
-            ->add('fechaNacimiento', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
-                'input'  => 'datetime',
-                'widget' => 'single_text',
-                'label' => 'Fecha de Nacimiento: ',
-                'attr' => array(
-                    'class' => 'form-control',
-                ),
-            ))
             ->add('fechaGanado', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
                 'input'  => 'datetime',
                 'widget' => 'single_text',
@@ -45,65 +54,11 @@ class PersonaType extends AbstractType
                     'class' => 'form-control',
                 ),
             ))
-            ->add('nacionalidad', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                'choices'  => array(
-                    'Venezolano(a) ' => 'V',
-                    'Extranjero(a) ' => 'E',
-                ),
-                'expanded' => false,
-                'multiple' => false,
-                // *this line is important*
-                'choices_as_values' => true,
-                'label' => 'Nacionalidad: ',
-                'attr' => array(
-                    'class' => 'form-control'
-                ),
-            ))
-            ->add('cedula', 'Symfony\Component\Form\Extension\Core\Type\IntegerType', array(
-                'label' => 'Cedula de Identidad: ',
-                'attr' => array(
-                    'class' => 'form-control',
-                    'min' => 3000000,
-                    'max' => 100000000,
-                    'maxlength' => 20,
-                    'autofocus' => 'autofocus',
-                ),
-            ))
             ->add('nombres', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label' => 'Nombres: ',
                 'attr' => array(
                     'class' => 'form-control',
                     'maxlength' => 100,
-                ),
-                'trim' => true,
-            ))
-            ->add('apellidos', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
-                'label' => 'Apellidos: ',
-                'attr' => array(
-                    'class' => 'form-control',
-                    'maxlength' => 100,
-                ),
-                'trim' => true,
-            ))
-            ->add('sexo', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                'choices'  => array(
-                    'Masculino ' => 'M',
-                    'Femenino ' => 'F',
-                ),
-                'expanded' => false,
-                'multiple' => false,
-                // *this line is important*
-                'choices_as_values' => true,
-                'label' => 'Sexo: ',
-                'attr' => array(
-                    'class' => 'form-control'
-                ),
-            ))
-            ->add('direccion', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
-                'label' => 'Direccion de Referencia: ',
-                'attr' => array(
-                    'class' => 'form-control',
-                    'maxlength' => 200,
                 ),
                 'trim' => true,
             ))

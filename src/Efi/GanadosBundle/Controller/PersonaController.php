@@ -72,7 +72,6 @@ class PersonaController extends Controller
                     $em = $this->getDoctrine()->getManager();
 
                     $this->_setValoresDefault($persona);
-
                     $em->persist($persona);
                     $em->flush();
 
@@ -262,55 +261,51 @@ GROUP BY MET.MET_ID
         return $query->getResult();
     }
 
+    /**
+     * @param $codigo
+     * @param $valor
+     * @return object ValorVariable
+     */
+    public function getValorVariableByCodigoAndValor($codigo, $valor){
+        return $this->getDoctrine()
+            ->getRepository('EfiGeneralBundle:ValorVariable')
+            ->findOneBy(
+                array(
+                    'codigo' => $codigo,
+                    'valor' => $valor
+                )
+            );
+    }
 
     /**
      * @param Persona $persona
      */
     private function _setValoresDefault(Persona $persona){
-
         $estatusDefault = 1;
-        $esCompletoDefault = 1;
-        $paisDefault = 1;
-        $iglesiaDefault = 1;
+        $rolFamilia = 1;
 
         if ($persona->getId() == null || ($persona->getId() != null && $persona->getId() < 1 )){
             $persona->setEstatus($estatusDefault);
-            $idEstatus = $this->getDoctrine()
-                ->getRepository('EfiGeneralBundle:ValorVariable')
-                ->findOneBy(
-                    array('codigo' => 'per_estatus', 'valor' => $estatusDefault)
-                );
-            /** @var ValorVariable $idEstatus */
-            $persona->setIdEstatus($idEstatus);
+            $persona->setIdEstatus($this->getValorVariableByCodigoAndValor('per_estatus', $estatusDefault));
 
-            $pais = $this->getDoctrine()
-                ->getRepository('EfiGeneralBundle:Pais')
-                ->find($paisDefault);
-            /** @var Pais $pais */
-            $persona->setPais($pais);
+            $persona->setRolfamilia($rolFamilia);
+            $persona->setIdRolFamilia($this->getValorVariableByCodigoAndValor('per_rol', $rolFamilia));
 
-            $iglesia = $this->getDoctrine()
-                ->getRepository('EfiGeneralBundle:Iglesia')
-                ->find($iglesiaDefault);
-            /** @var Iglesia $iglesia */
-            $persona->setIglesia($iglesia);
+            $persona->setUpdatedAt(new \DateTime('now'));
+
+            if ($persona->getCreatedAt() == null) {
+                $persona->setCreatedAt(new \DateTime('now'));
+            }
+
+            $persona->setFamilia(1);
+            $persona->setParejaMinisterial(1);
+
+//            $familiar = $this->getDoctrine()
+//                ->getRepository('EfiGeneralBundle:Pais')
+//                ->find($paisDefault);
+//            /** @var Pais $pais */
+//            $persona->setPais($pais);
         }
-
-        //Verificando que est� completo el registro
-        if ($persona->getCedula() == null || $persona->getCedula() == ''
-            || $persona->getTelefono() == null || $persona->getTelefono() == ''
-            || $persona->getCorreo() == null || $persona->getCorreo() == ''
-        ){
-            $esCompletoDefault = 0;
-        }
-        $persona->setEsCompleto($esCompletoDefault);
-        $idEsCompleto = $this->getDoctrine()
-            ->getRepository('EfiGeneralBundle:ValorVariable')
-            ->findOneBy(
-                array('codigo' => 'bool', 'valor' => $esCompletoDefault)
-            );
-        /** @var ValorVariable $idEsCompleto */
-        $persona->setIdEsCompleto($idEsCompleto);
     }
 
     /**
@@ -325,22 +320,22 @@ GROUP BY MET.MET_ID
         $id = $persona->getId() == null ? 0 : $persona->getId();
 
         $objectTest = null;
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-            "SELECT p " .
-            "FROM EfiGanadosBundle:Persona p " .
-            "WHERE p.id <> :id AND p.cedula = :cedula")
-            ->setParameter('id', $id)
-            ->setParameter('cedula', $persona->getCedula());
-        $objectTest = $query->setMaxResults(1)->getOneOrNullResult();
-
-        if ($objectTest != null){
-            $resultado = array(
-                'status' => 'error',
-                'message' => 'El numero de cedula <b>' . $persona->getCedula() . '</b> ya se encuentra registrado.',
-            );
-            return $resultado;
-        }
+//        $em = $this->getDoctrine()->getManager();
+//        $query = $em->createQuery(
+//            "SELECT p " .
+//            "FROM EfiGanadosBundle:Persona p " .
+//            "WHERE p.id <> :id AND p.cedula = :cedula")
+//            ->setParameter('id', $id)
+//            ->setParameter('cedula', $persona->getCedula());
+//        $objectTest = $query->setMaxResults(1)->getOneOrNullResult();
+//
+//        if ($objectTest != null){
+//            $resultado = array(
+//                'status' => 'error',
+//                'message' => 'El numero de cedula <b>' . $persona->getCedula() . '</b> ya se encuentra registrado.',
+//            );
+//            return $resultado;
+//        }
 
         if ($persona->getCorreo() != null && $persona->getCorreo() != ''){
             $objectTest = null;

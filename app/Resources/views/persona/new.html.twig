@@ -16,66 +16,49 @@
 
             <div class="panel-body">
 
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        {{ form_label(form.cedula) }}
-                        {{ form_errors(form.cedula) }}
-                        {{ form_widget(form.cedula) }}
-                    </div>
+                <div class="col-lg-4">
                     <div class="form-group">
                         {{ form_label(form.nombres) }}
                         {{ form_errors(form.nombres) }}
                         {{ form_widget(form.nombres) }}
                     </div>
-                    <div class="form-group">
-                        {{ form_label(form.apellidos) }}
-                        {{ form_errors(form.apellidos) }}
-                        {{ form_widget(form.apellidos) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_label(form.fechaNacimiento) }}
-                        {{ form_errors(form.fechaNacimiento) }}
-                        {{ form_widget(form.fechaNacimiento) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_label(form.nacionalidad) }}
-                        {{ form_errors(form.nacionalidad) }}
-                        {{ form_widget(form.nacionalidad) }}
-                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        {{ form_label(form.sexo) }}
-                        {{ form_errors(form.sexo) }}
-                        {{ form_widget(form.sexo) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_label(form.metodoGanar) }}
-                        {{ form_errors(form.metodoGanar) }}
-                        {{ form_widget(form.metodoGanar) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_label(form.fechaGanado) }}
-                        {{ form_errors(form.fechaGanado) }}
-                        {{ form_widget(form.fechaGanado) }}
-                    </div>
+                <div class="col-lg-4">
                     <div class="form-group">
                         {{ form_label(form.correo) }}
                         {{ form_errors(form.correo) }}
                         {{ form_widget(form.correo) }}
                     </div>
+                </div>
+                <div class="col-lg-4">
                     <div class="form-group">
                         {{ form_label(form.telefono) }}
                         {{ form_errors(form.telefono) }}
                         {{ form_widget(form.telefono) }}
                     </div>
                 </div>
-                <div class="col-lg-12">
+                <div class="col-lg-4">
                     <div class="form-group">
-                        {{ form_label(form.direccion) }}
-                        {{ form_errors(form.direccion) }}
-                        {{ form_widget(form.direccion) }}
+                        {{ form_label(form.rolFamilia) }}
+                        {{ form_errors(form.rolFamilia) }}
+                        {{ form_widget(form.rolFamilia) }}
                     </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        {{ form_label(form.metodoGanar) }}
+                        {{ form_errors(form.metodoGanar) }}
+                        {{ form_widget(form.metodoGanar) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        {{ form_label(form.fechaGanado) }}
+                        {{ form_errors(form.fechaGanado) }}
+                        {{ form_widget(form.fechaGanado) }}
+                    </div>
+                </div>
+                <div class="col-lg-12">
                 </div>
                 <div id="notificaciones"></div>
             </div>

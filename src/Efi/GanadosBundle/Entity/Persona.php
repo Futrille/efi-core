@@ -51,6 +51,13 @@ class Persona
     private $correo;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="PER_TELEFONO", type="string", length=50, nullable=true)
+     */
+    private $telefono;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="PER_FECHAGANADO", type="datetime", nullable=false)
@@ -79,7 +86,12 @@ class Persona
 //     *   @ORM\JoinColumn(name="FAM_ID", referencedColumnName="FAM_ID")
 //     * })
 //     */
-//    private $familia;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="FAM_ID", type="integer", nullable=false)
+     */
+    private $familia;
 
     /**
      * @var MetodoGanar
@@ -99,7 +111,12 @@ class Persona
 //     *   @ORM\JoinColumn(name="PMI_ID", referencedColumnName="PMI_ID")
 //     * })
 //     */
-//    private $pmi;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="PMI_ID", type="integer", nullable=false)
+     */
+    private $parejaMinisterial;
 
     /**
      * @var \Efi\GeneralBundle\Entity\ValorVariable
@@ -234,6 +251,22 @@ class Persona
     }
 
     /**
+     * @return string
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * @param string $telefono
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+    }
+
+    /**
      * @return \DateTime
      */
     public function getFechaGanado()
@@ -297,6 +330,39 @@ class Persona
         $this->metodoGanar = $metodoGanar;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFamilia()
+    {
+        return $this->familia;
+    }
+
+    /**
+     * @param mixed $familia
+     */
+    public function setFamilia($familia)
+    {
+        $this->familia = $familia;
+    }
+
+    /**
+     * @return int
+     */
+    public function getParejaMinisterial()
+    {
+        return $this->parejaMinisterial;
+    }
+
+    /**
+     * @param int $parejaMinisterial
+     */
+    public function setParejaMinisterial($parejaMinisterial)
+    {
+        $this->parejaMinisterial = $parejaMinisterial;
+    }
+
+    
 //    /**
 //     * @return \Familia
 //     */
@@ -312,6 +378,8 @@ class Persona
 //    {
 //        $this->familia = $familia;
 //    }
+
+
 
     /**
      * @return \Efi\GeneralBundle\Entity\ValorVariable
