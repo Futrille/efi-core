@@ -4,13 +4,11 @@ namespace Efi\GanadosBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use \Efi\GeneralBundle\Entity\ValorVariable as ValorVariable;
-use \Efi\GeneralBundle\Entity\Iglesia as Iglesia;
 
 /**
  * Persona
  *
- * @ORM\Table(name="PERSONAS", @ORM\UniqueConstraint(name="PER_CORREO_UNIQUE", columns={"PER_CORREO"}), @ORM\Index(name="fk_PERSONAS_VALORESVARIABLES1_idx", columns={"VVA_IDESTATUS"}), @ORM\Index(name="fk_PERSONAS_METODOS_GANAR1_idx", columns={"MET_ID"}))
- * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="personas", uniqueConstraints={@ORM\UniqueConstraint(name="PER_CORREO_UNIQUE", columns={"PER_CORREO"})}, indexes={@ORM\Index(name="fk_PERSONAS_VALORESVARIABLES1_idx", columns={"VVA_IDESTATUS"}), @ORM\Index(name="fk_PERSONAS_METODOS_GANAR1_idx", columns={"MET_ID"}), @ORM\Index(name="fk_PERSONAS_FAMILIAS1_idx", columns={"FAM_ID"}), @ORM\Index(name="fk_PERSONAS_VALORES_VARIABLES1_idx", columns={"VVA_IDROLFAMILIA"}), @ORM\Index(name="fk_PERSONAS_PAREJAS_MINISTERIALES1_idx", columns={"PMI_ID"})})
  * @ORM\Entity(repositoryClass="Efi\GanadosBundle\Entity\PersonaRepository")
  */
 class Persona
@@ -30,6 +28,13 @@ class Persona
      * @ORM\Column(name="PER_ESTATUS", type="integer", nullable=false)
      */
     private $estatus;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="PER_ROLFAMILIA", type="integer", nullable=false)
+     */
+    private $rolfamilia;
 
     /**
      * @var string
@@ -66,25 +71,55 @@ class Persona
      */
     private $updatedAt;
 
+//    /**
+//     * @var \Familia
+//     *
+//     * @ORM\ManyToOne(targetEntity="Familia")
+//     * @ORM\JoinColumns({
+//     *   @ORM\JoinColumn(name="FAM_ID", referencedColumnName="FAM_ID")
+//     * })
+//     */
+//    private $familia;
+
     /**
-     * @var \Efi\GanadosBundle\Entity\MetodoGanar
+     * @var MetodoGanar
      *
-     * @ORM\ManyToOne(targetEntity="\Efi\GanadosBundle\Entity\MetodoGanar")
+     * @ORM\ManyToOne(targetEntity="MetodoGanar")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="MET_ID", referencedColumnName="MET_ID")
      * })
      */
     private $metodoGanar;
 
+//    /**
+//     * @var \ParejasMinisteriales
+//     *
+//     * @ORM\ManyToOne(targetEntity="ParejasMinisteriales")
+//     * @ORM\JoinColumns({
+//     *   @ORM\JoinColumn(name="PMI_ID", referencedColumnName="PMI_ID")
+//     * })
+//     */
+//    private $pmi;
+
     /**
      * @var \Efi\GeneralBundle\Entity\ValorVariable
      *
-     * @ORM\ManyToOne(targetEntity="\Efi\GeneralBundle\Entity\ValorVariable")
+     * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\ValorVariable")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="VVA_IDESTATUS", referencedColumnName="VVA_ID")
      * })
      */
     private $idEstatus;
+
+    /**
+     * @var \Efi\GeneralBundle\Entity\ValorVariable
+     *
+     * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\ValorVariable")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="VVA_IDROLFAMILIA", referencedColumnName="VVA_ID")
+     * })
+     */
+    private $idRolFamilia;
 
     /**
      * @return string
@@ -151,6 +186,22 @@ class Persona
     }
 
     /**
+     * @return int
+     */
+    public function getRolfamilia()
+    {
+        return $this->rolfamilia;
+    }
+
+    /**
+     * @param int $rolfamilia
+     */
+    public function setRolfamilia($rolfamilia)
+    {
+        $this->rolfamilia = $rolfamilia;
+    }
+
+    /**
      * @return string
      */
     public function getNombres()
@@ -167,35 +218,35 @@ class Persona
     }
 
     /**
-     * @return MetodoGanar
+     * @return string
      */
-    public function getMetodoGanar()
+    public function getCorreo()
     {
-        return $this->metodoGanar;
+        return $this->correo;
     }
 
     /**
-     * @param MetodoGanar $metodoGanar
+     * @param string $correo
      */
-    public function setMetodoGanar($metodoGanar)
+    public function setCorreo($correo)
     {
-        $this->metodoGanar = $metodoGanar;
+        $this->correo = $correo;
     }
 
     /**
-     * @return ValorVariable
+     * @return \DateTime
      */
-    public function getIdEstatus()
+    public function getFechaGanado()
     {
-        return $this->idEstatus;
+        return $this->fechaGanado;
     }
 
     /**
-     * @param ValorVariable $idEstatus
+     * @param \DateTime $fechaGanado
      */
-    public function setIdEstatus($idEstatus)
+    public function setFechaGanado($fechaGanado)
     {
-        $this->idEstatus = $idEstatus;
+        $this->fechaGanado = $fechaGanado;
     }
 
     /**
@@ -231,34 +282,67 @@ class Persona
     }
 
     /**
-     * @return string
+     * @return MetodoGanar
      */
-    public function getCorreo()
+    public function getMetodoGanar()
     {
-        return $this->correo;
+        return $this->metodoGanar;
     }
 
     /**
-     * @param string $correo
+     * @param MetodoGanar $metodoGanar
      */
-    public function setCorreo($correo)
+    public function setMetodoGanar($metodoGanar)
     {
-        $this->correo = $correo;
+        $this->metodoGanar = $metodoGanar;
+    }
+
+//    /**
+//     * @return \Familia
+//     */
+//    public function getFamilia()
+//    {
+//        return $this->familia;
+//    }
+//
+//    /**
+//     * @param \Familia $familia
+//     */
+//    public function setFamilia($familia)
+//    {
+//        $this->familia = $familia;
+//    }
+
+    /**
+     * @return \Efi\GeneralBundle\Entity\ValorVariable
+     */
+    public function getIdEstatus()
+    {
+        return $this->idEstatus;
     }
 
     /**
-     * @return \DateTime
+     * @param \Efi\GeneralBundle\Entity\ValorVariable $idEstatus
      */
-    public function getFechaGanado()
+    public function setIdEstatus($idEstatus)
     {
-        return $this->fechaGanado;
+        $this->idEstatus = $idEstatus;
     }
 
     /**
-     * @param \DateTime $fechaGanado
+     * @return \Efi\GeneralBundle\Entity\ValorVariable
      */
-    public function setFechaGanado($fechaGanado)
+    public function getIdRolFamilia()
     {
-        $this->fechaGanado = $fechaGanado;
+        return $this->idRolFamilia;
     }
+
+    /**
+     * @param \Efi\GeneralBundle\Entity\ValorVariable $idRolFamilia
+     */
+    public function setIdRolFamilia($idRolFamilia)
+    {
+        $this->idRolFamilia = $idRolFamilia;
+    }
+
 }
