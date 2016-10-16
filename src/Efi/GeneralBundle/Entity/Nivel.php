@@ -3,7 +3,6 @@
 namespace Efi\GeneralBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use \Efi\GeneralBundle\Entity\ValorVariable as ValorVariable;
 
 /**
  * Nivel
@@ -56,6 +55,46 @@ class Nivel
      * ORM\Column(name="NIV_COLOR", type="string", length=10, nulleable=false)
      */
     private $color;
+
+    /**
+     * @var \Efi\GeneralBundle\Entity\Nivel
+     *
+     * @ORM\OneToMany(targetEntity="Efi\GeneralBundle\Entity\Nivel")
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="NIV_PADRE", referencedColumnName="NIV_ID")
+     * })
+    */
+    private $idPadre;
+
+    /**
+     * @var \Efi\GeneralBundle\Entity\ValorVariable
+     *
+     * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\ValorVariable")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="VVA_IDTIPO", referencedColumnName="VVA_ID")
+     * })
+     */
+    private $idTipo;
+
+    /**
+     * @var \Efi\GeneralBundle\Entity\ValorVariable
+     *
+     * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\ValorVariable")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="VVA_IDESTATUS", referencedColumnName="VVA_ID")
+     * })
+     */
+    private $idEstatus;
+
+    /**
+     * @var \Efi\GeneralBundle\Entity\ValorVariable
+     *
+     * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\ValorVariable")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="VVA_IDICONO", referencedColumnName="VVA_ID")
+     * })
+     */
+    private $idIcono;
 
     /**
      * @return integer
@@ -151,5 +190,69 @@ class Nivel
     public function setColor($color)
     {
         $this->color = $color;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPadre()
+    {
+        return $this->idPadre;
+    }
+
+    /**
+     * @param int $idPadre
+     */
+    public function setIdPadre($idPadre)
+    {
+        $this->idPadre = $idPadre;
+    }
+
+    /**
+     * @return \Efi\GeneralBundle\Entity\ValorVariable
+     */
+    public function getIdEstatus()
+    {
+        return $this->idEstatus;
+    }
+
+    /**
+     * @param \Efi\GeneralBundle\Entity\ValorVariable $idEstatus
+     */
+    public function setIdEstatus($idEstatus)
+    {
+        $this->idEstatus = $idEstatus;
+    }
+
+    /**
+     * @return \Efi\GeneralBundle\Entity\ValorVariable
+     */
+    public function getIdTipo()
+    {
+        return $this->idTipo;
+    }
+
+    /**
+     * @param \Efi\GeneralBundle\Entity\ValorVariable $idTipo
+     */
+    public function setIdTipo($idTipo)
+    {
+        $this->idTipo = $idTipo;
+    }
+
+    /**
+     * @return \Efi\GeneralBundle\Entity\ValorVariable
+     */
+    public function getIdIcono()
+    {
+        return $this->idIcono;
+    }
+
+    /**
+     * @param \Efi\GeneralBundle\Entity\ValorVariable $idIcono
+     */
+    public function setIdIcono($idIcono)
+    {
+        $this->idIcono = $idIcono;
     }
 }
