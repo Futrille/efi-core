@@ -1,3 +1,7 @@
+efi_ganados_familia:
+    resource: "@EfiGanadosBundle/Resources/config/routing/familia.yml"
+    prefix:   /familia
+
 efi_ganados_persona:
     resource: "@EfiGanadosBundle/Resources/config/routing/persona.yml"
     prefix:   /persona/

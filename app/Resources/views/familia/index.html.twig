@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Familia list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for familium in familias %}
+            <tr>
+                <td><a href="{{ path('familia_show', { 'id': familium.id }) }}">{{ familium.id }}</a></td>
+                <td>{{ familium.nombre }}</td>
+                <td>{{ familium.direccion }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('familia_show', { 'id': familium.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('familia_edit', { 'id': familium.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('familia_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

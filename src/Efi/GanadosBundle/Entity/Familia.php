@@ -40,7 +40,7 @@ class Familia
     /**
      * @var Estado
      *
-     * @ORM\ManyToOne(targetEntity="Estado")
+     * @ORM\ManyToOne(targetEntity="\Efi\GeneralBundle\Entity\Estado")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="EDO_ID", referencedColumnName="EDO_ID")
      * })
@@ -50,7 +50,7 @@ class Familia
     /**
      * @var Municipio
      *
-     * @ORM\ManyToOne(targetEntity="Municipio")
+     * @ORM\ManyToOne(targetEntity="\Efi\GeneralBundle\Entity\Municipio")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="MCP_ID", referencedColumnName="MCP_ID")
      * })
