@@ -5,12 +5,12 @@ namespace Efi\GeneralBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Niveles
+ * Nivel
  *
  * @ORM\Table(name="niveles", indexes={@ORM\Index(name="fk_NIVELES_VALORES_VARIABLES1_idx", columns={"VVA_IDTIPO"}), @ORM\Index(name="fk_NIVELES_VALORES_VARIABLES2_idx", columns={"VVA_IDESTATUS"}), @ORM\Index(name="fk_NIVELES_NIVELES1_idx", columns={"NIV_IDPADRE"}), @ORM\Index(name="fk_NIVELES_IGLESIAS1_idx", columns={"IGL_ID"}), @ORM\Index(name="fk_NIVELES_VALORES_VARIABLES3_idx", columns={"VVA_IDICONO"})})
  * @ORM\Entity
  */
-class Niveles
+class Nivel
 {
     /**
      * @var integer
@@ -59,17 +59,17 @@ class Niveles
     /**
      * @var \Iglesias
      *
-     * @ORM\ManyToOne(targetEntity="Iglesias")
+     * @ORM\ManyToOne(targetEntity="Iglesia")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IGL_ID", referencedColumnName="IGL_ID")
      * })
      */
-    private $igl;
+    //private $igl;
 
     /**
      * @var \Niveles
      *
-     * @ORM\ManyToOne(targetEntity="Niveles")
+     * @ORM\ManyToOne(targetEntity="Nivel")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="NIV_IDPADRE", referencedColumnName="NIV_ID")
      * })
@@ -77,9 +77,9 @@ class Niveles
     private $nivPadre;
 
     /**
-     * @var \ValoresVariables
+     * @var \ValoreVariables
      *
-     * @ORM\ManyToOne(targetEntity="ValoresVariables")
+     * @ORM\ManyToOne(targetEntity="ValorVariable")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="VVA_IDTIPO", referencedColumnName="VVA_ID")
      * })
@@ -87,9 +87,9 @@ class Niveles
     private $vvaTipo;
 
     /**
-     * @var \ValoresVariables
+     * @var \ValoreVariables
      *
-     * @ORM\ManyToOne(targetEntity="ValoresVariables")
+     * @ORM\ManyToOne(targetEntity="ValorVariable")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="VVA_IDESTATUS", referencedColumnName="VVA_ID")
      * })
@@ -97,9 +97,9 @@ class Niveles
     private $vvaEstatus;
 
     /**
-     * @var \ValoresVariables
+     * @var \ValoreVariables
      *
-     * @ORM\ManyToOne(targetEntity="ValoresVariables")
+     * @ORM\ManyToOne(targetEntity="ValorVariable")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="VVA_IDICONO", referencedColumnName="VVA_ID")
      * })
@@ -205,18 +205,18 @@ class Niveles
     /**
      * @return \Iglesias
      */
-    public function getIgl()
-    {
-        return $this->igl;
-    }
+   // public function getIgl()
+    //{
+      //  return $this->igl;
+    //}
 
     /**
      * @param \Iglesias $igl
      */
-    public function setIgl($igl)
-    {
-        $this->igl = $igl;
-    }
+   // public function setIgl($igl)
+    //{
+      //  $this->igl = $igl;
+    //}
 
     /**
      * @return \Niveles
@@ -235,7 +235,7 @@ class Niveles
     }
 
     /**
-     * @return \ValoresVariables
+     * @return \ValoreVariables
      */
     public function getVvaTipo()
     {
@@ -243,7 +243,7 @@ class Niveles
     }
 
     /**
-     * @param \ValoresVariables $vvaTipo
+     * @param \ValoreVariables $vvaTipo
      */
     public function setVvaTipo($vvaTipo)
     {
@@ -251,7 +251,7 @@ class Niveles
     }
 
     /**
-     * @return \ValoresVariables
+     * @return \ValoreVariables
      */
     public function getVvaEstatus()
     {
@@ -259,7 +259,7 @@ class Niveles
     }
 
     /**
-     * @param \ValoresVariables $vvaEstatus
+     * @param \ValoreVariables $vvaEstatus
      */
     public function setVvaEstatus($vvaEstatus)
     {
@@ -267,7 +267,7 @@ class Niveles
     }
 
     /**
-     * @return \ValoresVariables
+     * @return \ValoreVariables
      */
     public function getVvaIcono()
     {
@@ -275,7 +275,7 @@ class Niveles
     }
 
     /**
-     * @param \ValoresVariables $vvaIcono
+     * @param \ValoreVariables $vvaIcono
      */
     public function setVvaIcono($vvaIcono)
     {

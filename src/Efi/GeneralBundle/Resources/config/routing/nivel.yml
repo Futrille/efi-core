@@ -1,0 +1,4 @@
+nivel_index:
+    path:     /
+    defaults: { _controller: "EfiGeneralBundle:Nivel:index" }
+    methods:  GET
