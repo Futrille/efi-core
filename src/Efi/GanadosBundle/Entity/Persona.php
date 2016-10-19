@@ -118,6 +118,14 @@ class Persona
      */
     private $parejaMinisterial;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PMI_CODIGO", type="string", length=50, nullable=true)
+     */
+    private $codigoParejaMinisterial;
+
     /**
      * @var \Efi\GeneralBundle\Entity\ValorVariable
      *
@@ -411,6 +419,22 @@ class Persona
     public function setIdRolFamilia($idRolFamilia)
     {
         $this->idRolFamilia = $idRolFamilia;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodigoParejaMinisterial()
+    {
+        return $this->codigoParejaMinisterial;
+    }
+
+    /**
+     * @param string $codigoParejaMinisterial
+     */
+    public function setCodigoParejaMinisterial($codigoParejaMinisterial)
+    {
+        $this->codigoParejaMinisterial = $codigoParejaMinisterial;
     }
 
 }

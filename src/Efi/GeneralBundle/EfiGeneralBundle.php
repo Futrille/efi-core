@@ -8,6 +8,9 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+define("SUCCESS",   "success");
+define("ERROR",     "error");
+
 /**
  * Class EfiGeneralBundle
  * @package Efi\GeneralBundle
@@ -39,5 +42,17 @@ class EfiGeneralBundle extends Bundle
         $response = new JsonResponse();
         $response->setContent($this->getSerialize($object));
         return $response;
+    }
+
+    /**
+     * @param $status
+     * @return array
+     */
+    public function createResponseObject($status = SUCCESS, $message = '', $response = NULL){
+        return array(
+            'status' => $status,
+            'message' => $message,
+            'response' => $response,
+        );
     }
 }

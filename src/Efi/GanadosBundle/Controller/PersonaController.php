@@ -28,6 +28,11 @@ class PersonaController extends Controller
 {
     private $util = null;
 
+    public function __construct()
+    {
+        $this->util = new Util();
+    }
+
     /**
      * Lists all Persona entities.
      *
@@ -35,15 +40,12 @@ class PersonaController extends Controller
     public function indexAction()
     {
         $this->util = new Util();
-        $resultado = array();
+        $resultado = $this->util->createResponseObject();
+        $perRepo = $this->getDoctrine()->getRepository('EfiGanadosBundle:Persona');
 
-        //$key = $request->query->get('key',0);
-        $vvaList = $this->getDoctrine()
-            ->getRepository('EfiGanadosBundle:Persona')
-            ->findAll();
+        $vvaList = $perRepo->findAll();
 
-        $resultado['status'] = "success";
-        $resultado['message'] = "";
+        $resultado['count'] = count($vvaList);
         $resultado['response'] = $vvaList;
         $resultado['resumen'] = $this->consultarPersonasPorTipo();
 
@@ -58,7 +60,7 @@ class PersonaController extends Controller
     public function newAction(Request $request)
     {
         $this->util = new Util();
-        $resultado = array();
+        $resultado = $this->util->createResponseObject();
 
         $persona = new Persona();
 
@@ -209,11 +211,7 @@ class PersonaController extends Controller
     public function countAction()
     {
         $this->util = new Util();
-        $resultado = array(
-            'status' => 'success',
-            'message' => '',
-            'response' => 0,
-        );
+        $resultado = $this->util->createResponseObject();
 
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(

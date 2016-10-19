@@ -5,8 +5,11 @@ namespace Efi\GanadosBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Efi\GeneralBundle\EfiGeneralBundle as Util;
+
 use Efi\GanadosBundle\Entity\Familia;
 use Efi\GanadosBundle\Form\FamiliaType;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * Familia controller.
@@ -20,13 +23,32 @@ class FamiliaController extends Controller
      */
     public function indexAction()
     {
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $familias = $em->getRepository('EfiGanadosBundle:Familia')->findAll();
+//
+//        return $this->render('familia/index.html.twig', array(
+//            'familias' => $familias,
+//        ));
+        $this->util = new Util();
+        $resultado = $this->util->createResponseObject();
+
+        $rsm = new ResultSetMapping;
+        $rsm->addEntityResult('EfiGanadosBundle:Familia', 'FAM');
+        $rsm->addFieldResult('FAM', 'id', 'FAM_ID'); // ($alias, $columnName, $fieldName)
+        $rsm->addFieldResult('FAM', 'name', 'FAM_NOMBRE'); // // ($alias, $columnName, $fieldName)
+
         $em = $this->getDoctrine()->getManager();
+        $query = $em->createNativeQuery(
+            "SELECT FAM.FAM_ID, FAM.FAM_NOMBRE ".//, COUNT(PER.PER_ID) AS INTEGRANTES " .
+            "FROM FAMILIAS FAM "
+            //"    INNER JOIN PERSONAS PER ON FAM.FAM_ID = PER.PER_ID "
+            //"GROUP BY PER.PER_ID"
+            , $rsm);
 
-        $familias = $em->getRepository('EfiGanadosBundle:Familia')->findAll();
-
-        return $this->render('familia/index.html.twig', array(
-            'familias' => $familias,
-        ));
+        $resultado['response']['data'] = $query->getResult();
+        $resultado['response']['count'] = count($resultado['response']['data']);
+        return $this->util->efiGetJsonResponse($resultado);
     }
 
     /**
