@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Efi\GeneralBundle\EfiGeneralBundle as Util;
+use AppBundle\Response;
 
 use Efi\GanadosBundle\Entity\Familia;
 use Efi\GanadosBundle\Form\FamiliaType;
@@ -23,28 +24,17 @@ class FamiliaController extends Controller
      */
     public function indexAction()
     {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $familias = $em->getRepository('EfiGanadosBundle:Familia')->findAll();
-//
-//        return $this->render('familia/index.html.twig', array(
-//            'familias' => $familias,
-//        ));
+        $response = new Response();
         $this->util = new Util();
         $resultado = $this->util->createResponseObject();
 
-        $rsm = new ResultSetMapping;
-        $rsm->addEntityResult('EfiGanadosBundle:Familia', 'FAM');
-        $rsm->addFieldResult('FAM', 'id', 'FAM_ID'); // ($alias, $columnName, $fieldName)
-        $rsm->addFieldResult('FAM', 'name', 'FAM_NOMBRE'); // // ($alias, $columnName, $fieldName)
-
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createNativeQuery(
-            "SELECT FAM.FAM_ID, FAM.FAM_NOMBRE ".//, COUNT(PER.PER_ID) AS INTEGRANTES " .
-            "FROM FAMILIAS FAM "
-            //"    INNER JOIN PERSONAS PER ON FAM.FAM_ID = PER.PER_ID "
-            //"GROUP BY PER.PER_ID"
-            , $rsm);
+        $query = $em->createQuery(
+            "SELECT FAM.id, FAM.nombre, COUNT(PER.familia) AS integrantes "
+            ."FROM EfiGanadosBundle:Familia FAM " 
+            ."    INNER JOIN EfiGanadosBundle:Persona PER WITH FAM.id = PER.familia "
+            ."GROUP BY FAM.id"
+            );
 
         $resultado['response']['data'] = $query->getResult();
         $resultado['response']['count'] = count($resultado['response']['data']);
