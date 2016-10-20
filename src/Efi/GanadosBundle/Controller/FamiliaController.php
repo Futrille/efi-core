@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Efi\GeneralBundle\EfiGeneralBundle as Util;
-use AppBundle\Response;
+use AppBundle\GeneralResponse;
 
 use Efi\GanadosBundle\Entity\Familia;
 use Efi\GanadosBundle\Form\FamiliaType;
@@ -22,23 +22,33 @@ class FamiliaController extends Controller
      * Lists all Familia entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $response = new Response();
-        $this->util = new Util();
-        $resultado = $this->util->createResponseObject();
+        $response = new GeneralResponse();
 
+        /**
+         * Aqui se obtendrá desde el request el valor del Usuario conectado
+         * y luego se obtendrá su CodigoPMI
+         *
+         * Falta Agregar el estaus de la persona en este momento, es decir el que esta recien cargado.
+         */
+
+        //Por ahora el codigoParejaMinisterial será enviado desde la vista
+        $codigo = $request->get('codigoPmi');
+        
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
             "SELECT FAM.id, FAM.nombre, COUNT(PER.familia) AS integrantes "
             ."FROM EfiGanadosBundle:Familia FAM " 
             ."    INNER JOIN EfiGanadosBundle:Persona PER WITH FAM.id = PER.familia "
-            ."GROUP BY FAM.id"
-            );
+            ."WHERE PER.codigoParejaMinisterial = :codigoPmi "
+            ."GROUP BY FAM.id")
+            ->setParameter('codigoPmi', $codigo);
 
-        $resultado['response']['data'] = $query->getResult();
-        $resultado['response']['count'] = count($resultado['response']['data']);
-        return $this->util->efiGetJsonResponse($resultado);
+        $response->setData($query->getResult());
+        $response->addToMetaData('count', count($response->getData()));
+        $response->addToMetaData('codigo', $codigo);
+        return $response->toJSON();
     }
 
     /**

@@ -1,6 +1,6 @@
 familia_index:
-    path:     /
-    defaults: { _controller: "EfiGanadosBundle:Familia:index" }
+    path:     /{codigoPmi}
+    defaults: { _controller: "EfiGanadosBundle:Familia:index", codigoPmi: 0 }
     methods:  GET
 
 familia_show:
