@@ -64,7 +64,7 @@ class Nivel
      *   @ORM\JoinColumn(name="IGL_ID", referencedColumnName="IGL_ID")
      * })
      */
-    //private $igl;
+    private $igl;
 
     /**
      * @var \Niveles
@@ -205,18 +205,18 @@ class Nivel
     /**
      * @return \Iglesias
      */
-   // public function getIgl()
-    //{
-      //  return $this->igl;
-    //}
+    public function getIgl()
+    {
+        return $this->igl;
+    }
 
     /**
      * @param \Iglesias $igl
      */
-   // public function setIgl($igl)
-    //{
-      //  $this->igl = $igl;
-    //}
+    public function setIgl($igl)
+    {
+        $this->igl = $igl;
+    }
 
     /**
      * @return \Niveles
