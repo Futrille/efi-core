@@ -12,6 +12,9 @@ use Efi\GanadosBundle\Entity\Familia;
 use Efi\GanadosBundle\Form\FamiliaType;
 use Doctrine\ORM\Query\ResultSetMapping;
 
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpFoundation\Response;
+
 /**
  * Familia controller.
  *
@@ -19,8 +22,13 @@ use Doctrine\ORM\Query\ResultSetMapping;
 class FamiliaController extends Controller
 {
     /**
-     * Lists all Familia entities.
+     * Listado de Familias. Filtradas por Pareja Ministerial (Codigo).
+     * Adem&aacute;s muestra los integrantes en cada una de ellas.
      *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Listado resumen de Familias conectadas."
+     * )
      */
     public function indexAction(Request $request)
     {
@@ -35,7 +43,8 @@ class FamiliaController extends Controller
 
         //Por ahora el codigoParejaMinisterial será enviado desde la vista
         $codigo = $request->get('codigoPmi');
-        
+        $_format = $request->get('_format', 'html');
+
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
             "SELECT FAM.id, FAM.nombre, COUNT(PER.familia) AS integrantes "
@@ -45,10 +54,13 @@ class FamiliaController extends Controller
             ."GROUP BY FAM.id")
             ->setParameter('codigoPmi', $codigo);
 
-        $response->setData($query->getResult());
-        $response->addToMetaData('count', count($response->getData()));
-        $response->addToMetaData('codigo', $codigo);
-        return $response->toJSON();
+        if ($_format != null && $_format == 'json') {
+            $response->setData($query->getResult());
+            $response->addToMetaData('count', count($response->getData()));
+            $response->addToMetaData('codigo', $codigo);
+            return $response->toJSON();
+        }
+        return new Response('<html><head></head><body></body></html>');
     }
 
     /**
