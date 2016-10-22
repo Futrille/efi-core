@@ -19,268 +19,269 @@ class Nivel
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $nivId;
+    private $id;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="NIV_TIPO", type="integer", nullable=false)
      */
-    private $nivTipo;
+    private $tipo;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="NIV_ESTATUS", type="integer", nullable=false)
      */
-    private $nivEstatus;
+    private $estatus;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="NIV_ICONO", type="integer", nullable=false)
      */
-    private $nivIcono;
+    private $icono;
 
     /**
      * @var string
      *
      * @ORM\Column(name="NIV_NOMBRE", type="string", length=50, nullable=false)
      */
-    private $nivNombre;
+    private $nombre;
 
     /**
      * @var string
      *
      * @ORM\Column(name="NIV_COLOR", type="string", length=10, nullable=false)
      */
-    private $nivColor;
+    private $color;
 
     /**
-     * @var \Iglesias
+     * @var \Efi\GeneralBundle\Entity\Iglesia
      *
-     * @ORM\ManyToOne(targetEntity="Iglesia")
+     * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\Iglesia")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IGL_ID", referencedColumnName="IGL_ID")
      * })
      */
-    private $igl;
+    private $iglesia;
 
     /**
-     * @var \Niveles
+     * @var \Efi\GeneralBundle\Entity\Nivel
      *
-     * @ORM\ManyToOne(targetEntity="Nivel")
+     * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\Nivel")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="NIV_IDPADRE", referencedColumnName="NIV_ID")
      * })
      */
-    private $nivPadre;
+    private $padre;
 
     /**
-     * @var \ValoreVariables
+     * @var \Efi\GeneralBundle\Entity\ValorVariable
      *
-     * @ORM\ManyToOne(targetEntity="ValorVariable")
+     * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\ValorVariable")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="VVA_IDTIPO", referencedColumnName="VVA_ID")
      * })
      */
-    private $vvaTipo;
+    private $idTipo;
 
     /**
-     * @var \ValoreVariables
+     * @var \Efi\GeneralBundle\Entity\ValorVariable
      *
-     * @ORM\ManyToOne(targetEntity="ValorVariable")
+     * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\ValorVariable")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="VVA_IDESTATUS", referencedColumnName="VVA_ID")
      * })
      */
-    private $vvaEstatus;
+    private $idEstatus;
 
     /**
-     * @var \ValoreVariables
+     * @var \Efi\GeneralBundle\Entity\ValorVariable
      *
-     * @ORM\ManyToOne(targetEntity="ValorVariable")
+     * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\ValorVariable")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="VVA_IDICONO", referencedColumnName="VVA_ID")
      * })
      */
-    private $vvaIcono;
+    private $idIcono;
 
     /**
      * @return int
      */
-    public function getNivId()
+    public function getId()
     {
-        return $this->nivId;
+        return $this->id;
     }
 
     /**
-     * @param int $nivId
+     * @param int $id
      */
-    public function setNivId($nivId)
+    public function setId($id)
     {
-        $this->nivId = $nivId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getNivTipo()
-    {
-        return $this->nivTipo;
-    }
-
-    /**
-     * @param int $nivTipo
-     */
-    public function setNivTipo($nivTipo)
-    {
-        $this->nivTipo = $nivTipo;
+        $this->id = $id;
     }
 
     /**
      * @return int
      */
-    public function getNivEstatus()
+    public function getTipo()
     {
-        return $this->nivEstatus;
+        return $this->tipo;
     }
 
     /**
-     * @param int $nivEstatus
+     * @param int $tipo
      */
-    public function setNivEstatus($nivEstatus)
+    public function setTipo($tipo)
     {
-        $this->nivEstatus = $nivEstatus;
+        $this->tipo = $tipo;
     }
 
     /**
      * @return int
      */
-    public function getNivIcono()
+    public function getEstatus()
     {
-        return $this->nivIcono;
+        return $this->estatus;
     }
 
     /**
-     * @param int $nivIcono
+     * @param int $estatus
      */
-    public function setNivIcono($nivIcono)
+    public function setEstatus($estatus)
     {
-        $this->nivIcono = $nivIcono;
+        $this->estatus = $estatus;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIcono()
+    {
+        return $this->icono;
+    }
+
+    /**
+     * @param int $icono
+     */
+    public function setIcono($icono)
+    {
+        $this->icono = $icono;
     }
 
     /**
      * @return string
      */
-    public function getNivNombre()
+    public function getNombre()
     {
-        return $this->nivNombre;
+        return $this->nombre;
     }
 
     /**
-     * @param string $nivNombre
+     * @param string $nombre
      */
-    public function setNivNombre($nivNombre)
+    public function setNombre($nombre)
     {
-        $this->nivNombre = $nivNombre;
+        $this->nombre = $nombre;
     }
 
     /**
      * @return string
      */
-    public function getNivColor()
+    public function getColor()
     {
-        return $this->nivColor;
+        return $this->color;
     }
 
     /**
-     * @param string $nivColor
+     * @param string $color
      */
-    public function setNivColor($nivColor)
+    public function setColor($color)
     {
-        $this->nivColor = $nivColor;
+        $this->color = $color;
     }
 
     /**
-     * @return \Iglesias
+     * @return Iglesia
      */
-    public function getIgl()
+    public function getIglesia()
     {
-        return $this->igl;
+        return $this->iglesia;
     }
 
     /**
-     * @param \Iglesias $igl
+     * @param Iglesia $iglesia
      */
-    public function setIgl($igl)
+    public function setIglesia($iglesia)
     {
-        $this->igl = $igl;
+        $this->iglesia = $iglesia;
     }
 
     /**
-     * @return \Niveles
+     * @return Nivel
      */
-    public function getNivPadre()
+    public function getPadre()
     {
-        return $this->nivPadre;
+        return $this->padre;
     }
 
     /**
-     * @param \Niveles $nivPadre
+     * @param Nivel $padre
      */
-    public function setNivPadre($nivPadre)
+    public function setPadre($padre)
     {
-        $this->nivPadre = $nivPadre;
+        $this->padre = $padre;
     }
 
     /**
-     * @return \ValoreVariables
+     * @return ValorVariable
      */
-    public function getVvaTipo()
+    public function getIdTipo()
     {
-        return $this->vvaTipo;
+        return $this->idTipo;
     }
 
     /**
-     * @param \ValoreVariables $vvaTipo
+     * @param ValorVariable $idTipo
      */
-    public function setVvaTipo($vvaTipo)
+    public function setIdTipo($idTipo)
     {
-        $this->vvaTipo = $vvaTipo;
+        $this->idTipo = $idTipo;
     }
 
     /**
-     * @return \ValoreVariables
+     * @return ValorVariable
      */
-    public function getVvaEstatus()
+    public function getIdEstatus()
     {
-        return $this->vvaEstatus;
+        return $this->idEstatus;
     }
 
     /**
-     * @param \ValoreVariables $vvaEstatus
+     * @param ValorVariable $idEstatus
      */
-    public function setVvaEstatus($vvaEstatus)
+    public function setIdEstatus($idEstatus)
     {
-        $this->vvaEstatus = $vvaEstatus;
+        $this->idEstatus = $idEstatus;
     }
 
     /**
-     * @return \ValoreVariables
+     * @return ValorVariable
      */
-    public function getVvaIcono()
+    public function getIdIcono()
     {
-        return $this->vvaIcono;
+        return $this->idIcono;
     }
 
     /**
-     * @param \ValoreVariables $vvaIcono
+     * @param ValorVariable $idIcono
      */
-    public function setVvaIcono($vvaIcono)
+    public function setIdIcono($idIcono)
     {
-        $this->vvaIcono = $vvaIcono;
+        $this->idIcono = $idIcono;
     }
 
+    
 
 }
