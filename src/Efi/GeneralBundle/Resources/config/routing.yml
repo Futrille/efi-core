@@ -2,9 +2,9 @@ efi_general_valorvariable:
     resource: "@EfiGeneralBundle/Resources/config/routing/valorvariable.yml"
     prefix:   /general/valorvariable/
 
-efi_general_nivel:
-    resource: "@EfiGeneralBundle/Resources/config/routing/nivel.yml"
-    prefix:   /general/nivel/
+#efi_general_nivel:
+#    resource: "@EfiGeneralBundle/Resources/config/routing/nivel.yml"
+#    prefix:   /general/nivel/
 
 efi_general_homepage:
     path:     /general/
