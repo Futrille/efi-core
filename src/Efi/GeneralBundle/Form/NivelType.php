@@ -25,6 +25,7 @@ class NivelType extends AbstractType
             ->add('idTipo')
             ->add('idEstatus')
             ->add('idIcono')
+            ->add('orden')
         ;
     }
     

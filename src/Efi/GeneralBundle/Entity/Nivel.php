@@ -107,6 +107,13 @@ class Nivel
     private $idIcono;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="NIV_ORDEN", type="integer", nullable=false)
+     */
+    private $orden;
+
+    /**
      * @return int
      */
     public function getId()
@@ -282,6 +289,21 @@ class Nivel
         $this->idIcono = $idIcono;
     }
 
-    
+    /**
+     * @return string
+     */
+    public function getOrden()
+    {
+        return $this->orden;
+    }
+
+    /**
+     * @param string $orden
+     */
+    public function setOrden($orden)
+    {
+        $this->orden = $orden;
+    }
+
 
 }

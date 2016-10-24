@@ -24,13 +24,26 @@ class NivelController extends Controller
      */
     public function indexAction()
     {
+//        $em = $this->getDoctrine()->getManager();
+//        $nivels = $em->getRepository('EfiGeneralBundle:Nivel')->findAll();
+//
+//        return $this->render('nivel/index.html.twig', array(
+//            'nivels' => $nivels,
+//        ));
+
         $em = $this->getDoctrine()->getManager();
+        $result = array();
+        $nivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => null));
+        foreach ($nivels as &$valor) {
+            array_push($result, $valor);
 
-        $nivels = $em->getRepository('EfiGeneralBundle:Nivel')->findAll();
+            $subNivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $valor->getId()),array('orden' => 'ASC'));
+            foreach ($subNivels as &$subValor) {
+                array_push($result, $subValor);
+            }
+        }
 
-        return $this->render('nivel/index.html.twig', array(
-            'nivels' => $nivels,
-        ));
+        return $this->render('nivel/index.html.twig', array('nivels' => $result,));
     }
 
     /**
