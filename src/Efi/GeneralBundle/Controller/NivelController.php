@@ -2,12 +2,16 @@
 
 namespace Efi\GeneralBundle\Controller;
 
+use AppBundle\GeneralResponse;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Efi\GeneralBundle\Entity\Nivel;
 use Efi\GeneralBundle\Form\NivelType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Nivel controller.
@@ -17,12 +21,15 @@ use Efi\GeneralBundle\Form\NivelType;
 class NivelController extends Controller
 {
     /**
-     * Lists all Nivel entities.
+     * Listado de Familias. Filtradas por Pareja Ministerial (Codigo).
+     * Adem&aacute;s muestra los integrantes en cada una de ellas.
      *
-     * @Route("/", name="nivel_index")
-     * @Method("GET")
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Listado resumen de Familias conectadas."
+     * )
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
 //        $em = $this->getDoctrine()->getManager();
 //        $nivels = $em->getRepository('EfiGeneralBundle:Nivel')->findAll();
@@ -43,7 +50,14 @@ class NivelController extends Controller
             }
         }
 
-        return $this->render('nivel/index.html.twig', array('nivels' => $result,));
+        $response = new GeneralResponse();
+        $codigo = $request->get('codigoPmi');
+
+
+        $response->setData($result);
+        $response->addToMetaData('codigo', $codigo);
+
+        return $response->toJSON();
     }
 
     /**
