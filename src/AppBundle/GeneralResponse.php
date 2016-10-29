@@ -8,6 +8,9 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+define('GENERAL_RESPONSE_SUCCESS', 0);
+define('GENERAL_RESPONSE_ERROR', 1);
+
 class GeneralResponse
 {
     private $data;
@@ -40,6 +43,7 @@ class GeneralResponse
     public function setData($data)
     {
         $this->data = $data;
+        $this->setType(gettype($data));
     }
 
     /**
@@ -145,6 +149,7 @@ class GeneralResponse
 
         $array = array(
             'data' => $this->data,
+            'type' => $this->type,
             'code' => $this->code,
             'status' => $this->status,
             'message' => $this->message,

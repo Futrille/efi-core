@@ -12,13 +12,16 @@ use Doctrine\DBAL\DBALException;
 use Efi\GeneralBundle\EfiGeneralBundle as Util;
 
 use Efi\GanadosBundle\Entity\Persona as Persona;
+use Efi\GanadosBundle\Entity\Familia as Familia;
 use Efi\GeneralBundle\Entity\Pais as Pais;
 use Efi\GeneralBundle\Entity\ValorVariable as ValorVariable;
 use Efi\GeneralBundle\Entity\Iglesia as Iglesia;
 use Efi\GanadosBundle\Form\PersonaType;
 use Efi\GanadosBundle\Entity\PersonaRepository;
 
-use Symfony\Component\Security\Csrf\CsrfTokenManager;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpFoundation\Response;
+use AppBundle\GeneralResponse;
 
 /**
  * Persona controller.
@@ -53,47 +56,64 @@ class PersonaController extends Controller
     }
 
     /**
-     * Creates a new Persona entity.
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * Envia y recibe datos del formulario principal de Personas
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Gestiona el formulario de Personas.",
+     *  views = {"all", "ganados"}
+     * )
      */
     public function newAction(Request $request)
     {
-        $this->util = new Util();
-        $resultado = $this->util->createResponseObject();
-
+        $response = new GeneralResponse();
         $persona = new Persona();
+        $familia = new Familia();
+        
+        $form_familia = $this->createForm('Efi\GanadosBundle\Form\FamiliaType', $familia);
+        $form_familia->handleRequest($request);
 
         $form = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try{
-                $resultado = $this->validarPersonalizado($persona);
-                if ($resultado['status'] == 'success'){
+                $response = $this->validarPersonalizado($persona);
+                if ($response->getStatus() == GENERAL_RESPONSE_SUCCESS){
+
+                    if ($form_familia->isSubmitted() && $form_familia->isValid()) {
+//                        $em = $this->getDoctrine()->getManager();
+//                        $em->persist($familia);
+//                        $em->flush();
+
+//                        return $this->redirectToRoute('familia_show', array('id' => $familia->getId()));
+                    }
+
+
                     $em = $this->getDoctrine()->getManager();
 
                     $this->_setValoresDefault($persona);
                     $em->persist($persona);
                     $em->flush();
 
-                    $resultado['message'] = 'Persona registrada satisfactoriamente';
-                    $resultado['response'] = $persona;
+                    $response->setStatus(GENERAL_RESPONSE_SUCCESS);
+                    $response->setMessage('Persona registrada satisfactoriamente');
+                    $response->setData($persona);
                 }
             }catch (\Exception $e){
-                $resultado['status'] = "error";
-                $resultado['message'] = "Error al guardar el registro.";
-                $resultado['exception'] = $e->getMessage();
+                $response->setStatus(GENERAL_RESPONSE_ERROR);
+                $response->setMessage('Error al guardar el registro.');
+                $response->setData($e->getMessage());
             }
 
-            return $this->util->efiGetJsonResponse($resultado);
+            return $response->toJSON();
         }
-//        $token_manager = new CsrfTokenManager();
-//        $token = $token_manager->getToken("_token");
-//        return $this->util->efiGetJsonResponse($token);
+
         return $this->render('persona/new.html.twig', array(
             'persona' => $persona,
             'form' => $form->createView(),
+            'familia' => $familia,
+            'form_familia' => $form_familia->createView(),
         ));
     }
 
@@ -152,7 +172,7 @@ class PersonaController extends Controller
 
         return $this->render('persona/edit.html.twig', array(
             'persona' => $persona,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -206,12 +226,17 @@ class PersonaController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * Cuenta la cantidad de Personas Registradas
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Cantidad de Personas Registradas",
+     *  views = {"all", "ganados"}
+     * )
      */
     public function countAction()
     {
-        $this->util = new Util();
-        $resultado = $this->util->createResponseObject();
+        $response = new GeneralResponse();
 
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
@@ -221,10 +246,10 @@ class PersonaController extends Controller
         $objectTest = $query->setMaxResults(1)->getOneOrNullResult();
 
         if ($objectTest != null){
-            $resultado['response'] = $objectTest['cantidad'];
+            $response->setData(intval($objectTest['cantidad']));
         }
 
-        return $this->util->efiGetJsonResponse($resultado);
+        return $response->toJSON();
     }
     /*
      * SELECT MET.MET_ID, MET.MET_NOMBRE, count(PER.MET_ID)
@@ -297,6 +322,7 @@ GROUP BY MET.MET_ID
 
             $persona->setFamilia(1);
             $persona->setParejaMinisterial(1);
+            $persona->setCodigoParejaMinisterial('PRU-1986');
 
 //            $familiar = $this->getDoctrine()
 //                ->getRepository('EfiGeneralBundle:Pais')
@@ -311,10 +337,7 @@ GROUP BY MET.MET_ID
      * @param Persona $persona
      */
     private function validarPersonalizado(Persona $persona){
-        $resultado = array(
-            'status' => 'success',
-            'message' => '',
-        );
+        $response = new GeneralResponse();
         $id = $persona->getId() == null ? 0 : $persona->getId();
 
         $objectTest = null;
@@ -347,14 +370,12 @@ GROUP BY MET.MET_ID
             $objectTest = $query->setMaxResults(1)->getOneOrNullResult();
 
             if ($objectTest != null){
-                $resultado = array(
-                    'status' => 'error',
-                    'message' => 'El correo <b>' . $persona->getCorreo() . '</b> ya se encuentra registrado.',
-                );
-                return $resultado;
+                $response->setStatus(1);
+                $response->setMessage('El correo <b>' . $persona->getCorreo() . '</b> ya se encuentra registrado.');
+                return $response;
             }
         }
 
-        return $resultado;
+        return $response;
     }
 }

@@ -1,16 +1,16 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Familia creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('familia_index') }}">Back to the list</a>
-        </li>
-    </ul>
-{% endblock %}
+{#{{ form_start(form_familia) }}#}
+{#<div class="col-md-4">#}
+    {#<div class="form-group">#}
+        {#{{ form_label(form_familia.nombre) }}#}
+        {#{{ form_errors(form_familia.nombre) }}#}
+        {#{{ form_widget(form_familia.nombre) }}#}
+    {#</div>#}
+{#</div>#}
+{#<div class="col-md-8">#}
+    {#<div class="form-group">#}
+        {#{{ form_label(form_familia.direccion) }}#}
+        {#{{ form_errors(form_familia.direccion) }}#}
+        {#{{ form_widget(form_familia.direccion) }}#}
+    {#</div>#}
+{#</div>#}
+{#{{ form_end(form_familia) }}#}

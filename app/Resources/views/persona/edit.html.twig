@@ -1,87 +1,67 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">Editar Persona Ganada</h2>
+{{ form_start(form) }}
+<div class="box-body">
+    <div class="col-md-4">
+        <div class="form-group">
+            {{ form_label(form.nombres) }}
+            {{ form_errors(form.nombres) }}
+            {{ form_widget(form.nombres) }}
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                {{ form_start(edit_form) }}
-                <div class="panel-heading">
-                    Ingrese los datos de la persona.
-                </div>
-
-                <div class="panel-body">
-
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            {{ form_label(edit_form.nombres) }}
-                            {{ form_errors(edit_form.nombres) }}
-                            {{ form_widget(edit_form.nombres) }}
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            {{ form_label(edit_form.correo) }}
-                            {{ form_errors(edit_form.correo) }}
-                            {{ form_widget(edit_form.correo) }}
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            {{ form_label(edit_form.telefono) }}
-                            {{ form_errors(edit_form.telefono) }}
-                            {{ form_widget(edit_form.telefono) }}
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            {{ form_label(edit_form.rolFamilia) }}
-                            {{ form_errors(edit_form.rolFamilia) }}
-                            {{ form_widget(edit_form.rolFamilia) }}
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            {{ form_label(edit_form.metodoGanar) }}
-                            {{ form_errors(edit_form.metodoGanar) }}
-                            {{ form_widget(edit_form.metodoGanar) }}
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            {{ form_label(edit_form.fechaGanado) }}
-                            {{ form_errors(edit_form.fechaGanado) }}
-                            {{ form_widget(edit_form.fechaGanado) }}
-                        </div>
-                    </div>
-                    <div id="notificaciones"></div>
-                </div>
-                <div class="panel-footer">
-                    <input type="submit" class="btn btn-primary" value="Guardar" />
-                    <button type="button" id="btn-ganados-editar-cancelar" class="btn btn-default">Cancelar</button>
-                    {{ form_end(edit_form) }}
-                    <span class="pull-right">
-                        {{ form_start(delete_form) }}
-                        <input type="submit" class="btn btn-danger" value="Eliminar">
-                        {{ form_end(delete_form) }}
-                    </span>
-                </div>
-            </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            {{ form_label(form.correo) }}
+            {{ form_errors(form.correo) }}
+            {{ form_widget(form.correo) }}
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            {{ form_label(form.telefono) }}
+            {{ form_errors(form.telefono) }}
+            {{ form_widget(form.telefono) }}
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            {{ form_label(form.rolFamilia) }}
+            {{ form_errors(form.rolFamilia) }}
+            {{ form_widget(form.rolFamilia) }}
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            {{ form_label(form.metodoGanar) }}
+            {{ form_errors(form.metodoGanar) }}
+            {{ form_widget(form.metodoGanar) }}
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            {{ form_label(form.fechaGanado) }}
+            {{ form_errors(form.fechaGanado) }}
+            {{ form_widget(form.fechaGanado) }}
+        </div>
+    </div>
+</div>
+<div class="box-footer">
+    <input type="submit" class="btn btn-primary" value="Guardar">
+    <button type="reset" class="btn btn-default">Limpiar</button>
+    <button type="button" id="btn-ganados-registrar-cancelar" class="btn btn-default">Cancelar</button>
+{{ form_end(form) }}
+    <span class="pull-right">
+        {{ form_start(delete_form) }}
+        <input type="submit" class="btn btn-danger" value="Eliminar">
+        {{ form_end(delete_form) }}
+    </span>
+</div>
 
-    {#<div class="input-group date">#}
-    {#<input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>#}
-    {#</div>#}
-    {#<ul>#}
-    {#<li>#}
-    {#<a href="{{ path('persona_index') }}">Back to the list</a>#}
-    {#</li>#}
-    {#</ul>#}
-{% endblock %}
+
+
+
+
+
+
+
+
 
 

@@ -81,6 +81,28 @@ class PersonaType extends AbstractType
                 ),
                 'trim' => true,
             ))
+//            ->add('nombreFamilia', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
+//                'label' => 'Identificación de la Familia: ',
+//                'required' => true,
+//                'attr' => array(
+//                    'required' => true,
+//                    'class' => 'form-control',
+//                    'maxlength' => 50,
+//                ),
+//                'trim' => true,
+//                'mapped' => false
+//            ))
+//            ->add('direccionFamilia', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
+//                'label' => 'Dirección de Familia (Referencial): ',
+//                'required' => false,
+//                'attr' => array(
+//                    'required' => false,
+//                    'class' => 'form-control',
+//                    'maxlength' => 500,
+//                ),
+//                'trim' => true,
+//                'mapped' => false
+//            ))
         ;
     }
     

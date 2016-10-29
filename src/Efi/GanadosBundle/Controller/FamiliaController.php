@@ -27,7 +27,8 @@ class FamiliaController extends Controller
      *
      * @ApiDoc(
      *  resource=true,
-     *  description="Listado resumen de Familias conectadas."
+     *  description="Listado resumen de Familias conectadas.",
+     *  views = {"all", "ganados"}
      * )
      */
     public function indexAction(Request $request)
@@ -64,25 +65,30 @@ class FamiliaController extends Controller
     }
 
     /**
-     * Creates a new Familia entity.
+     * Nueva Familia
      *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Datos de Formulario para nueva familia",
+     *  views = {"all", "ganados"}
+     * )
      */
     public function newAction(Request $request)
     {
-        $familium = new Familia();
-        $form = $this->createForm('Efi\GanadosBundle\Form\FamiliaType', $familium);
+        $familia = new Familia();
+        $form = $this->createForm('Efi\GanadosBundle\Form\FamiliaType', $familia);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($familium);
+            $em->persist($familia);
             $em->flush();
 
-            return $this->redirectToRoute('familia_show', array('id' => $familium->getId()));
+            return $this->redirectToRoute('familia_show', array('id' => $familia->getId()));
         }
 
         return $this->render('familia/new.html.twig', array(
-            'familium' => $familium,
+            'familia' => $familia,
             'form' => $form->createView(),
         ));
     }
