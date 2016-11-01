@@ -1,5 +1,5 @@
-{{ form_start(form_familia) }}
 <div class="box-body">
+    {{ form_start(form_familia) }}
     <div class="col-md-4">
         <div class="form-group">
             {{ form_label(form_familia.nombre) }}
@@ -14,11 +14,8 @@
             {{ form_widget(form_familia.direccion) }}
         </div>
     </div>
-</div>
-{{ form_end(form_familia) }}
-
-{{ form_start(form) }}
-<div class="box-body">
+    {{ form_end(form_familia) }}
+    {{ form_start(form) }}
     <div class="col-md-4">
         <div class="form-group">
             {{ form_label(form.nombres) }}
@@ -61,13 +58,13 @@
             {{ form_widget(form.fechaGanado) }}
         </div>
     </div>
+    {{ form_end(form) }}
 </div>
 <div class="box-footer">
-    <input type="submit" class="btn btn-primary" value="Guardar">
-    <button type="reset" class="btn btn-default">Limpiar</button>
-    <button type="button" id="btn-ganados-registrar-cancelar" class="btn btn-default">Cancelar</button>
+    <input id="btn-ganados-registrar-guardar" type="button" class="btn btn-primary" value="Guardar">
+    <button id="btn-ganados-registrar-limpiar" type="reset" class="btn btn-default">Limpiar</button>
+    <button id="btn-ganados-registrar-cancelar" type="button" class="btn btn-default">Cancelar</button>
 </div>
-{{ form_end(form) }}
 
 
 

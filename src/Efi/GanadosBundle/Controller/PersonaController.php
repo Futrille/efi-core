@@ -80,17 +80,11 @@ class PersonaController extends Controller
             try{
                 $response = $this->validarPersonalizado($persona);
                 if ($response->getStatus() == GENERAL_RESPONSE_SUCCESS){
+                    $em = $this->getDoctrine()->getManager();
 
                     if ($form_familia->isSubmitted() && $form_familia->isValid()) {
-//                        $em = $this->getDoctrine()->getManager();
-//                        $em->persist($familia);
-//                        $em->flush();
-
-//                        return $this->redirectToRoute('familia_show', array('id' => $familia->getId()));
+                        $em->persist($familia);
                     }
-
-
-                    $em = $this->getDoctrine()->getManager();
 
                     $this->_setValoresDefault($persona);
                     $em->persist($persona);
@@ -106,6 +100,10 @@ class PersonaController extends Controller
                 $response->setData($e->getMessage());
             }
 
+        }
+
+        if (count($form->getErrors()) > 0){
+            $response->setData($form->getErrors());
             return $response->toJSON();
         }
 
@@ -118,18 +116,21 @@ class PersonaController extends Controller
     }
 
     /**
-     * Finds and displays a Persona entity.
-     * @param Persona $persona
-     * @return \Symfony\Component\HttpFoundation\Response
+     * Consulta los datos de una Persona
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Consultar una Persona",
+     *  views = {"all", "ganados"}
+     * )
      */
     public function showAction(Persona $persona)
     {
-        $deleteForm = $this->createDeleteForm($persona);
+        $response = new GeneralResponse();
 
-        return $this->render('persona/show.html.twig', array(
-            'persona' => $persona,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $response->setData($persona);
+
+        return $response->toJSON();
     }
 
     /**
@@ -137,44 +138,75 @@ class PersonaController extends Controller
      * @param Request $request
      * @param Persona $persona
      * @return \Symfony\Component\HttpFoundation\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * Muestra Formulario de Edicion de Persona
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Gestiona el formulario de Edicion de Personas.",
+     *  views = {"all", "ganados"}
+     * )
      */
     public function editAction(Request $request, Persona $persona)
     {
-        $this->util = new Util();
-        $resultado = array();
+        $response = new GeneralResponse();
+        $familia = null;
+
+        $familia = $this->getDoctrine()
+            ->getRepository('EfiGeneralBundle:Familia')
+            ->find($persona->getFamilia());
+
+        $form_familia = $this->createForm('Efi\GanadosBundle\Form\FamiliaType', $familia);
+        $form_familia->handleRequest($request);
 
         $deleteForm = $this->createDeleteForm($persona);
-        $editForm = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
-        $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        $form = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             try{
-                $resultado = $this->validarPersonalizado($persona);
-                if ($resultado['status'] == 'success'){
+                $response = $this->validarPersonalizado($persona);
+                if ($response->getStatus() == GENERAL_RESPONSE_SUCCESS){
                     $em = $this->getDoctrine()->getManager();
 
+                    if ($form_familia->isSubmitted() && $form_familia->isValid()) {
+//                        $em->persist($familia);
+                    }
+
+
                     $this->_setValoresDefault($persona);
+//                    $em->persist($persona);
+//                    $em->flush();
 
-                    $em->persist($persona);
-                    $em->flush();
-
-                    $resultado['message'] = 'Persona registrada satisfactoriamente';
-                    $resultado['response'] = $persona;
+                    $response->setStatus(GENERAL_RESPONSE_SUCCESS);
+                    $response->setMessage('Persona guardada satisfactoriamente');
+                    $response->setData($persona);
                 }
             }catch (\Exception $e){
-                $resultado['status'] = "error";
-                $resultado['message'] = "Error al guardar el registro.";
-                $resultado['exception'] = $e->getMessage();
+                $response->setStatus(GENERAL_RESPONSE_ERROR);
+                $response->setMessage('Error al guardar el registro.');
+                $response->setData($e->getMessage());
             }
 
-            return $this->util->efiGetJsonResponse($resultado);
+//            return $response->toJSON();
         }
 
-        return $this->render('persona/edit.html.twig', array(
+        return $this->render('persona/new.html.twig', array(
             'persona' => $persona,
-            'form' => $editForm->createView(),
+            'form' => $form->createView(),
+            'familia' => $familia,
+            'form_familia' => $form_familia->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+
+//        if ($editForm->isSubmitted() && $editForm->isValid()) {
+//
+//        return $this->render('persona/edit.html.twig', array(
+//            'persona' => $persona,
+//            'form' => $editForm->createView(),
+//            'delete_form' => $deleteForm->createView(),
+//        ));
     }
 
     /**
@@ -301,6 +333,22 @@ GROUP BY MET.MET_ID
     }
 
     /**
+     * @param $codigo
+     * @param $valor
+     * @return object ValorVariable
+     */
+    public function getValorVariableDefault($codigo){
+        return $this->getDoctrine()
+            ->getRepository('EfiGeneralBundle:ValorVariable')
+            ->findOneBy(
+                array(
+                    'codigo' => $codigo,
+                    'orden' => 1
+                )
+            );
+    }
+
+    /**
      * @param Persona $persona
      */
     private function _setValoresDefault(Persona $persona){
@@ -309,10 +357,10 @@ GROUP BY MET.MET_ID
 
         if ($persona->getId() == null || ($persona->getId() != null && $persona->getId() < 1 )){
             $persona->setEstatus($estatusDefault);
-            $persona->setIdEstatus($this->getValorVariableByCodigoAndValor('per_estatus', $estatusDefault));
+            $persona->setIdEstatus($this->getValorVariableDefault('per_estatus'));
 
             $persona->setRolfamilia($rolFamilia);
-            $persona->setIdRolFamilia($this->getValorVariableByCodigoAndValor('per_rol', $rolFamilia));
+            $persona->setIdRolFamilia($this->getValorVariableDefault('per_rol'));
 
             $persona->setUpdatedAt(new \DateTime('now'));
 
@@ -320,7 +368,7 @@ GROUP BY MET.MET_ID
                 $persona->setCreatedAt(new \DateTime('now'));
             }
 
-            $persona->setFamilia(1);
+            $persona->setFamilia(2);
             $persona->setParejaMinisterial(1);
             $persona->setCodigoParejaMinisterial('PRU-1986');
 
