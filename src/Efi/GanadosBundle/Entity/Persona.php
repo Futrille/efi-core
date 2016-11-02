@@ -47,7 +47,7 @@ class Persona
      * @Assert\Regex(
      *     pattern="/\d/",
      *     match=false,
-     *     message="No se permiten N&#250;meros."
+     *     message="No se permiten Numeros."
      * )
      *
      * @ORM\Column(name="PER_NOMBRES", type="string", length=100, nullable=false)
@@ -74,6 +74,11 @@ class Persona
      * @Assert\Length(
      *      max = 50,
      *      maxMessage = "Solo se permiten {{ limit }} caracteres"
+     * )
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=true,
+     *     message="Solo se permiten numeros"
      * )
      *
      * @ORM\Column(name="PER_TELEFONO", type="string", length=50, nullable=true)
