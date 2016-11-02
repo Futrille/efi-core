@@ -4,6 +4,7 @@ namespace Efi\GanadosBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use \Efi\GeneralBundle\Entity\ValorVariable as ValorVariable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Persona
@@ -38,6 +39,16 @@ class Persona
 
     /**
      * @var string
+     * @Assert\NotBlank(message = "Este campo no puede estar vacio.")
+     * @Assert\Length(
+     *      max = 100,
+     *      maxMessage = "Solo se permiten {{ limit }} caracteres"
+     * )
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="No se permiten N&#250;meros."
+     * )
      *
      * @ORM\Column(name="PER_NOMBRES", type="string", length=100, nullable=false)
      */
@@ -45,6 +56,14 @@ class Persona
 
     /**
      * @var string
+     * @Assert\Length(
+     *      max = 50,
+     *      maxMessage = "Solo se permiten {{ limit }} caracteres"
+     * )
+     * @Assert\Email(
+     *     message = "Ingrese un Correo valido.",
+     *     checkMX = true
+     * )
      *
      * @ORM\Column(name="PER_CORREO", type="string", length=50, nullable=true)
      */
@@ -52,6 +71,10 @@ class Persona
 
     /**
      * @var string
+     * @Assert\Length(
+     *      max = 50,
+     *      maxMessage = "Solo se permiten {{ limit }} caracteres"
+     * )
      *
      * @ORM\Column(name="PER_TELEFONO", type="string", length=50, nullable=true)
      */
@@ -59,6 +82,10 @@ class Persona
 
     /**
      * @var \DateTime
+     * @Assert\NotBlank(message = "Este campo no puede estar vacio.")
+     * @Assert\Date(
+     *     message = "Ingrese una fecha valida"
+     * )
      *
      * @ORM\Column(name="PER_FECHAGANADO", type="datetime", nullable=false)
      */

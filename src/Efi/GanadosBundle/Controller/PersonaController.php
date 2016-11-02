@@ -2,12 +2,8 @@
 
 namespace Efi\GanadosBundle\Controller;
 
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Doctrine\DBAL\DBALException;
 
 use Efi\GeneralBundle\EfiGeneralBundle as Util;
 
@@ -17,6 +13,7 @@ use Efi\GeneralBundle\Entity\Pais as Pais;
 use Efi\GeneralBundle\Entity\ValorVariable as ValorVariable;
 use Efi\GeneralBundle\Entity\Iglesia as Iglesia;
 use Efi\GanadosBundle\Form\PersonaType;
+use Efi\GanadosBundle\Form\FamiliaType;
 use Efi\GanadosBundle\Entity\PersonaRepository;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -70,12 +67,15 @@ class PersonaController extends Controller
         $persona = new Persona();
         $familia = new Familia();
         
-        $form_familia = $this->createForm('Efi\GanadosBundle\Form\FamiliaType', $familia);
+        $form_familia = $this->createForm(FamiliaType::class, $familia);
         $form_familia->handleRequest($request);
 
-        $form = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
+        $form = $this->createForm(PersonaType::class, $persona);
         $form->handleRequest($request);
 
+        $validator = $this->get('validator');
+        $errors = $validator->validate($persona);
+        
         if ($form->isSubmitted() && $form->isValid()) {
             try{
                 $response = $this->validarPersonalizado($persona);
@@ -102,16 +102,13 @@ class PersonaController extends Controller
 
         }
 
-        if (count($form->getErrors()) > 0){
-            $response->setData($form->getErrors());
-            return $response->toJSON();
-        }
 
         return $this->render('persona/new.html.twig', array(
             'persona' => $persona,
             'form' => $form->createView(),
             'familia' => $familia,
             'form_familia' => $form_familia->createView(),
+//            'errors' => $errors
         ));
     }
 
@@ -156,12 +153,12 @@ class PersonaController extends Controller
             ->getRepository('EfiGeneralBundle:Familia')
             ->find($persona->getFamilia());
 
-        $form_familia = $this->createForm('Efi\GanadosBundle\Form\FamiliaType', $familia);
+        $form_familia = $this->createForm(FamiliaType::class, $familia);
         $form_familia->handleRequest($request);
 
         $deleteForm = $this->createDeleteForm($persona);
 
-        $form = $this->createForm('Efi\GanadosBundle\Form\PersonaType', $persona);
+        $form = $this->createForm(PersonaType::class, $persona);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

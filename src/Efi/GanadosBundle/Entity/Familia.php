@@ -5,6 +5,7 @@ namespace Efi\GanadosBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Efi\GeneralBundle\Entity\Estado;
 use Efi\GeneralBundle\Entity\Municipio;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Familia
@@ -25,6 +26,7 @@ class Familia
 
     /**
      * @var string
+     * @Assert\NotBlank(message = "Este campo no puede estar vacio.")
      *
      * @ORM\Column(name="FAM_NOMBRE", type="string", length=50, nullable=false)
      */

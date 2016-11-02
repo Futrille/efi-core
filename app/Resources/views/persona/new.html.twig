@@ -1,61 +1,53 @@
+{% form_theme form 'form/fields.html.twig' %}
+{% form_theme form_familia 'form/fields.html.twig' %}
 <div class="box-body">
     {{ form_start(form_familia) }}
-    <div class="col-md-4">
-        <div class="form-group">
+    <div class="row">
+        <div class="form-group col-md-4">
             {{ form_label(form_familia.nombre) }}
-            {{ form_errors(form_familia.nombre) }}
             {{ form_widget(form_familia.nombre) }}
+            {{ form_errors(form_familia.nombre) }}
         </div>
-    </div>
-    <div class="col-md-8">
-        <div class="form-group">
+        <div class="form-group col-md-8">
             {{ form_label(form_familia.direccion) }}
-            {{ form_errors(form_familia.direccion) }}
             {{ form_widget(form_familia.direccion) }}
+            {{ form_errors(form_familia.direccion) }}
         </div>
     </div>
     {{ form_end(form_familia) }}
     {{ form_start(form) }}
-    <div class="col-md-4">
-        <div class="form-group">
+    <div class="row">
+        <div class="form-group col-md-4">
             {{ form_label(form.nombres) }}
-            {{ form_errors(form.nombres) }}
             {{ form_widget(form.nombres) }}
+            {{ form_errors(form.nombres) }}
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
+        <div class="form-group col-md-4">
             {{ form_label(form.correo) }}
-            {{ form_errors(form.correo) }}
             {{ form_widget(form.correo) }}
+            {{ form_errors(form.correo) }}
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
+        <div class="form-group col-md-4">
             {{ form_label(form.telefono) }}
-            {{ form_errors(form.telefono) }}
             {{ form_widget(form.telefono) }}
+            {{ form_errors(form.telefono) }}
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="form-group">
+    <div class="row">
+        <div class="form-group col-md-4">
             {{ form_label(form.rolFamilia) }}
-            {{ form_errors(form.rolFamilia) }}
             {{ form_widget(form.rolFamilia) }}
+            {{ form_errors(form.rolFamilia) }}
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
+        <div class="form-group col-md-4">
             {{ form_label(form.metodoGanar) }}
-            {{ form_errors(form.metodoGanar) }}
             {{ form_widget(form.metodoGanar) }}
+            {{ form_errors(form.metodoGanar) }}
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
+        <div class="form-group col-md-4">
             {{ form_label(form.fechaGanado) }}
-            {{ form_errors(form.fechaGanado) }}
             {{ form_widget(form.fechaGanado) }}
+            {{ form_errors(form.fechaGanado) }}
         </div>
     </div>
     {{ form_end(form) }}

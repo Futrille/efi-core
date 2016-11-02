@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class LoginType extends AbstractType
 {
@@ -17,7 +18,7 @@ class LoginType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cedula', 'Symfony\Component\Form\Extension\Core\Type\IntegerType', array(
+            ->add('cedula', IntegerType::class, array(
                 'label' => 'Cedula de Identidad: ',
                 'required' => true,
                 'attr' => array(
@@ -27,7 +28,7 @@ class LoginType extends AbstractType
                     'autofocus' => 'autofocus',
                 ),
             ))
-            ->add('contrasena', 'Symfony\Component\Form\Extension\Core\Type\PasswordType', array(
+            ->add('contrasena', PasswordType::class, array(
                 'label' => 'Contrasena: ',
                 'attr' => array(
                     'required' => false,

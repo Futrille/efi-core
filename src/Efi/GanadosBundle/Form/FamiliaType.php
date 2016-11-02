@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class FamiliaType extends AbstractType
 {
     /**
@@ -15,7 +17,7 @@ class FamiliaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
+            ->add('nombre', TextType::class, array(
                 'label' => 'Identificación de la Familia: ',
                 'required' => true,
                 'attr' => array(
@@ -26,7 +28,7 @@ class FamiliaType extends AbstractType
                 'trim' => true,
                 'mapped' => false
             ))
-            ->add('direccion', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
+            ->add('direccion', TextType::class, array(
                 'label' => 'Dirección de Familia (Referencial): ',
                 'required' => false,
                 'attr' => array(

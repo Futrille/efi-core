@@ -46,7 +46,7 @@ class PersonaType extends AbstractType
                         'class' => 'form-control'
                     ),
                 ))
-            ->add('fechaGanado', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
+            ->add('fechaGanado', DateType::class, array(
                 'input'  => 'datetime',
                 'widget' => 'single_text',
                 'label' => 'Fecha de Conversion: ',
@@ -54,15 +54,16 @@ class PersonaType extends AbstractType
                     'class' => 'form-control',
                 ),
             ))
-            ->add('nombres', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
+            ->add('nombres', TextType::class, array(
                 'label' => 'Nombres: ',
+                'required' => true,
                 'attr' => array(
                     'class' => 'form-control',
                     'maxlength' => 100,
                 ),
                 'trim' => true,
             ))
-            ->add('telefono', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
+            ->add('telefono', TextType::class, array(
                 'label' => 'Telefono de Contacto: ',
                 'required' => false,
                 'attr' => array(
@@ -72,7 +73,7 @@ class PersonaType extends AbstractType
                 ),
                 'trim' => true,
             ))
-            ->add('correo', 'Symfony\Component\Form\Extension\Core\Type\EmailType', array(
+            ->add('correo', EmailType::class, array(
                 'label' => 'Correo Electronico: ',
                 'required' => false,
                 'attr' => array(
@@ -81,28 +82,6 @@ class PersonaType extends AbstractType
                 ),
                 'trim' => true,
             ))
-//            ->add('nombreFamilia', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
-//                'label' => 'Identificación de la Familia: ',
-//                'required' => true,
-//                'attr' => array(
-//                    'required' => true,
-//                    'class' => 'form-control',
-//                    'maxlength' => 50,
-//                ),
-//                'trim' => true,
-//                'mapped' => false
-//            ))
-//            ->add('direccionFamilia', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
-//                'label' => 'Dirección de Familia (Referencial): ',
-//                'required' => false,
-//                'attr' => array(
-//                    'required' => false,
-//                    'class' => 'form-control',
-//                    'maxlength' => 500,
-//                ),
-//                'trim' => true,
-//                'mapped' => false
-//            ))
         ;
     }
     

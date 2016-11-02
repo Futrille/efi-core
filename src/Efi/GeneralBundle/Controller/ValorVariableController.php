@@ -48,7 +48,7 @@ class ValorVariableController extends Controller
     public function newAction(Request $request)
     {
         $valorVariable = new ValorVariable();
-        $form = $this->createForm('Efi\GeneralBundle\Form\ValorVariableType', $valorVariable);
+        $form = $this->createForm(ValorVariableType::class, $valorVariable);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -86,7 +86,7 @@ class ValorVariableController extends Controller
     public function editAction(Request $request, ValorVariable $valorVariable)
     {
         $deleteForm = $this->createDeleteForm($valorVariable);
-        $editForm = $this->createForm('Efi\GeneralBundle\Form\ValorVariableType', $valorVariable);
+        $editForm = $this->createForm(ValorVariableType::class, $valorVariable);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
