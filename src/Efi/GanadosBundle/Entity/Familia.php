@@ -60,6 +60,19 @@ class Familia
     private $municipio;
 
     /**
+     * @ORM\OneToMany(targetEntity="\Efi\GanadosBundle\Entity\Persona", mappedBy="familia")
+     */
+    private $personas;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->personas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * @return int
      */
     public function getId()

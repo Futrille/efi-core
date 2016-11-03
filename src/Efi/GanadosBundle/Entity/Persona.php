@@ -110,18 +110,13 @@ class Persona
      */
     private $updatedAt;
 
-//    /**
-//     * @var \Familia
-//     *
-//     * @ORM\ManyToOne(targetEntity="Familia")
-//     * @ORM\JoinColumns({
-//     *   @ORM\JoinColumn(name="FAM_ID", referencedColumnName="FAM_ID")
-//     * })
-//     */
     /**
-     * @var integer
+     * @var Familia
      *
-     * @ORM\Column(name="FAM_ID", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Familia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="FAM_ID", referencedColumnName="FAM_ID")
+     * })
      */
     private $familia;
 
