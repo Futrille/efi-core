@@ -86,6 +86,8 @@ class Familia
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -102,6 +104,8 @@ class Familia
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+
+        return $this;
     }
 
     /**
@@ -118,6 +122,8 @@ class Familia
     public function setDireccion($direccion)
     {
         $this->direccion = $direccion;
+
+        return $this;
     }
 
     /**
@@ -134,6 +140,8 @@ class Familia
     public function setEstado($estado)
     {
         $this->estado = $estado;
+
+        return $this;
     }
 
     /**
@@ -150,7 +158,45 @@ class Familia
     public function setMunicipio($municipio)
     {
         $this->municipio = $municipio;
+
+        return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPersonas()
+    {
+        return $this->personas;
+    }
+
+    /**
+     * @param mixed $personas
+     */
+    public function setPersonas($personas)
+    {
+        $this->personas = $personas;
+
+        return $this;
+    }
+
+    /**
+     * @param Persona $persona
+     * @return $this
+     */
+    public function addSource(Persona $persona)
+    {
+        $this->personas[] = $persona;
+
+        return $this;
+    }
+
+    /**
+     * @param Persona $persona
+     */
+    public function removeSource(Persona $persona)
+    {
+        $this->personas->removeElement($persona);
+    }
 
 }

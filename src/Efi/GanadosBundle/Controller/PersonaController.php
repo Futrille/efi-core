@@ -2,6 +2,7 @@
 
 namespace Efi\GanadosBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -73,8 +74,8 @@ class PersonaController extends Controller
         $form = $this->createForm(PersonaType::class, $persona);
         $form->handleRequest($request);
 
-        $validator = $this->get('validator');
-        $errors = $validator->validate($persona);
+//        $validator = $this->get('validator');
+//        $errors = $validator->validate($persona);
         
         if ($form->isSubmitted() && $form->isValid()) {
             try{
@@ -102,14 +103,14 @@ class PersonaController extends Controller
 
         }
 
-
-        return $this->render('persona/new.html.twig', array(
+        $response->setData($this->render('persona/new.html.twig', array(
             'persona' => $persona,
             'form' => $form->createView(),
             'familia' => $familia,
             'form_familia' => $form_familia->createView(),
-//            'errors' => $errors
-        ));
+        ))->getContent());
+
+        return $response->toJSON();
     }
 
     /**
@@ -365,7 +366,7 @@ GROUP BY MET.MET_ID
                 $persona->setCreatedAt(new \DateTime('now'));
             }
 
-            $persona->setFamilia(2);
+            $persona->setFamilia((new Familia())->setId(2));
             $persona->setParejaMinisterial(1);
             $persona->setCodigoParejaMinisterial('PRU-1986');
 
