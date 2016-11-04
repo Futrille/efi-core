@@ -52,6 +52,8 @@ class Municipio
     public function setId($id)
     {
         $this->id = $id;
+        
+        return $this;
     }
 
     /**
@@ -68,6 +70,8 @@ class Municipio
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+
+        return $this;
     }
 
     /**
@@ -84,6 +88,8 @@ class Municipio
     public function setEstado($estado)
     {
         $this->estado = $estado;
+
+        return $this;
     }
 
 

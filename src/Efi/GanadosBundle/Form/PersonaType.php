@@ -12,6 +12,9 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+use Efi\GeneralBundle\Entity\ValorVariable;
+use Efi\GanadosBundle\Entity\MetodoGanar;
+
 use Doctrine\ORM\EntityRepository;
 
 class PersonaType extends AbstractType
@@ -24,9 +27,9 @@ class PersonaType extends AbstractType
     {
         $vvaRolFamilia = 'per_rol';
         $builder
-            ->add('rolFamilia', 'entity',
+            ->add('idRolFamilia', 'entity',
                 array(
-                    'class' => 'EfiGeneralBundle:ValorVariable',
+                    'class' => ValorVariable::class,
                     'label' => 'Rol en Familia: ',
                     'attr' => array(
                         'class' => 'form-control'
@@ -40,7 +43,7 @@ class PersonaType extends AbstractType
                 ))
             ->add('metodoGanar', 'entity',
                 array(
-                    'class' => 'EfiGanadosBundle:MetodoGanar',
+                    'class' => MetodoGanar::class ,
                     'label' => 'Como fue ganado: ',
                     'attr' => array(
                         'class' => 'form-control'

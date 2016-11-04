@@ -2,6 +2,8 @@
 
 namespace Efi\GanadosBundle\Controller;
 
+use Efi\GeneralBundle\Entity\Estado;
+use Efi\GeneralBundle\Entity\Municipio;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -67,7 +69,13 @@ class PersonaController extends Controller
         $response = new GeneralResponse();
         $persona = new Persona();
         $familia = new Familia();
-        
+
+        if ($request->get('idFamilia') != null && $request->get('idFamilia') > 0){
+            $familia = $this->getDoctrine()
+                ->getRepository('EfiGanadosBundle:Familia')
+                ->findOneById($request->get('idFamilia'));
+        }
+
         $form_familia = $this->createForm(FamiliaType::class, $familia);
         $form_familia->handleRequest($request);
 
@@ -77,28 +85,58 @@ class PersonaController extends Controller
 //        $validator = $this->get('validator');
 //        $errors = $validator->validate($persona);
         
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $form_familia->isSubmitted() && $form_familia->isValid()) {
             try{
                 $response = $this->validarPersonalizado($persona);
                 if ($response->getStatus() == GENERAL_RESPONSE_SUCCESS){
                     $em = $this->getDoctrine()->getManager();
+//                    $em->getConnection()->beginTransaction();
 
-                    if ($form_familia->isSubmitted() && $form_familia->isValid()) {
-                        $em->persist($familia);
+                    $familia->setEstado($this->getDoctrine()
+                        ->getRepository('EfiGeneralBundle:Estado')
+                        ->findOneById(1));
+                    $familia->setMunicipio($this->getDoctrine()
+                        ->getRepository('EfiGeneralBundle:Municipio')
+                        ->findOneById(1));
+                    $familia->setParejaMinisterial(1);
+                    $familia->setCodigoParejaMinisterial('PRU-1986');
+
+                    $em->persist($familia);
+
+                    $persona->setEstatus(1);
+                    $persona->setIdEstatus($this->getValorVariableDefault('per_estatus'));
+                    $persona->setRolfamilia(intval($this->getDoctrine()
+                        ->getRepository('EfiGeneralBundle:ValorVariable')
+                        ->find($persona->getIdRolFamilia())->getValor()));
+                    $persona->setUpdatedAt(new \DateTime('now'));
+                    if ($persona->getCreatedAt() == null) {
+                        $persona->setCreatedAt(new \DateTime('now'));
                     }
-
-                    $this->_setValoresDefault($persona);
+                    $persona->setParejaMinisterial(1);
+                    $persona->setCodigoParejaMinisterial('PRU-1986');
+                    $persona->setFamilia($familia);
                     $em->persist($persona);
                     $em->flush();
+//                    $em->getConnection()->commit();
 
                     $response->setStatus(GENERAL_RESPONSE_SUCCESS);
                     $response->setMessage('Persona registrada satisfactoriamente');
-                    $response->setData($persona);
+                    $response->addToMetaData('personas',$this->getDoctrine()
+                        ->getRepository('EfiGanadosBundle:Persona')
+                        ->findBy(
+                            array('familia' => 1)
+                        ));
+
+                    $familia = new Familia();
+                    $persona = new Persona();
+                    $form_familia = $this->createForm(FamiliaType::class, $familia);
+                    $form = $this->createForm(PersonaType::class, $persona);
                 }
             }catch (\Exception $e){
+//                $em->getConnection()->rollback();
                 $response->setStatus(GENERAL_RESPONSE_ERROR);
                 $response->setMessage('Error al guardar el registro.');
-                $response->setData($e->getMessage());
+                $response->addToMetaData('message',$e->getMessage());
             }
 
         }
@@ -366,7 +404,7 @@ GROUP BY MET.MET_ID
                 $persona->setCreatedAt(new \DateTime('now'));
             }
 
-            $persona->setFamilia((new Familia())->setId(2));
+
             $persona->setParejaMinisterial(1);
             $persona->setCodigoParejaMinisterial('PRU-1986');
 

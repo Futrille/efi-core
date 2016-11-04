@@ -9,13 +9,13 @@ persona_show:
     methods:  GET
 
 persona_new:
-    path:     /new
-    defaults: { _controller: "EfiGanadosBundle:Persona:new" }
+    path:     /{idFamilia}/new
+    defaults: { _controller: "EfiGanadosBundle:Persona:new", idFamilia:0 }
     methods:  [GET, POST]
 
 persona_edit:
     path:     /{id}/edit
-    defaults: { _controller: "EfiGanadosBundle:Persona:edit" }
+    defaults: { _controller: "EfiGanadosBundle:Persona:new" }
     methods:  [GET, POST]
 
 persona_delete:

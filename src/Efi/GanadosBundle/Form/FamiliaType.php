@@ -25,8 +25,7 @@ class FamiliaType extends AbstractType
                     'class' => 'form-control',
                     'maxlength' => 50,
                 ),
-                'trim' => true,
-                'mapped' => false
+                'trim' => true
             ))
             ->add('direccion', TextType::class, array(
                 'label' => 'Dirección de Familia (Referencial): ',
@@ -36,8 +35,7 @@ class FamiliaType extends AbstractType
                     'class' => 'form-control',
                     'maxlength' => 500,
                 ),
-                'trim' => true,
-                'mapped' => false
+                'trim' => true
             ))
             //->add('estado')
             //->add('municipio')

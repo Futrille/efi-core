@@ -52,6 +52,8 @@ class Estado
     public function setId($id)
     {
         $this->id = $id;
+        
+        return $this;
     }
 
     /**
@@ -68,6 +70,8 @@ class Estado
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+
+        return $this;
     }
 
     /**
@@ -84,6 +88,8 @@ class Estado
     public function setPais($pais)
     {
         $this->pais = $pais;
+
+        return $this;
     }
 
 

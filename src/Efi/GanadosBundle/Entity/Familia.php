@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Efi\GeneralBundle\Entity\Estado;
 use Efi\GeneralBundle\Entity\Municipio;
 use Symfony\Component\Validator\Constraints as Assert;
+use \Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Familia
@@ -26,7 +27,7 @@ class Familia
 
     /**
      * @var string
-     * @Assert\NotBlank(message = "Este campo no puede estar vacio.")
+     * @Assert\NotBlank(message = "Este campo (familia) no puede estar vacio.")
      *
      * @ORM\Column(name="FAM_NOMBRE", type="string", length=50, nullable=false)
      */
@@ -34,7 +35,11 @@ class Familia
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "Este campo (direccion) no puede estar vacio.")
+     * @Assert\Length(
+     *      max = 500,
+     *      maxMessage = "Solo se permiten {{ limit }} caracteres"
+     * )
      * @ORM\Column(name="FAM_DIRECCION", type="string", length=500, nullable=false)
      */
     private $direccion;
@@ -60,6 +65,28 @@ class Familia
     private $municipio;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="PMI_CODIGO", type="string", length=50, nullable=false)
+     */
+    private $codigoParejaMinisterial;
+
+//    /**
+//     * @var \ParejasMinisteriales
+//     *
+//     * @ORM\ManyToOne(targetEntity="ParejasMinisteriales")
+//     * @ORM\JoinColumns({
+//     *   @ORM\JoinColumn(name="PMI_ID", referencedColumnName="PMI_ID")
+//     * })
+//     */
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="PMI_ID", type="integer", nullable=false)
+     */
+    private $parejaMinisterial;
+
+    /**
      * @ORM\OneToMany(targetEntity="\Efi\GanadosBundle\Entity\Persona", mappedBy="familia")
      */
     private $personas;
@@ -69,7 +96,7 @@ class Familia
      */
     public function __construct()
     {
-        $this->personas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->personas = new ArrayCollection();
     }
 
     /**
@@ -163,6 +190,38 @@ class Familia
     }
 
     /**
+     * @return string
+     */
+    public function getCodigoParejaMinisterial()
+    {
+        return $this->codigoParejaMinisterial;
+    }
+
+    /**
+     * @param string $codigoParejaMinisterial
+     */
+    public function setCodigoParejaMinisterial($codigoParejaMinisterial)
+    {
+        $this->codigoParejaMinisterial = $codigoParejaMinisterial;
+    }
+
+    /**
+     * @return int
+     */
+    public function getParejaMinisterial()
+    {
+        return $this->parejaMinisterial;
+    }
+
+    /**
+     * @param int $parejaMinisterial
+     */
+    public function setParejaMinisterial($parejaMinisterial)
+    {
+        $this->parejaMinisterial = $parejaMinisterial;
+    }
+
+    /**
      * @return mixed
      */
     public function getPersonas()
@@ -184,7 +243,7 @@ class Familia
      * @param Persona $persona
      * @return $this
      */
-    public function addSource(Persona $persona)
+    public function addPersona(Persona $persona)
     {
         $this->personas[] = $persona;
 
@@ -194,9 +253,11 @@ class Familia
     /**
      * @param Persona $persona
      */
-    public function removeSource(Persona $persona)
+    public function removePersona(Persona $persona)
     {
         $this->personas->removeElement($persona);
     }
+
+
 
 }
