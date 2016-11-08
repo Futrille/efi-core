@@ -68,22 +68,70 @@ class NivelController extends Controller
      */
     public function newAction(Request $request)
     {
-        $nivel = new Nivel();
-        $form = $this->createForm('Efi\GeneralBundle\Form\NivelType', $nivel);
-        $form->handleRequest($request);
+//        $nivel = new Nivel();
+//        $form = $this->createForm('Efi\GeneralBundle\Form\NivelType', $nivel);
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($nivel);
+//            $em->flush();
+//
+//            return $this->redirectToRoute('nivel_show', array('id' => $nivel->getId()));
+//        }
+//
+//        return $this->render('nivel/new.html.twig', array(
+//            'nivel' => $nivel,
+//            'form' => $form->createView(),
+//        ));
+        $em = $this->getDoctrine()->getManager();
+        $data = new Nivel();
+        $data->setIglesia(1);
+        $data->setColor($request->get('color'));
+        $data->setNombre($request->get('nombre'));
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($nivel);
-            $em->flush();
-
-            return $this->redirectToRoute('nivel_show', array('id' => $nivel->getId()));
+        //todo mandar desde la vista el id del padre de otro modo se debe cambiar este metodo
+        if($request->get('nivelPadre')==null){
+            $data->setPadre(null);
+            $padres  = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => null));
+            if($padres==null){
+                $data->setOrden(1);
+            }else{
+                $data->setOrden(count($padres)+1);
+            }
+            $data->setOrden(1);
+        }else{
+            $data->setPadre($request->get('nivelPadre'));
+            $hijos = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $request->get('nivelPadre')));
+            if($hijos==null){
+                $data->setOrden(1);
+            }else{
+                $data->setOrden(count($hijos)+1);
+            }
         }
 
-        return $this->render('nivel/new.html.twig', array(
-            'nivel' => $nivel,
-            'form' => $form->createView(),
-        ));
+        $icono = $em->getRepository('EfiGeneralBundle:ValorVariable')->findBy(array("nombre" => $request->get('icono')),array('codigo' => 'nivel_icono'));
+        $data->setIdIcono($icono->getId());
+        $data->setIcono(1);
+
+        $tipo = $em->getRepository('EfiGeneralBundle:ValorVariable')->findBy(array("nombre" => $request->get('tipo')),array('codigo' => 'nivel_tipo'));
+        $data->setIdTipo($tipo->getId());
+        $data->setTipo(1);
+
+        $estatus = $em->getRepository('EfiGeneralBundle:ValorVariable')->findBy(array("nombre" => $request->get('estatus')),array('codigo' => 'nivel_estatus'));
+        $data->setIdEstatus($estatus->getId());
+        $data->setEstatus(1);
+
+        $em->persist($data);
+        $em->flush();
+
+        $response = new GeneralResponse();
+        $codigo = $request->get('codigoPmi');
+
+        $response->setData("nivel creado exitosamente");
+        $response->addToMetaData('codigo', $codigo);
+
+        return $response->toJSON();
     }
 
     /**
@@ -137,16 +185,28 @@ class NivelController extends Controller
      */
     public function deleteAction(Request $request, Nivel $nivel)
     {
-        $form = $this->createDeleteForm($nivel);
-        $form->handleRequest($request);
+//        $form = $this->createDeleteForm($nivel);
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $em = $this->getDoctrine()->getManager();
+//            $em->remove($nivel);
+//            $em->flush();
+//        }
+//
+//        return $this->redirectToRoute('nivel_index');
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($nivel);
+        $em->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($nivel);
-            $em->flush();
-        }
+        $response = new GeneralResponse();
+        $codigo = $request->get('codigoPmi');
 
-        return $this->redirectToRoute('nivel_index');
+
+        $response->setData("nivel elimninado exitosamente");
+        $response->addToMetaData('codigo', $codigo);
+
+        return $response->toJSON();
     }
 
     /**

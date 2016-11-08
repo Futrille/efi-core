@@ -64,7 +64,7 @@ class Nivel
      *   @ORM\JoinColumn(name="IGL_ID", referencedColumnName="IGL_ID")
      * })
      */
-   // private $iglesia;
+    private $iglesia;
 
     /**
      * @var \Efi\GeneralBundle\Entity\Nivel
@@ -212,18 +212,18 @@ class Nivel
     /**
      * @return Iglesia
      */
-    //public function getIglesia()
-    //{
-     //   return $this->iglesia;
-    //}
+    public function getIglesia()
+    {
+        return $this->iglesia;
+    }
 
     /**
      * @param Iglesia $iglesia
      */
-    //public function setIglesia($iglesia)
-    //{
-     //   $this->iglesia = $iglesia;
-    //}
+    public function setIglesia($iglesia)
+    {
+        $this->iglesia = $iglesia;
+    }
 
     /**
      * @return Nivel

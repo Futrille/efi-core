@@ -69,6 +69,7 @@ class PersonaController extends Controller
         $response = new GeneralResponse();
         $persona = new Persona();
         $familia = new Familia();
+<<<<<<< HEAD
         $valor = 'nada';
         $action = null;
         if ($request->get('idFamilia') != null && $request->get('idFamilia') > 0){
@@ -85,6 +86,14 @@ class PersonaController extends Controller
         }
         else{
             $form_familia = $this->createForm(FamiliaType::class, $familia);
+=======
+        $idFamilia = $request->get('idFamilia') != null ? $request->get('idFamilia') : 0;
+
+        if ($idFamilia > 0){
+            $familia = $this->getDoctrine()
+                ->getRepository('EfiGanadosBundle:Familia')
+                ->findOneById($idFamilia);
+>>>>>>> origin/master
         }
 
 
@@ -138,7 +147,7 @@ class PersonaController extends Controller
                             array('familia' => 1)
                         ));
 
-                    $familia = new Familia();
+//                    $familia = new Familia();
                     $persona = new Persona();
                     $form_familia = $this->createForm(FamiliaType::class, $familia);
                     $form = $this->createForm(PersonaType::class, $persona);
