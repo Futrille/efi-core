@@ -69,14 +69,25 @@ class PersonaController extends Controller
         $response = new GeneralResponse();
         $persona = new Persona();
         $familia = new Familia();
-
+        $valor = 'nada';
+        $action = null;
         if ($request->get('idFamilia') != null && $request->get('idFamilia') > 0){
+            $valor = 'Hola Bebe!';
             $familia = $this->getDoctrine()
                 ->getRepository('EfiGanadosBundle:Familia')
                 ->findOneById($request->get('idFamilia'));
+            $action = $this->generateUrl('persona_new', array( 'idFamilia' => $request->get('idFamilia')));
+            $form_familia = $this->createForm(FamiliaType::class, $familia, array(
+                'action' => $action
+            ));
+
+            $valor = $familia;
+        }
+        else{
+            $form_familia = $this->createForm(FamiliaType::class, $familia);
         }
 
-        $form_familia = $this->createForm(FamiliaType::class, $familia);
+
         $form_familia->handleRequest($request);
 
         $form = $this->createForm(PersonaType::class, $persona);
@@ -140,6 +151,10 @@ class PersonaController extends Controller
             }
 
         }
+        else{
+//            $form_familia->setAction($action);
+//            $form->setAction($action);
+        }
 
         $response->setData($this->render('persona/new.html.twig', array(
             'persona' => $persona,
@@ -147,6 +162,7 @@ class PersonaController extends Controller
             'familia' => $familia,
             'form_familia' => $form_familia->createView(),
         ))->getContent());
+        $response->addToMetaData('valor',$valor);
 
         return $response->toJSON();
     }

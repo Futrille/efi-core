@@ -9,7 +9,7 @@ persona_show:
     methods:  GET
 
 persona_new:
-    path:     /{idFamilia}/new
+    path:     /new/{idFamilia}
     defaults: { _controller: "EfiGanadosBundle:Persona:new", idFamilia:0 }
     methods:  [GET, POST]
 
