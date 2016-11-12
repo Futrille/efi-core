@@ -5,3 +5,11 @@ nivel_index:
     requirements:
         _format:  json|html
 #        _locale:  es
+
+nivel_nuevo:
+    path:     /new/{codigoPmi}/index.{_format}
+    defaults: { _controller: "EfiGeneralBundle:Nivel:new", codigoPmi: 0, _format: html}
+    methods:  POST
+    requirements:
+        _format:  json|html
+#        _locale:  es

@@ -61,10 +61,12 @@ class NivelController extends Controller
     }
 
     /**
-     * Creates a new Nivel entity.
+     * Insercion de nivlees.
      *
-     * @Route("/new", name="nivel_new")
-     * @Method({"GET", "POST"})
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Insercion de niveles."
+     * )
      */
     public function newAction(Request $request)
     {
@@ -87,11 +89,11 @@ class NivelController extends Controller
         $em = $this->getDoctrine()->getManager();
         $data = new Nivel();
         $data->setIglesia(1);
-        $data->setColor($request->get('color'));
-        $data->setNombre($request->get('nombre'));
+        $data->setColor($request->headers->get('color'));
+        $data->setNombre($request->headers->get('nombre'));
 
         //todo mandar desde la vista el id del padre de otro modo se debe cambiar este metodo
-        if($request->get('nivelPadre')==null){
+        if($request->headers->get('nivelPadre')==null){
             $data->setPadre(null);
             $padres  = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => null));
             if($padres==null){
@@ -101,8 +103,8 @@ class NivelController extends Controller
             }
             $data->setOrden(1);
         }else{
-            $data->setPadre($request->get('nivelPadre'));
-            $hijos = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $request->get('nivelPadre')));
+            $data->setPadre($request->headers->get('nivelPadre'));
+            $hijos = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $request->headers->get('nivelPadre')));
             if($hijos==null){
                 $data->setOrden(1);
             }else{
@@ -110,16 +112,13 @@ class NivelController extends Controller
             }
         }
 
-        $icono = $em->getRepository('EfiGeneralBundle:ValorVariable')->findBy(array("nombre" => $request->get('icono')),array('codigo' => 'nivel_icono'));
-        $data->setIdIcono($icono->getId());
+        $data->setIdIcono($em->getRepository('EfiGeneralBundle:ValorVariable')->findOneBy(array("nombre" => $request->headers->get('icono'),'codigo' => 'nivel_icono')));
         $data->setIcono(1);
 
-        $tipo = $em->getRepository('EfiGeneralBundle:ValorVariable')->findBy(array("nombre" => $request->get('tipo')),array('codigo' => 'nivel_tipo'));
-        $data->setIdTipo($tipo->getId());
+        $data->setIdTipo($em->getRepository('EfiGeneralBundle:ValorVariable')->findOneBy(array("nombre" => $request->headers->get('tipo'),'codigo' => 'nivel_tipo')));
         $data->setTipo(1);
 
-        $estatus = $em->getRepository('EfiGeneralBundle:ValorVariable')->findBy(array("nombre" => $request->get('estatus')),array('codigo' => 'nivel_estatus'));
-        $data->setIdEstatus($estatus->getId());
+        $data->setIdEstatus($em->getRepository('EfiGeneralBundle:ValorVariable')->findOneBy(array("nombre" => $request->headers->get('estatus'),'codigo' => 'nivel_estatus')));
         $data->setEstatus(1);
 
         $em->persist($data);

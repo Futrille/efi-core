@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Nivel
  *
- * @ORM\Table(name="niveles", indexes={@ORM\Index(name="fk_NIVELES_VALORES_VARIABLES1_idx", columns={"VVA_IDTIPO"}), @ORM\Index(name="fk_NIVELES_VALORES_VARIABLES2_idx", columns={"VVA_IDESTATUS"}), @ORM\Index(name="fk_NIVELES_NIVELES1_idx", columns={"NIV_IDPADRE"}), @ORM\Index(name="fk_NIVELES_IGLESIAS1_idx", columns={"IGL_ID"}), @ORM\Index(name="fk_NIVELES_VALORES_VARIABLES3_idx", columns={"VVA_IDICONO"})})
+ * @ORM\Table(name="niveles", indexes={@ORM\Index(name="fk_NIVELES_VALORES_VARIABLES1_idx", columns={"VVA_IDTIPO"}), @ORM\Index(name="fk_NIVELES_VALORES_VARIABLES2_idx", columns={"VVA_IDESTATUS"}), @ORM\Index(name="fk_NIVELES_NIVELES1_idx", columns={"NIV_IDPADRE"}),@ORM\Index(name="fk_NIVELES_VALORES_VARIABLES3_idx", columns={"VVA_IDICONO"})})
  * @ORM\Entity
  */
 class Nivel
@@ -17,7 +17,7 @@ class Nivel
      *
      * @ORM\Column(name="NIV_ID", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -57,12 +57,9 @@ class Nivel
     private $color;
 
     /**
-     * @var \Efi\GeneralBundle\Entity\Iglesia
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\Iglesia")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="IGL_ID", referencedColumnName="IGL_ID")
-     * })
+     * @ORM\Column(name="IGL_ID", type="integer", nullable=false)
      */
     private $iglesia;
 
