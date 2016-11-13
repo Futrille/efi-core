@@ -40,15 +40,22 @@ class NivelController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $result = array();
-        $nivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => null));
-        foreach ($nivels as &$valor) {
-            array_push($result, $valor);
 
-            $subNivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $valor->getId()),array('orden' => 'ASC'));
-            foreach ($subNivels as &$subValor) {
-                array_push($result, $subValor);
+        if($request->headers->get("idNivel")!=null){
+            $result = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("id" => $request->headers->get("idNivel")));
+        }else{
+            $nivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => null));
+            foreach ($nivels as &$valor) {
+                array_push($result, $valor);
+
+                $subNivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $valor->getId()),array('orden' => 'ASC'));
+                foreach ($subNivels as &$subValor) {
+                    array_push($result, $subValor);
+                }
             }
         }
+
+
 
         $response = new GeneralResponse();
         $codigo = $request->get('codigoPmi');
@@ -103,7 +110,8 @@ class NivelController extends Controller
             }
             $data->setOrden(1);
         }else{
-            $data->setPadre($request->headers->get('nivelPadre'));
+            //$data->setPadre($request->headers->get('nivelPadre'));
+            $data->setPadre($em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("id" => $request->headers->get('nivelPadre'))));
             $hijos = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $request->headers->get('nivelPadre')));
             if($hijos==null){
                 $data->setOrden(1);
