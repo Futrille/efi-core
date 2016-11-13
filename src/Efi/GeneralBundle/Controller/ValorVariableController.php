@@ -21,13 +21,21 @@ class ValorVariableController extends Controller
      * Lists all ValorVariable entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $util = new Util();
+
+        if($request->headers->get('vvaCodigo')!=null){
+            $vvaList = $this->getDoctrine()
+                ->getRepository('EfiGeneralBundle:ValorVariable')
+                ->findBy(array('codigo' => $request->headers->get('vvaCodigo')));
+        }else {
+            $vvaList = $this->getDoctrine()
+                ->getRepository('EfiGeneralBundle:ValorVariable')
+                ->findAll();
+        }
         //$key = $request->query->get('key',0);
-        $vvaList = $this->getDoctrine()
-            ->getRepository('EfiGeneralBundle:ValorVariable')
-            ->findAll();
+
 
         $response = new JsonResponse();
         $response->setContent($util->getSerialize($vvaList));
@@ -56,7 +64,7 @@ class ValorVariableController extends Controller
             $em->persist($valorVariable);
             $em->flush();
 
-            return $this->redirectToRoute('valorvariable_show', array('id' => $valorvariable->getId()));
+            return $this->redirectToRoute('valorvariable_show', array('id' => $valorVariable->getId()));
         }
 
         return $this->render('valorvariable/new.html.twig', array(
