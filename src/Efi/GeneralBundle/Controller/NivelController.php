@@ -169,29 +169,49 @@ class NivelController extends Controller
         $em = $this->getDoctrine()->getManager();
         $nivel = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("id" => $request->headers->get('id')));
 
-        if($request->headers->get('orientation')=="up"){
-            if($nivel->getPadre()!=null){
-                $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => $nivel->getPadre(), 'orden'=>$nivel->getOrden()-1));
+        if($request->headers->get('orientation')!=null){
+            if($request->headers->get('orientation')=="up"){
+                if($nivel->getPadre()!=null){
+                    $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => $nivel->getPadre(), 'orden'=>$nivel->getOrden()-1));
+                }else{
+                    $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => null, 'orden'=>$nivel->getOrden()-1));
+                }
             }else{
-                $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => null, 'orden'=>$nivel->getOrden()-1));
+                if($nivel->getPadre()!=null){
+                    $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => $nivel->getPadre(), 'orden'=>$nivel->getOrden()+1));
+                }else{
+                    $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => null, 'orden'=>$nivel->getOrden()+1));
+                }
             }
-        }else{
-            if($nivel->getPadre()!=null){
-                $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => $nivel->getPadre(), 'orden'=>$nivel->getOrden()+1));
-            }else{
-                $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => null, 'orden'=>$nivel->getOrden()+1));
+
+            if($nivelToChange != null){
+                $tempOrden=$nivel->getOrden();
+                $nivel->setOrden($nivelToChange->getOrden());
+                $nivelToChange->setOrden($tempOrden);
+
+                $em->persist($nivel);
+                $em->flush();
+
+                $em->persist($nivelToChange);
+                $em->flush();
             }
         }
 
-        if($nivelToChange != null){
-            $tempOrden=$nivel->getOrden();
-            $nivel->setOrden($nivelToChange->getOrden());
-            $nivelToChange->setOrden($tempOrden);
+        if($request->headers->get('id')!=null){
+            $nivel->setColor($request->headers->get('color'));
+            $nivel->setNombre($request->headers->get('nombre'));
+
+            if($request->headers->get('nivelPadre')=="null"){
+                $nivel->setPadre(null);
+            }else{
+                $nivel->setPadre($em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("id" => $request->headers->get('nivelPadre'))));
+            }
+
+            $nivel->setIdIcono($em->getRepository('EfiGeneralBundle:ValorVariable')->findOneBy(array("nombre" => $request->headers->get('icono'),'codigo' => 'nivel_icono')));
+            $nivel->setIdTipo($em->getRepository('EfiGeneralBundle:ValorVariable')->findOneBy(array("nombre" => $request->headers->get('tipo'),'codigo' => 'nivel_tipo')));
+            $nivel->setIdEstatus($em->getRepository('EfiGeneralBundle:ValorVariable')->findOneBy(array("nombre" => $request->headers->get('estatus'),'codigo' => 'nivel_estatus')));
 
             $em->persist($nivel);
-            $em->flush();
-
-            $em->persist($nivelToChange);
             $em->flush();
         }
 
