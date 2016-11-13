@@ -15,29 +15,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Nivel controller.
- *
- * @Route("/nivel")
  */
 class NivelController extends Controller
 {
     /**
-     * Listado de Familias. Filtradas por Pareja Ministerial (Codigo).
-     * Adem&aacute;s muestra los integrantes en cada una de ellas.
-     *
+     * Listado de Niveles. tienes dos fucnionalidades.
+     *  permite listar todos los niveles disponibles ordenados con el campo 'orden'
+     *  permite buscar un solo nivel pasando por header un 'idNivel'
      * @ApiDoc(
      *  resource=true,
-     *  description="Listado resumen de Familias conectadas."
+     *  description="listado de niveles."
      * )
      */
-    public function indexAction(Request $request)
-    {
-//        $em = $this->getDoctrine()->getManager();
-//        $nivels = $em->getRepository('EfiGeneralBundle:Nivel')->findAll();
-//
-//        return $this->render('nivel/index.html.twig', array(
-//            'nivels' => $nivels,
-//        ));
-
+    public function indexAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         $result = array();
 
@@ -55,11 +45,8 @@ class NivelController extends Controller
             }
         }
 
-
-
         $response = new GeneralResponse();
         $codigo = $request->get('codigoPmi');
-
 
         $response->setData($result);
         $response->addToMetaData('codigo', $codigo);
@@ -68,38 +55,20 @@ class NivelController extends Controller
     }
 
     /**
-     * Insercion de nivles.
+     * Insercion de niveles. permite la creacion de un nuevo nivel a partir de todos los parametros requeridos por headers
      *
      * @ApiDoc(
      *  resource=true,
      *  description="Insercion de niveles."
      * )
      */
-    public function newAction(Request $request)
-    {
-//        $nivel = new Nivel();
-//        $form = $this->createForm('Efi\GeneralBundle\Form\NivelType', $nivel);
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($nivel);
-//            $em->flush();
-//
-//            return $this->redirectToRoute('nivel_show', array('id' => $nivel->getId()));
-//        }
-//
-//        return $this->render('nivel/new.html.twig', array(
-//            'nivel' => $nivel,
-//            'form' => $form->createView(),
-//        ));
+    public function newAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         $data = new Nivel();
         $data->setIglesia(1);
         $data->setColor($request->headers->get('color'));
         $data->setNombre($request->headers->get('nombre'));
 
-        //todo mandar desde la vista el id del padre de otro modo se debe cambiar este metodo
         if($request->headers->get('nivelPadre')=="null"){
             $data->setPadre(null);
             $padres  = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => null));
@@ -109,7 +78,6 @@ class NivelController extends Controller
                 $data->setOrden(count($padres)+1);
             }
         }else{
-            //$data->setPadre($request->headers->get('nivelPadre'));
             $data->setPadre($em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("id" => $request->headers->get('nivelPadre'))));
             $hijos = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $request->headers->get('nivelPadre')));
             if($hijos==null){
@@ -157,7 +125,9 @@ class NivelController extends Controller
     }
 
     /**
-     * Edicion de nivles.
+     * Edicion de niveles. permite editar un nivel a traves del id y los parametros pasados por el header, tiene dos funciones:
+     *      editar un nivel a traves del id y los parametros
+     *      poder editar el orden de un nivel a traves de un parametro auxiliar llamado 'orientacion', el cual viene desde el header
      *
      * @ApiDoc(
      *  resource=true,
@@ -225,25 +195,14 @@ class NivelController extends Controller
     }
 
     /**
-     * Eliminacion de nivles.
+     * Eliminacion de nivles. elimina un nivel por un id pasado por headers y actualiza el orden de los demas niveles
      *
      * @ApiDoc(
      *  resource=true,
      *  description="Eliminacion de niveles."
      * )
      */
-    public function deleteAction(Request $request)
-    {
-//        $form = $this->createDeleteForm($nivel);
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
-//            $em->remove($nivel);
-//            $em->flush();
-//        }
-//
-//        return $this->redirectToRoute('nivel_index');
+    public function deleteAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         $nivel = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("id" => $request->headers->get('id')));
 
