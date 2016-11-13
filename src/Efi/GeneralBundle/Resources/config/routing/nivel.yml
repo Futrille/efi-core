@@ -13,3 +13,19 @@ nivel_nuevo:
     requirements:
         _format:  json|html
 #        _locale:  es
+
+nivel_delete:
+    path:     /{codigoPmi}/index.{_format}
+    defaults: { _controller: "EfiGeneralBundle:Nivel:delete", codigoPmi: 0, _format: html}
+    methods:  DELETE
+    requirements:
+        _format:  json|html
+#        _locale:  es
+
+nivel_editar:
+    path:     /{codigoPmi}/index.{_format}
+    defaults: { _controller: "EfiGeneralBundle:Nivel:edit", codigoPmi: 0, _format: html}
+    methods:  PUT
+    requirements:
+        _format:  json|html
+#        _locale:  es

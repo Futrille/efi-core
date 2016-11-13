@@ -68,7 +68,7 @@ class NivelController extends Controller
     }
 
     /**
-     * Insercion de nivlees.
+     * Insercion de nivles.
      *
      * @ApiDoc(
      *  resource=true,
@@ -100,7 +100,7 @@ class NivelController extends Controller
         $data->setNombre($request->headers->get('nombre'));
 
         //todo mandar desde la vista el id del padre de otro modo se debe cambiar este metodo
-        if($request->headers->get('nivelPadre')==null){
+        if($request->headers->get('nivelPadre')=="null"){
             $data->setPadre(null);
             $padres  = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => null));
             if($padres==null){
@@ -108,7 +108,6 @@ class NivelController extends Controller
             }else{
                 $data->setOrden(count($padres)+1);
             }
-            $data->setOrden(1);
         }else{
             //$data->setPadre($request->headers->get('nivelPadre'));
             $data->setPadre($em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("id" => $request->headers->get('nivelPadre'))));
@@ -158,39 +157,65 @@ class NivelController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Nivel entity.
+     * Edicion de nivles.
      *
-     * @Route("/{id}/edit", name="nivel_edit")
-     * @Method({"GET", "POST"})
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Edicion de niveles."
+     * )
      */
-    public function editAction(Request $request, Nivel $nivel)
+    public function editAction(Request $request)
     {
-        $deleteForm = $this->createDeleteForm($nivel);
-        $editForm = $this->createForm('Efi\GeneralBundle\Form\NivelType', $nivel);
-        $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $nivel = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("id" => $request->headers->get('id')));
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        if($request->headers->get('orientation')=="up" && $nivel->getOrden()!=1){
+            if($nivel->getPadre()!=null){
+                $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => $nivel->getPadre(), 'orden'=>$nivel->getOrden()-1));
+            }else{
+                $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => null, 'orden'=>$nivel->getOrden()-1));
+            }
+        }else{
+            if($nivel->getPadre()!=null){
+                $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => $nivel->getPadre(), 'orden'=>$nivel->getOrden()+1));
+            }else{
+                $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => null, 'orden'=>$nivel->getOrden()+1));
+            }
+        }
+
+        if($nivelToChange != null){
+            $tempOrden=$nivel->getOrden();
+            $tempId=$nivel->getId();
+            $nivel->setOrden($nivelToChange->getOrden());
+            $nivel->setId($nivelToChange->getId());
+            $nivelToChange->setOrden($tempOrden);
+            $nivelToChange->setId($tempId);
+
             $em->persist($nivel);
             $em->flush();
 
-            return $this->redirectToRoute('nivel_edit', array('id' => $nivel->getId()));
+            $em->persist($nivelToChange);
+            $em->flush();
         }
 
-        return $this->render('nivel/edit.html.twig', array(
-            'nivel' => $nivel,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $response = new GeneralResponse();
+        $codigo = $request->get('codigoPmi');
+
+        $response->setData("nivel cambiado exitosamente");
+        $response->addToMetaData('codigo', $codigo);
+
+        return $response->toJSON();
     }
 
     /**
-     * Deletes a Nivel entity.
+     * Eliminacion de nivles.
      *
-     * @Route("/{id}", name="nivel_delete")
-     * @Method("DELETE")
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Eliminacion de niveles."
+     * )
      */
-    public function deleteAction(Request $request, Nivel $nivel)
+    public function deleteAction(Request $request)
     {
 //        $form = $this->createDeleteForm($nivel);
 //        $form->handleRequest($request);
@@ -203,8 +228,37 @@ class NivelController extends Controller
 //
 //        return $this->redirectToRoute('nivel_index');
         $em = $this->getDoctrine()->getManager();
+        $nivel = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("id" => $request->headers->get('id')));
+
+        $subNivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $request->headers->get('id')));
+        if($subNivels!=null){
+            foreach ($subNivels as &$subValor) {
+                $em->remove($subValor);
+                $em->flush();
+            }
+        }
+
         $em->remove($nivel);
         $em->flush();
+
+        //actualizamos el orden de los indices
+        $contParentNull  = 0;
+        $nivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => null), array('orden' => 'ASC'));
+        foreach ($nivels as &$valor) {
+            $contParentNull++;
+            $valor->setOrden($contParentNull);
+            $em->persist($valor);
+            $em->flush();
+
+            $cont=0;
+            $subNivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $valor->getId()),array('id' => 'ASC'));
+            foreach ($subNivels as &$subValor) {
+                $cont++;
+                $subValor->setOrden($cont);
+                $em->persist($subValor);
+                $em->flush();
+            }
+        }
 
         $response = new GeneralResponse();
         $codigo = $request->get('codigoPmi');
