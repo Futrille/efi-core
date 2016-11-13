@@ -44,7 +44,7 @@ class NivelController extends Controller
         if($request->headers->get("idNivel")!=null){
             $result = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("id" => $request->headers->get("idNivel")));
         }else{
-            $nivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => null));
+            $nivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => null),array('orden' => 'ASC'));
             foreach ($nivels as &$valor) {
                 array_push($result, $valor);
 
@@ -169,7 +169,7 @@ class NivelController extends Controller
         $em = $this->getDoctrine()->getManager();
         $nivel = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("id" => $request->headers->get('id')));
 
-        if($request->headers->get('orientation')=="up" && $nivel->getOrden()!=1){
+        if($request->headers->get('orientation')=="up"){
             if($nivel->getPadre()!=null){
                 $nivelToChange = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("padre" => $nivel->getPadre(), 'orden'=>$nivel->getOrden()-1));
             }else{
@@ -185,11 +185,8 @@ class NivelController extends Controller
 
         if($nivelToChange != null){
             $tempOrden=$nivel->getOrden();
-            $tempId=$nivel->getId();
             $nivel->setOrden($nivelToChange->getOrden());
-            $nivel->setId($nivelToChange->getId());
             $nivelToChange->setOrden($tempOrden);
-            $nivelToChange->setId($tempId);
 
             $em->persist($nivel);
             $em->flush();
