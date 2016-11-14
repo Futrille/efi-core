@@ -204,18 +204,35 @@ class NivelController extends Controller
      */
     public function deleteAction(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $nivel = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("id" => $request->headers->get('id')));
 
-        $subNivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $request->headers->get('id')));
-        if($subNivels!=null){
-            foreach ($subNivels as &$subValor) {
-                $em->remove($subValor);
-                $em->flush();
+        if($request->headers->get('ids') != null){
+            foreach (explode(",",$request->headers->get('ids')) as &$nivelId) {
+                $nivelParentToDelete = $em->getRepository('EfiGeneralBundle:Nivel')->find($nivelId);
+                if($nivelParentToDelete!=null){
+                    $subNivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $nivelParentToDelete->getId()));
+                    if($subNivels!=null){
+                        foreach ($subNivels as &$subValor) {
+                            $em->remove($subValor);
+                            $em->flush();
+                        }
+                    }
+                    $em->remove($nivelParentToDelete);
+                    $em->flush();
+                }
             }
-        }
+        }else{
+            $nivel = $em->getRepository('EfiGeneralBundle:Nivel')->findOneBy(array("id" => $request->headers->get('id')));
 
-        $em->remove($nivel);
-        $em->flush();
+            $subNivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $request->headers->get('id')));
+            if($subNivels!=null){
+                foreach ($subNivels as &$subValor) {
+                    $em->remove($subValor);
+                    $em->flush();
+                }
+            }
+            $em->remove($nivel);
+            $em->flush();
+        }
 
         //actualizamos el orden de los indices
         $contParentNull  = 0;
