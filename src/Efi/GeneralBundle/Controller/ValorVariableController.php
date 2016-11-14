@@ -25,11 +25,18 @@ class ValorVariableController extends Controller
     {
         $util = new Util();
 
-        if($request->headers->get('vvaCodigo')!=null){
+        if(count(explode(",",$request->headers->get('vvaCodigo')))==1){
             $vvaList = $this->getDoctrine()
                 ->getRepository('EfiGeneralBundle:ValorVariable')
                 ->findBy(array('codigo' => $request->headers->get('vvaCodigo')));
-        }else {
+        }else if(count(explode(",",$request->headers->get('vvaCodigo')))>1){
+            $vvaList = array();
+            foreach (explode(",",$request->headers->get('vvaCodigo')) as &$codigo) {
+                array_push($vvaList, $this->getDoctrine()
+                    ->getRepository('EfiGeneralBundle:ValorVariable')
+                    ->findBy(array('codigo' => $codigo)));
+            }
+        }else{
             $vvaList = $this->getDoctrine()
                 ->getRepository('EfiGeneralBundle:ValorVariable')
                 ->findAll();
