@@ -167,7 +167,7 @@ class NivelController extends Controller
             }
         }
 
-        if($request->headers->get('id')!=null){
+        if($request->headers->get('id')!=null && $request->headers->get('orientation')==null){
             $nivel->setColor($request->headers->get('color'));
             $nivel->setNombre($request->headers->get('nombre'));
 
