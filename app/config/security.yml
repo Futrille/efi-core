@@ -37,7 +37,7 @@ security:
                 login_path: login
                 check_path: login
         secured_area:
-            pattern:    ^/secured_area
+            pattern:    ^/
             form_login: ~
             logout:
                 path: /logout
