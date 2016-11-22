@@ -1,6 +1,8 @@
-efi_general_nivel:
-    resource: "@EfiGeneralBundle/Controller/NivelController.php"
-    type:     annotation
+logout:
+    path:     /secured_area/logout
+#efi_general_nivel:
+#    resource: "@EfiGeneralBundle/Controller/NivelController.php"
+#    type:     annotation
 
 efi_ganados:
     resource: "@EfiGanadosBundle/Resources/config/routing.yml"
@@ -17,3 +19,5 @@ app:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+
+#    defaults: { _controller: EfiGeneralBundle:Security:logout }

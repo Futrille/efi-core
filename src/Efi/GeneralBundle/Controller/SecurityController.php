@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
+use AppBundle\GeneralResponse;
 
 class SecurityController extends Controller
 {
@@ -17,6 +18,7 @@ class SecurityController extends Controller
 
     public function loginAction(Request $request)
     {
+        $response = new GeneralResponse();
         $authenticationUtils = $this->get('security.authentication_utils');
 
         // get the login error if there is one
@@ -25,39 +27,24 @@ class SecurityController extends Controller
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        $this->util = new Util();
-        $resultado = array();
+        $response->setStatus(GENERAL_RESPONSE_LOGOUT);
+        $response->setMessage('logout');
+        $response->setData(null);
+        $response->addToMetaData('error', $error);
+        $response->addToMetaData('lastUsername', $lastUsername);
 
-        $resultado['status']        = 'logout';
-        $resultado['message']       = 'Debe Iniciar Sesión';
-        $resultado['response']      = array(
-            'error' => $error,
-            'lastUsername'  => $lastUsername
-        );
-
-        $token_manager = new CsrfTokenManager();
-        $token = $token_manager->getToken("_token");
-//        return $this->util->efiGetJsonResponse($token);
-        return $this->util->efiGetJsonResponse($resultado);
+        return $this->render('security/login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+        ));
+//        return $response->toJSON();
     }
 
-    public function logoutAction()
-    {
-        $this->util = new Util();
-        $resultado = array();
-
-        $resultado['status']        = 'logout';
-        $resultado['message']       = 'Debe Iniciar Sesion';
-//        $resultado['response']      = array(
-//            'error' => $error,
-//            'lastUsername'  => $lastUsername
-//        );
-        return new Response('<html><body>Logout page!</body></html>');
-//        return $this->render('EfiGeneralBundle:Security:logout.html.twig', array(
-//            // ...
-//        ));
-//        return $this->util->efiGetJsonResponse($resultado);
-    }
+//    public function logoutAction()
+//    {
+//        return new Response('<html><body>Logout page!</body></html>');
+//    }
 
     public function adminAction()
     {

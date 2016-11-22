@@ -17,46 +17,32 @@ security:
             memory:
                 users:
                     18178032:
-                        password: $2y$12$8HoDWIhn09tMrBnbOESDL.507UoPt.LgjGxCcXWYXtzBzsmveLc8W
+                        password: admin
                         roles: 'ROLE_USER'
                     18178031:
-                        password: $2y$12$8HoDWIhn09tMrBnbOESDL.507UoPt.LgjGxCcXWYXtzBzsmveLc8W
+                        password: admin
                         roles: 'ROLE_ADMIN'
     encoders:
-#            Symfony\Component\Security\Core\User\User: plaintext
-        Symfony\Component\Security\Core\User\User:
-            algorithm: bcrypt
-            cost: 12
+            Symfony\Component\Security\Core\User\User: plaintext
     firewalls:
-#        login_firewall:
-#                pattern:   ^/login$
-#                anonymous: ~
-#        secured_area:
-#            pattern:    ^/
-#            form_login: ~
-#            logout:
-#                path: /logout
-#                target: /
-        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        default:
+#        login_firewall:
+#                pattern:   ^/login$
+#                anonymous: ~
+        main:
             anonymous: ~
-            http_basic: ~
-#        main:
-#            anonymous: ~
-#            form-login:
-#                login_path: login
-#                check_path: login
-
-            # activate different ways to authenticate
-
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-#    access_control:
-#        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/, roles: ROLE_ADMIN }
+            form-login:
+                login_path: login
+                check_path: login
+        secured_area:
+            pattern:    ^/secured_area
+            form_login: ~
+            logout:
+                path: /logout
+                target: /
+        # disables authentication for assets and the profiler, adapt it according to your needs
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_ADMIN }

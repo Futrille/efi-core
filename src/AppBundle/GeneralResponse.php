@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 define('GENERAL_RESPONSE_SUCCESS', 0);
 define('GENERAL_RESPONSE_ERROR', 1);
+define('GENERAL_RESPONSE_LOGOUT', 2);
 
 class GeneralResponse
 {
@@ -26,7 +27,7 @@ class GeneralResponse
         $this->status   = 0;
         $this->message  = '';
         $this->type     = 'array';
-        $this->metadata = NULL;
+        $this->metadata = null;
     }
     
     /**
