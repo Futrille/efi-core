@@ -41,7 +41,7 @@ security:
             form_login: ~
             logout:
                 path: /logout
-                target: /
+                target: /login
         # disables authentication for assets and the profiler, adapt it according to your needs
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -20,4 +20,4 @@ NelmioApiDocBundle:
 
 logout:
     path:     /logout
-#    defaults: { _controller: EfiGeneralBundle:Security:logout }
+    defaults: { _controller: EfiGeneralBundle:Security:logout }

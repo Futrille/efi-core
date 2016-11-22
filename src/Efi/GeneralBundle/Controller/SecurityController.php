@@ -41,10 +41,13 @@ class SecurityController extends Controller
 //        return $response->toJSON();
     }
 
-//    public function logoutAction()
-//    {
+    public function logoutAction()
+    {
+        $this->container->get('security.context')->setToken(null);
+
+        return $this->redirect($this->generateUrl('login'));
 //        return new Response('<html><body>Logout page!</body></html>');
-//    }
+    }
 
     public function adminAction()
     {
