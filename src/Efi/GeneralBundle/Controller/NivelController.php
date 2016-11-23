@@ -33,6 +33,8 @@ class NivelController extends Controller
 
         if($request->headers->get("idNivel")!=null){
             $result = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("id" => $request->headers->get("idNivel")));
+        }else if($request->headers->get("padres")!=null){
+            $result = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => null),array('orden' => 'ASC'));
         }else{
             $nivels = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => null),array('orden' => 'ASC'));
             foreach ($nivels as &$valor) {
