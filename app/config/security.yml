@@ -1,17 +1,4 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/book/security.html
 security:
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
-#    encoders:
-#            Efi\GeneralBundle\Entity\Usuario:
-#                algorithm: bcrypt
-#    providers:
-#            our_db_provider:
-#                entity:
-#                    class: EfiGeneralBundle:Usuario
-#                    property: username
-#                    # if you're using multiple entity managers
-#                    # manager_name: customer
     providers:
         in_memory:
             memory:
