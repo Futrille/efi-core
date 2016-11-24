@@ -86,8 +86,6 @@ class PersonaController extends Controller
         else{
             $form_familia = $this->createForm(FamiliaType::class, $familia);
         }
-
-
         $form_familia->handleRequest($request);
 
         $form = $this->createForm(PersonaType::class, $persona);
@@ -168,7 +166,7 @@ class PersonaController extends Controller
             'familia' => $familia,
             'form_familia' => $form_familia->createView(),
         ))->getContent());
-        $response->addToMetaData('valor',$valor);
+        $response->addToMetaData('familia',$familia);
 
         return $response->toJSON();
     }

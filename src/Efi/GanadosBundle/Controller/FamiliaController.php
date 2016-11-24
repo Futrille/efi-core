@@ -50,7 +50,7 @@ class FamiliaController extends Controller
         $query = $em->createQuery(
             "SELECT FAM.id, FAM.nombre, COUNT(PER.familia) AS integrantes "
             ."FROM EfiGanadosBundle:Familia FAM " 
-            ."    INNER JOIN EfiGanadosBundle:Persona PER WITH FAM.id = PER.familia "
+            ."    LEFT JOIN EfiGanadosBundle:Persona PER WITH FAM.id = PER.familia "
             ."WHERE PER.codigoParejaMinisterial = :codigoPmi "
             ."GROUP BY FAM.id")
             ->setParameter('codigoPmi', $codigo);
