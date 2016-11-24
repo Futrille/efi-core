@@ -33,12 +33,12 @@ class SecurityController extends Controller
         $response->addToMetaData('error', $error);
         $response->addToMetaData('lastUsername', $lastUsername);
 
-        return $this->render('security/login.html.twig', array(
-            'last_username' => $lastUsername,
-            'error'         => $error,
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
-        ));
-//        return $response->toJSON();
+//        return $this->render('security/login.html.twig', array(
+//            'last_username' => $lastUsername,
+//            'error'         => $error,
+//            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+//        ));
+        return $response->toJSON();
     }
 
     public function logoutAction()
