@@ -13,49 +13,57 @@
             {{ form_widget(form_familia.direccion) }}
             {{ form_errors(form_familia.direccion) }}
         </div>
+        <div class="form-group col-md-8">
+            <input id="btn-ganados-familia-guardar" type="button" class="btn btn-primary" value="Guardar Familia">
+            <button id="btn-ganados-registrar-cancelar" type="button" class="btn btn-default">Cancelar</button>
+        </div>
     </div>
     {{ form_end(form_familia) }}
-    {{ form_start(form) }}
-    <div class="row">
-        <div class="form-group col-md-4">
-            {{ form_label(form.nombres) }}
-            {{ form_widget(form.nombres) }}
-            {{ form_errors(form.nombres) }}
+    {% if familia.id > 0 %}
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="form-group col-md-4">
+                {{ form_label(form.nombres) }}
+                {{ form_widget(form.nombres) }}
+                {{ form_errors(form.nombres) }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form_label(form.correo) }}
+                {{ form_widget(form.correo) }}
+                {{ form_errors(form.correo) }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form_label(form.telefono) }}
+                {{ form_widget(form.telefono) }}
+                {{ form_errors(form.telefono) }}
+            </div>
         </div>
-        <div class="form-group col-md-4">
-            {{ form_label(form.correo) }}
-            {{ form_widget(form.correo) }}
-            {{ form_errors(form.correo) }}
+        <div class="row">
+            <div class="form-group col-md-4">
+                {{ form_label(form.idRolFamilia) }}
+                {{ form_widget(form.idRolFamilia) }}
+                {{ form_errors(form.idRolFamilia) }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form_label(form.metodoGanar) }}
+                {{ form_widget(form.metodoGanar) }}
+                {{ form_errors(form.metodoGanar) }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form_label(form.fechaGanado) }}
+                {{ form_widget(form.fechaGanado) }}
+                {{ form_errors(form.fechaGanado) }}
+            </div>
         </div>
-        <div class="form-group col-md-4">
-            {{ form_label(form.telefono) }}
-            {{ form_widget(form.telefono) }}
-            {{ form_errors(form.telefono) }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-md-4">
-            {{ form_label(form.idRolFamilia) }}
-            {{ form_widget(form.idRolFamilia) }}
-            {{ form_errors(form.idRolFamilia) }}
-        </div>
-        <div class="form-group col-md-4">
-            {{ form_label(form.metodoGanar) }}
-            {{ form_widget(form.metodoGanar) }}
-            {{ form_errors(form.metodoGanar) }}
-        </div>
-        <div class="form-group col-md-4">
-            {{ form_label(form.fechaGanado) }}
-            {{ form_widget(form.fechaGanado) }}
-            {{ form_errors(form.fechaGanado) }}
-        </div>
-    </div>
-    {{ form_end(form) }}
+        {{ form_end(form) }}
+    {% endif %}
 </div>
 <div class="box-footer">
+    {% if familia.id > 0 %}
     <input id="btn-ganados-registrar-guardar" type="button" class="btn btn-primary" value="Guardar">
     <button id="btn-ganados-registrar-limpiar" type="reset" class="btn btn-default">Limpiar</button>
     <button id="btn-ganados-registrar-cancelar" type="button" class="btn btn-default">Cancelar</button>
+    {% endif %}
 </div>
 
 

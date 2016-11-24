@@ -95,65 +95,71 @@ class PersonaController extends Controller
 
 //        $validator = $this->get('validator');
 //        $errors = $validator->validate($persona);
-        
-        if ($form->isSubmitted() && $form->isValid() && $form_familia->isSubmitted() && $form_familia->isValid()) {
+        if ($form_familia->isSubmitted() && $form_familia->isValid()){
             try{
-                $response = $this->validarPersonalizado($persona);
-                if ($response->getStatus() == GENERAL_RESPONSE_SUCCESS){
-                    $em = $this->getDoctrine()->getManager();
-//                    $em->getConnection()->beginTransaction();
+                $em = $this->getDoctrine()->getManager();
+                $familia->setEstado($this->getDoctrine()
+                    ->getRepository('EfiGeneralBundle:Estado')
+                    ->findOneById(1));
+                $familia->setMunicipio($this->getDoctrine()
+                    ->getRepository('EfiGeneralBundle:Municipio')
+                    ->findOneById(1));
+                $familia->setParejaMinisterial(1);
+                $familia->setCodigoParejaMinisterial('PRU-1986');
 
-                    $familia->setEstado($this->getDoctrine()
-                        ->getRepository('EfiGeneralBundle:Estado')
-                        ->findOneById(1));
-                    $familia->setMunicipio($this->getDoctrine()
-                        ->getRepository('EfiGeneralBundle:Municipio')
-                        ->findOneById(1));
-                    $familia->setParejaMinisterial(1);
-                    $familia->setCodigoParejaMinisterial('PRU-1986');
+                $em->persist($familia);
 
-                    $em->persist($familia);
+                $response->setStatus(GENERAL_RESPONSE_SUCCESS);
+                $response->setMessage('Familia registrada satisfactoriamente.');
 
-                    $persona->setEstatus(1);
-                    $persona->setIdEstatus($this->getValorVariableDefault('per_estatus'));
-                    $persona->setRolfamilia(intval($this->getDoctrine()
-                        ->getRepository('EfiGeneralBundle:ValorVariable')
-                        ->find($persona->getIdRolFamilia())->getValor()));
-                    $persona->setUpdatedAt(new \DateTime('now'));
-                    if ($persona->getCreatedAt() == null) {
-                        $persona->setCreatedAt(new \DateTime('now'));
+                if ($form->isSubmitted() && $form->isValid()) {
+                    try{
+                        $response = $this->validarPersonalizado($persona);
+                        if ($response->getStatus() == GENERAL_RESPONSE_SUCCESS){
+                            $persona->setEstatus(1);
+                            $persona->setIdEstatus($this->getValorVariableDefault('per_estatus'));
+                            $persona->setRolfamilia(intval($this->getDoctrine()
+                                ->getRepository('EfiGeneralBundle:ValorVariable')
+                                ->find($persona->getIdRolFamilia())->getValor()));
+                            $persona->setUpdatedAt(new \DateTime('now'));
+                            if ($persona->getCreatedAt() == null) {
+                                $persona->setCreatedAt(new \DateTime('now'));
+                            }
+                            $persona->setParejaMinisterial(1);
+                            $persona->setCodigoParejaMinisterial('PRU-1986');
+                            $persona->setFamilia($familia);
+                            $em->persist($persona);
+                            $em->flush();
+
+                            $response->setStatus(GENERAL_RESPONSE_SUCCESS);
+                            $response->setMessage('Persona registrada satisfactoriamente');
+                            $response->addToMetaData('personas',$this->getDoctrine()
+                                ->getRepository('EfiGanadosBundle:Persona')
+                                ->findBy(
+                                    array('familia' => 1)
+                                ));
+
+                            $persona = new Persona();
+                            $form_familia = $this->createForm(FamiliaType::class, $familia);
+                            $form = $this->createForm(PersonaType::class, $persona);
+                        }
+                    }catch (\Exception $e){
+                        $response->setStatus(GENERAL_RESPONSE_ERROR);
+                        $response->setMessage('Error al guardar el registro.');
+                        $response->addToMetaData('message',$e->getMessage());
                     }
-                    $persona->setParejaMinisterial(1);
-                    $persona->setCodigoParejaMinisterial('PRU-1986');
-                    $persona->setFamilia($familia);
-                    $em->persist($persona);
-                    $em->flush();
-//                    $em->getConnection()->commit();
 
-                    $response->setStatus(GENERAL_RESPONSE_SUCCESS);
-                    $response->setMessage('Persona registrada satisfactoriamente');
-                    $response->addToMetaData('personas',$this->getDoctrine()
-                        ->getRepository('EfiGanadosBundle:Persona')
-                        ->findBy(
-                            array('familia' => 1)
-                        ));
-
-//                    $familia = new Familia();
-                    $persona = new Persona();
-                    $form_familia = $this->createForm(FamiliaType::class, $familia);
-                    $form = $this->createForm(PersonaType::class, $persona);
                 }
-            }catch (\Exception $e){
-//                $em->getConnection()->rollback();
+                else{
+                    $em->flush();
+                }
+            }
+            catch(\Exception $e){
                 $response->setStatus(GENERAL_RESPONSE_ERROR);
-                $response->setMessage('Error al guardar el registro.');
+                $response->setMessage('Error al guardar la Familia.');
                 $response->addToMetaData('message',$e->getMessage());
             }
 
-        }
-        else{
-//            $form_familia->setAction($action);
-//            $form->setAction($action);
         }
 
         $response->setData($this->render('persona/new.html.twig', array(
