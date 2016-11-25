@@ -145,9 +145,6 @@ class GeneralResponse
      * @return JsonResponse
      */
     public function toJSON(){
-        $this->status = $this->status == null ? 0 : null;
-        $this->message = $this->status == null ? 'Success' : null;
-
         $array = array(
             'data' => $this->data,
             'type' => $this->type,

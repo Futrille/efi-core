@@ -6,28 +6,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use Efi\GeneralBundle\EfiGeneralBundle as Util;
+use AppBundle\GeneralResponse;
 
 class DefaultController extends Controller
 {
-    private $util = null;
-
     /**
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     {
-        $this->util = new Util();
-        $resultado = array();
+        $response = new GeneralResponse();
 
-        $resultado['status'] = "success";
-        $resultado['message'] = "";
-        $resultado['response'] = "";
+        $response->setData(null);
+        $response->setStatus(GENERAL_RESPONSE_SUCCESS);
+        $response->setMessage('login');
 
-//        return $this->util->efiGetJsonResponse($resultado);
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
-        ));
+        return $response->toJSON();
     }
 }
