@@ -2,6 +2,7 @@
 
 namespace Efi\GanadosBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use \Efi\GeneralBundle\Entity\ValorVariable as ValorVariable;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -130,6 +131,8 @@ class Persona
      */
     private $metodoGanar;
 
+
+
 //    /**
 //     * @var \ParejasMinisteriales
 //     *
@@ -172,6 +175,13 @@ class Persona
      * })
      */
     private $idRolFamilia;
+
+    /**
+     * Many Users have One Address.
+     * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\Nivel")
+     * @ORM\JoinColumn(name="PER_ID", referencedColumnName="NIV_ID")
+     */
+    private $nivel;
 
     /**
      * @return string
@@ -463,5 +473,21 @@ class Persona
     {
         $this->codigoParejaMinisterial = $codigoParejaMinisterial;
     }
+    /**
+     * @return mixed
+     */
+    public function getNiveles()
+    {
+        return $this->nivel;
+    }
+
+    /**
+     * @param mixed $nivel
+     */
+    public function setNiveles($nivel)
+    {
+        $this->nivel = $nivel;
+    }
+
 
 }

@@ -2,6 +2,7 @@
 
 namespace Efi\GeneralBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -111,6 +112,15 @@ class Nivel
     private $orden;
 
     /**
+     * @ORM\OneToMany(targetEntity="\Efi\GanadosBundle\Entity\Persona", mappedBy="nivel")
+     */
+    protected $personas;
+
+    public function __construct() {
+        $this->personas = new ArrayCollection();
+    }
+
+    /**
      * @return int
      */
     public function getId()
@@ -207,7 +217,7 @@ class Nivel
     }
 
     /**
-     * @return Iglesia
+     * @return int
      */
     public function getIglesia()
     {
@@ -302,5 +312,19 @@ class Nivel
         $this->orden = $orden;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPersonas()
+    {
+        return $this->personas;
+    }
 
+    /**
+     * @param mixed $personas
+     */
+    public function setPersonas($personas)
+    {
+        $this->personas = $personas;
+    }
 }
