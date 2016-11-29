@@ -57,6 +57,36 @@ class NivelController extends Controller
     }
 
     /**
+     * Cantidad de personas en nivel(es). .
+     *  permite contar las personas asociadas a un nivel por request
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Cantidad de personas en nivel(es)"
+     * )
+     */
+    public  function countPersonasAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        //$result = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("id" => 1));
+        $result = $em->getRepository('EfiGanadosBundle:Persona')->findBy(array("nivel" => $request->headers->get("id")));
+        $count = count($result);
+        $childs = $em->getRepository('EfiGeneralBundle:Nivel')->findBy(array("padre" => $request->headers->get("id")));
+        foreach ($childs as &$child) {
+            $count+= count($em->getRepository('EfiGanadosBundle:Persona')->findBy(array("nivel" => $child->getId())));
+        }
+        $response = new GeneralResponse();
+        $codigo = $request->get('codigoPmi');
+
+        $array = array();
+        array_push($array, $request->headers->get("id"));
+        array_push($array, $count);
+
+        $response->setData($array);
+        $response->addToMetaData('codigo', $codigo);
+
+        return $response->toJSON();
+    }
+
+    /**
      * Insercion de niveles. permite la creacion de un nuevo nivel a partir de todos los parametros requeridos por headers
      *
      * @ApiDoc(

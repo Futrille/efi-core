@@ -179,7 +179,7 @@ class Persona
     /**
      * Many Users have One Address.
      * @ORM\ManyToOne(targetEntity="Efi\GeneralBundle\Entity\Nivel")
-     * @ORM\JoinColumn(name="PER_ID", referencedColumnName="NIV_ID")
+     * @ORM\JoinColumn(name="NIV_ID", referencedColumnName="NIV_ID")
      */
     private $nivel;
 

@@ -29,3 +29,10 @@ nivel_editar:
     requirements:
         _format:  json|html
 #        _locale:  es
+
+nivel_count_personas:
+    path:     /count/personas/{codigoPmi}/index.{_format}
+    defaults: { _controller: "EfiGeneralBundle:Nivel:countPersonas", codigoPmi: 0, _format: html}
+    methods:  GET
+    requirements:
+        _format:  json|html
