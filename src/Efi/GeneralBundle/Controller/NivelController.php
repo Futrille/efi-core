@@ -10,8 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Efi\GeneralBundle\Entity\Nivel;
-use Efi\GeneralBundle\Form\NivelType;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Nivel controller.
@@ -26,6 +24,8 @@ class NivelController extends Controller
      *  resource=true,
      *  description="listado de niveles."
      * )
+     * @param Request $request
+     * @return JsonResponse
      */
     public function indexAction(Request $request){
         $em = $this->getDoctrine()->getManager();
@@ -63,6 +63,8 @@ class NivelController extends Controller
      *  resource=true,
      *  description="Cantidad de personas en nivel(es)"
      * )
+     * @param Request $request
+     * @return JsonResponse
      */
     public  function countPersonasAction(Request $request){
         $em = $this->getDoctrine()->getManager();
@@ -93,6 +95,8 @@ class NivelController extends Controller
      *  resource=true,
      *  description="Insercion de niveles."
      * )
+     * @param Request $request
+     * @return JsonResponse
      */
     public function newAction(Request $request){
         $em = $this->getDoctrine()->getManager();
@@ -129,6 +133,16 @@ class NivelController extends Controller
         $data->setEstatus(1);
 
         $em->persist($data);
+        $em->flush();
+        $nivel = $data;
+
+        if($nivel->getPadre()!=null){
+            $nivel->setIndice($nivel->getPadre()->getIndice().','.$nivel->getId());
+        }else{
+            $nivel->setIndice($nivel->getId());
+        }
+
+        $em->persist($nivel);
         $em->flush();
 
         $response = new GeneralResponse();

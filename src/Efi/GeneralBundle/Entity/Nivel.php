@@ -116,6 +116,13 @@ class Nivel
      */
     protected $personas;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="NIV_INDICE", type="string", length=250, nullable=true)
+     */
+    private $indice;
+
     public function __construct() {
         $this->personas = new ArrayCollection();
     }
@@ -326,5 +333,21 @@ class Nivel
     public function setPersonas($personas)
     {
         $this->personas = $personas;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIndice()
+    {
+        return $this->indice;
+    }
+
+    /**
+     * @param string $indice
+     */
+    public function setIndice($indice)
+    {
+        $this->indice = $indice;
     }
 }
