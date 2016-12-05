@@ -2,6 +2,7 @@
 
 namespace Efi\GeneralBundle\Controller;
 
+use Efi\GeneralBundle\Entity\ValorVariable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -54,6 +55,7 @@ class IglesiaController extends Controller
 
         $idEntidad = $request->get('id');
         $data = null;
+        $message = null;
         switch($request->getMethod()){
             case "GET":
                 if ($idEntidad == 0){
@@ -64,17 +66,32 @@ class IglesiaController extends Controller
                 }
                 break;
             case "POST":
-                $iglesia = new Iglesia();
+                if ($idEntidad == 0){
+                    $iglesia = new Iglesia();
+                }
+                else{
+                    $iglesia = $this->getDoctrine()
+                        ->getRepository('EfiGeneralBundle:Iglesia')
+                        ->findOneBy(
+                            array(
+                                'id' => $idEntidad
+                            )
+                        );
+                }
                 $form = $this->createForm(IglesiaType::class, $iglesia);
                 $form->handleRequest($request);
 
                 if ($form->isSubmitted() && $form->isValid()) {
-                    $data = 'data guardada por submit...';
-//                    $em = $this->getDoctrine()->getManager();
-//                    $em->persist($familia);
-//                    $em->flush();
-//
-//                    return $this->redirectToRoute('familia_show', array('id' => $familia->getId()));
+                    if ($this->validarPersonalizado($iglesia)->getStatus() == GENERAL_RESPONSE_SUCCESS){
+                        $this->_setValoresDefault($iglesia);
+
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($iglesia);
+                        $em->flush();
+
+                        $message = 'Registro guardado satisfactoriamente.';
+                        $response->addToMetaData('iglesia', $iglesia);
+                    }
                 }
                 $data = $this->render('iglesia/new.html.twig', array(
                     'iglesia' => $iglesia,
@@ -89,9 +106,57 @@ class IglesiaController extends Controller
                 break;
         }
         $response->setData($data);
-
+        $response->setMessage($message);
 
         return $response->toJSON();
+    }
+
+    /**
+     * Valida que el registro no tenga Cedula o Correo repetidos
+     * @param Persona $persona
+     */
+    private function validarPersonalizado(Iglesia $objeto){
+        $response = new GeneralResponse();
+        $id = $objeto->getId() == null ? 0 : $objeto->getId();
+
+        $objectTest = null;
+        
+        return $response;
+    }
+
+    /**
+     * @param Iglesia $objeto
+     */
+    private function _setValoresDefault(Iglesia $objeto){
+        $estatusDefault = new ValorVariable();
+
+        if ($objeto->getId() == null || ($objeto->getId() != null && $objeto->getId() < 1 )){
+            $estatusDefault = $this->getValorVariableDefault('igl_estatus');
+            $objeto->setIdEstatus($estatusDefault);
+            $objeto->setEstatus($estatusDefault->getValor());
+
+//            $objeto->setUpdatedAt(new \DateTime('now'));
+//
+//            if ($objeto->getCreatedAt() == null) {
+//                $objeto->setCreatedAt(new \DateTime('now'));
+//            }
+        }
+    }
+
+    /**
+     * @param $codigo
+     * @param $valor
+     * @return object ValorVariable
+     */
+    public function getValorVariableDefault($codigo){
+        return $this->getDoctrine()
+            ->getRepository('EfiGeneralBundle:ValorVariable')
+            ->findOneBy(
+                array(
+                    'codigo' => $codigo,
+                    'orden' => 1
+                )
+            );
     }
 
 //    /**
