@@ -40,7 +40,7 @@ class Persona
 
     /**
      * @var string
-     * @Assert\NotBlank(message = "Este campo no puede estar vacio.")
+     * @Assert\NotBlank(message = "Este campo es obligatorio.")
      * @Assert\Length(
      *      max = 100,
      *      maxMessage = "Solo se permiten {{ limit }} caracteres"

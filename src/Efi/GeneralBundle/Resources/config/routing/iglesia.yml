@@ -1,0 +1,29 @@
+iglesia_index:
+    path:     /
+    defaults: { _controller: "EfiGeneralBundle:Iglesia:index" }
+    methods:  GET
+
+#iglesia_show:
+#    path:     /{id}/show
+#    defaults: { _controller: "EfiGeneralBundle:Iglesia:show" }
+#    methods:  GET
+#
+#iglesia_new:
+#    path:     /new
+#    defaults: { _controller: "EfiGeneralBundle:Iglesia:new" }
+#    methods:  [GET, POST]
+#
+#iglesia_edit:
+#    path:     /{id}/edit
+#    defaults: { _controller: "EfiGeneralBundle:Iglesia:edit" }
+#    methods:  [GET, POST]
+#
+#iglesia_delete:
+#    path:     /{id}/delete
+#    defaults: { _controller: "EfiGeneralBundle:Iglesia:delete" }
+#    methods:  DELETE
+
+iglesia_rest:
+    path:     /{id}
+    defaults: { _controller: "EfiGeneralBundle:Iglesia:rest", id: 0 }
+    methods:  [GET, POST, PUT, DELETE]

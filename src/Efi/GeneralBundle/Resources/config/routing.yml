@@ -1,3 +1,7 @@
+efi_general_iglesia:
+    resource: "@EfiGeneralBundle/Resources/config/routing/iglesia.yml"
+    prefix:   /iglesia
+
 efi_general_valorvariable:
     resource: "@EfiGeneralBundle/Resources/config/routing/valorvariable.yml"
     prefix:   /general/valorvariable/

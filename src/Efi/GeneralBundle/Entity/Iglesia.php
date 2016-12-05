@@ -4,6 +4,8 @@ namespace Efi\GeneralBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Iglesia
  *
@@ -37,6 +39,11 @@ class Iglesia
 
     /**
      * @var string
+     * @Assert\NotBlank(message = "Este campo es obligatorio.")
+     * @Assert\Length(
+     *      max = 100,
+     *      maxMessage = "Solo se permiten {{ limit }} caracteres"
+     * )
      *
      * @ORM\Column(name="IGL_NOMBRE", type="string", length=100, nullable=false)
      */
@@ -44,6 +51,11 @@ class Iglesia
 
     /**
      * @var string
+     * @Assert\NotBlank(message = "Este campo es obligatorio.")
+     * @Assert\Length(
+     *      max = 10,
+     *      maxMessage = "Solo se permiten {{ limit }} caracteres"
+     * )
      *
      * @ORM\Column(name="IGL_ABREVIACION", type="string", length=10, nullable=false)
      */
@@ -51,6 +63,10 @@ class Iglesia
 
     /**
      * @var string
+     * @Assert\Length(
+     *      max = 100,
+     *      maxMessage = "Solo se permiten {{ limit }} caracteres"
+     * )
      *
      * @ORM\Column(name="IGL_WEB", type="string", length=100, nullable=true)
      */
@@ -74,13 +90,7 @@ class Iglesia
      *   @ORM\JoinColumn(name="VVA_IDESTATUS", referencedColumnName="VVA_ID")
      * })
      */
-    private $vvaEstatus;
-
-    /**
-     * @ORM\OneToMany(targetEntity="\Efi\GanadosBundle\Entity\Persona", mappedBy="iglesia")
-     */
-    protected $personas;
-
+    private $idEstatus;
 
     /**
      * @return string
@@ -94,7 +104,6 @@ class Iglesia
      */
     public function __construct()
     {
-        $this->personas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -212,35 +221,18 @@ class Iglesia
     /**
      * @return ValorVariable
      */
-    public function getVvaEstatus()
+    public function getIdEstatus()
     {
-        return $this->vvaEstatus;
+        return $this->idEstatus;
     }
 
     /**
-     * @param ValorVariable $vvaEstatus
+     * @param ValorVariable $idEstatus
      */
-    public function setVvaEstatus($vvaEstatus)
+    public function setIdEstatus($idEstatus)
     {
-        $this->vvaEstatus = $vvaEstatus;
+        $this->idEstatus = $idEstatus;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getPersonas()
-    {
-        return $this->personas;
-    }
-
-    /**
-     * @param mixed $personas
-     */
-    public function setPersonas($personas)
-    {
-        $this->personas = $personas;
-    }
-
 
 }
 
