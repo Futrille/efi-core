@@ -110,7 +110,28 @@ class IglesiaController extends Controller
 
                 break;
             case "DELETE":
+                $em = $this->getDoctrine()->getManager();
 
+                parse_str($request->getContent(), $ids);
+                $data = null;
+                if (isset($ids['ids'])) {
+//                    foreach ($ids as $idEliminar){
+                        $query = $em->createQuery(
+                            'DELETE EfiGeneralBundle:Iglesia o 
+                           WHERE o.id IN (:objectId)')
+                            ->setParameter("objectId", $ids['ids']);
+
+                        $query->execute();
+//                    $em->remove($iglesium);
+//                    }
+                    $em->flush();
+                }
+//                $form = $this->createDeleteForm($iglesium);
+//                $form->handleRequest($request);
+//
+//                if ($form->isSubmitted() && $form->isValid()) {
+
+//                }
                 break;
         }
 
