@@ -59,7 +59,13 @@ class IglesiaController extends Controller
         switch($request->getMethod()){
             case "GET":
                 if ($idEntidad == 0){
-                    $data = $repo->findAll();
+                    $data = $this->getDoctrine()
+                        ->getRepository('EfiGeneralBundle:Iglesia')
+                        ->findBy(
+                            array(
+                                'estatus' => Iglesia::ESTATUS_ACTIVA
+                            )
+                        );
                 }
                 else{
                     $data = $repo->findOneById($idEntidad);
@@ -81,6 +87,7 @@ class IglesiaController extends Controller
                 $form = $this->createForm(IglesiaType::class, $iglesia);
                 $form->handleRequest($request);
 
+                $response->setStatus(GENERAL_RESPONSE_ERROR);
                 if ($form->isSubmitted() && $form->isValid()) {
                     if ($this->validarPersonalizado($iglesia)->getStatus() == GENERAL_RESPONSE_SUCCESS){
                         $this->_setValoresDefault($iglesia);
@@ -89,10 +96,11 @@ class IglesiaController extends Controller
                         $em->persist($iglesia);
                         $em->flush();
 
-                        $message = 'Registro guardado satisfactoriamente.';
-                        $response->addToMetaData('iglesia', $iglesia);
+                        $response->setMessage('Registro guardado satisfactoriamente.');
+                        $response->setStatus(GENERAL_RESPONSE_SUCCESS);
                     }
                 }
+
                 $data = $this->render('iglesia/new.html.twig', array(
                     'iglesia' => $iglesia,
                     'form' => $form->createView(),
@@ -105,8 +113,8 @@ class IglesiaController extends Controller
 
                 break;
         }
+
         $response->setData($data);
-        $response->setMessage($message);
 
         return $response->toJSON();
     }

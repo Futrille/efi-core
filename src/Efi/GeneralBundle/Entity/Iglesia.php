@@ -14,6 +14,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Iglesia
 {
+    //Contantes provenientes de VVA_COD = igl_estatus
+    const ESTATUS_ACTIVA = 1;
+    const ESTATUS_INACTIVA = 2;
+
     /**
      * @var integer
      *
