@@ -29,6 +29,17 @@ class SecurityController extends Controller
         return $response->toJSON();
     }
 
+    public function des(){
+        $encoded = "...";   // <-- encoded string from the request
+        $decoded = "";
+        for( $i = 0; $i < strlen($encoded); $i++ ) {
+            $b = ord($encoded[$i]);
+            $a = $b ^ 123;  // <-- must be same number used to encode the character
+            $decoded .= chr($a);
+        }
+        return $decoded;
+    }
+
     public function logoutAction()
     {
         $this->container->get('security.context')->setToken(null);

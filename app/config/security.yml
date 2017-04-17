@@ -23,6 +23,8 @@ security:
             form-login:
                 login_path: login
                 check_path: login
+                username_parameter: jl6sb4tuibfa874wbw
+                password_parameter: kjbf8764fwf876ewfe
         secured_area:
             pattern:    ^/
             form_login: ~
